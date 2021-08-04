@@ -14,8 +14,7 @@ module.exports = {
 	/**
 	 * Settings
 	 */
-	settings: {
-	},
+	settings: {},
 
 	/**
 	 * Dependencies
@@ -29,23 +28,29 @@ module.exports = {
 		createIndex: {
 			params: {
 				index: "string",
-				body: "object|optional"
+				body: "object|optional",
 			},
 			async handler(ctx) {
 				let body = {
-					index: ctx.params.index
+					index: ctx.params.index,
 				};
 				if (ctx.params.body) {
 					body = { ...body, body: ctx.params.body };
 				}
 				await client.indices.create(body);
-			}
+			},
 		},
 		bulk: {
 			async handler(ctx) {
 				const { index, dataset, id } = ctx.params;
-				const body = dataset.flatMap(doc => [{ index: { _index: index, _id: doc[id] } }, doc]);
-				const { body: bulkResponse } = await client.bulk({ refresh: true, body });
+				const body = dataset.flatMap((doc) => [
+					{ index: { _index: index, _id: doc[id] } },
+					doc,
+				]);
+				const { body: bulkResponse } = await client.bulk({
+					refresh: true,
+					body,
+				});
 				const errorDocuments = [];
 				if (bulkResponse.errors) {
 					bulkResponse.items.forEach((action, i) => {
@@ -55,57 +60,65 @@ module.exports = {
 								status: action[operation].status,
 								error: action[operation].error,
 								operation: body[i * 2],
-								document: body[i * 2 + 1]
+								document: body[i * 2 + 1],
 							});
 						}
 					});
 				}
 				return {
 					errorDocuments,
-					inserted: dataset.length - errorDocuments.length
+					inserted: dataset.length - errorDocuments.length,
 				};
-			}
+			},
 		},
 		searchBySystemAndCode: {
 			async handler(ctx) {
 				const { system, value, index } = ctx.params;
-				const { body: { hits: { hits } } } = await client.search({
+				const {
+					body: {
+						hits: { hits },
+					},
+				} = await client.search({
 					index,
 					body: {
 						query: {
 							bool: {
 								must: [
 									{ match: { "mappings.system": system } },
-									{ match: { "mappings.code": value } }
-								]
-							}
-						}
-					}
+									{ match: { "mappings.code": value } },
+								],
+							},
+						},
+					},
 				});
 				if (hits.length > 0) {
 					return hits[0]._source.mappings;
 				}
-			}
+			},
 		},
 		searchByValues: {
 			async handler(ctx) {
 				const { term, values, index } = ctx.params;
-				const { body: { hits: { hits } } } = await client.search({
+				const {
+					body: {
+						hits: { hits },
+					},
+				} = await client.search({
 					index,
 					body: {
 						query: {
 							bool: {
 								filter: {
-									terms: { [`${term}.keyword`]: values }
-								}
-							}
-						}
-					}
+									terms: { [`${term}.keyword`]: values },
+								},
+							},
+						},
+					},
 				});
 				if (hits.length > 0) {
 					return hits[0]._source;
 				}
-			}
+			},
 		},
 		search: {
 			params: {
@@ -113,60 +126,57 @@ module.exports = {
 				body: "object",
 			},
 			async handler(ctx) {
-				const { body: { hits: { hits } } } = await client.search({
+				const {
+					body: {
+						hits: { hits },
+					},
+				} = await client.search({
 					index: ctx.params.index,
-					body: ctx.params.body
+					body: ctx.params.body,
 				});
 				return hits;
-			}
+			},
 		},
 		get: {
 			params: {
 				index: "string",
-				id: "string"
+				id: "string",
 			},
 			async handler(ctx) {
 				const { index, id } = ctx.params;
-				const { body: { _source } } = await client.get({
+				const {
+					body: { _source },
+				} = await client.get({
 					index,
-					id
+					id,
 				});
 				return _source;
-			}
-		}
+			},
+		},
 	},
 
 	/**
 	 * Events
 	 */
-	events: {
-
-	},
+	events: {},
 
 	/**
 	 * Methods
 	 */
-	methods: {
-	},
+	methods: {},
 
 	/**
 	 * Service created lifecycle event handler
 	 */
-	created() {
-
-	},
+	created() {},
 
 	/**
 	 * Service started lifecycle event handler
 	 */
-	async started() {
-
-	},
+	async started() {},
 
 	/**
 	 * Service stopped lifecycle event handler
 	 */
-	async stopped() {
-
-	}
+	async stopped() {},
 };

@@ -6,8 +6,8 @@ const instance = axios.create({
 	baseURL: "https://ecbss.dev.hispuganda.org/api",
 	auth: {
 		username: "carapai",
-		password: "Baby77@Baby771"
-	}
+		password: "Baby77@Baby771",
+	},
 });
 
 /**
@@ -19,8 +19,7 @@ module.exports = {
 	/**
 	 * Settings
 	 */
-	settings: {
-	},
+	settings: {},
 	/**
 	 * Dependencies
 	 */
@@ -34,58 +33,49 @@ module.exports = {
 			async handler(ctx) {
 				const { url, ...params } = ctx.params;
 				const { data } = await instance.get(url, {
-					params
+					params,
 				});
 				return data;
-			}
+			},
 		},
 		post: {
 			async handler(ctx) {
 				const { url, ...body } = ctx.params;
 				const { data } = await instance.post(url, body);
 				return data;
-			}
+			},
 		},
 		put: {
 			async handler(ctx) {
 				const { url, ...body } = ctx.params;
 				const { data } = await instance.put(url, body);
 				return data;
-			}
-		}
+			},
+		},
 	},
 
 	/**
 	 * Events
 	 */
-	events: {
-
-	},
+	events: {},
 
 	/**
 	 * Methods
 	 */
-	methods: {
-	},
+	methods: {},
 
 	/**
 	 * Service created lifecycle event handler
 	 */
-	created() {
-
-	},
+	created() {},
 
 	/**
 	 * Service started lifecycle event handler
 	 */
-	async started() {
-
-	},
+	async started() {},
 
 	/**
 	 * Service stopped lifecycle event handler
 	 */
-	async stopped() {
-
-	}
+	async stopped() {},
 };

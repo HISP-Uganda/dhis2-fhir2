@@ -41,9 +41,7 @@ module.exports = {
 			{
 				path: "/",
 
-				whitelist: [
-					"**"
-				],
+				whitelist: ["**"],
 
 				// Route-level Express middlewares. More info: https://moleculer.services/docs/0.14/moleculer-web.html#Middlewares
 				use: [],
@@ -61,9 +59,7 @@ module.exports = {
 				// The gateway will dynamically build the full routes from service schema.
 				autoAliases: true,
 
-				aliases: {
-
-				},
+				aliases: {},
 
 				/**
 				 * Before call hook. You can check the request.
@@ -96,20 +92,20 @@ module.exports = {
 				bodyParsers: {
 					json: {
 						strict: false,
-						limit: "1MB"
+						limit: "1MB",
 					},
 					urlencoded: {
 						extended: true,
-						limit: "1MB"
-					}
+						limit: "1MB",
+					},
 				},
 
 				// Mapping policy setting. More info: https://moleculer.services/docs/0.14/moleculer-web.html#Mapping-policy
 				mappingPolicy: "all", // Available values: "all", "restrict"
 
 				// Enable/disable logging
-				logging: true
-			}
+				logging: true,
+			},
 		],
 
 		// Do not log client side errors (does not log an error response when the error.code is 400<=X<500)
@@ -119,18 +115,16 @@ module.exports = {
 		// Logging the response data. Set to any log level to enable it. E.g. "info"
 		logResponseData: null,
 
-
 		// Serve assets from "public" folder. More info: https://moleculer.services/docs/0.14/moleculer-web.html#Serve-static-files
 		assets: {
 			folder: "public",
 
 			// Options to `server-static` module
-			options: {}
-		}
+			options: {},
+		},
 	},
 
 	methods: {
-
 		/**
 		 * Authenticate the request. It check the `Authorization` token value in the request header.
 		 * Check the token value & resolve the user by the token.
@@ -154,12 +148,12 @@ module.exports = {
 				if (token == "123456") {
 					// Returns the resolved user. It will be set to the `ctx.meta.user`
 					return { id: 1, name: "John Doe" };
-
 				} else {
 					// Invalid token
-					throw new ApiGateway.Errors.UnAuthorizedError(ApiGateway.Errors.ERR_INVALID_TOKEN);
+					throw new ApiGateway.Errors.UnAuthorizedError(
+						ApiGateway.Errors.ERR_INVALID_TOKEN
+					);
 				}
-
 			} else {
 				// No token. Throw an error or do nothing if anonymous access is allowed.
 				// throw new E.UnAuthorizedError(E.ERR_NO_TOKEN);
@@ -185,7 +179,6 @@ module.exports = {
 			if (req.$action.auth == "required" && !user) {
 				throw new ApiGateway.Errors.UnAuthorizedError("NO_RIGHTS");
 			}
-		}
-
-	}
+		},
+	},
 };

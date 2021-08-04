@@ -13,8 +13,7 @@ module.exports = {
 	/**
 	 * Settings
 	 */
-	settings: {
-	},
+	settings: {},
 
 	/**
 	 * Dependencies
@@ -33,100 +32,197 @@ module.exports = {
 		parse: {
 			rest: {
 				method: "POST",
-				path: "/"
+				path: "/",
 			},
 			async handler(ctx) {
 				const fhir = new Fhir();
 				const { valid, messages } = fhir.validate(ctx.params, {});
 				if (valid) {
 					const { resourceType } = ctx.params;
-					return ctx.call(`utils.${resourceType}`, { [resourceType]: ctx.params });
+					if (resourceType === "Bundle") {
+						let responses = [];
+						const patients = ctx.params.entry.filter(
+							(r) => r.resource.resourceType === "Patient"
+						);
+						const eocs = ctx.params.entry.filter(
+							(r) => r.resource.resourceType === "EpisodeOfCare"
+						);
+						const encounters = ctx.params.entry.filter(
+							(r) => r.resource.resourceType === "Encounter"
+						);
+						const observations = ctx.params.entry.filter(
+							(r) => r.resource.resourceType === "Observation"
+						);
+						for (const p of patients) {
+							const response = await ctx.call(`utils.Patient`, {
+								["Patient"]: p.resource,
+							});
+							responses = [...responses, response];
+						}
+						for (const eoc of eocs) {
+							const response = await ctx.call(`utils.EpisodeOfCare`, {
+								["EpisodeOfCare"]: eoc.resource,
+							});
+							responses = [...responses, response];
+						}
+						for (const encounter of encounters) {
+							const response = await ctx.call(`utils.Encounter`, {
+								["Encounter"]: encounter.resource,
+							});
+							responses = [...responses, response];
+						}
+						for (const obs of observations) {
+							const response = await ctx.call(`utils.Observation`, {
+								["Observation"]: obs.resource,
+							});
+							responses = [...responses, response];
+						}
+						return responses;
+					}
+					return ctx.call(`utils.${resourceType}`, {
+						[resourceType]: ctx.params,
+					});
 				}
 				return { valid, messages };
-			}
+			},
 		},
 
 		index: {
 			rest: {
 				method: "POST",
-				path: "/index"
+				path: "/index",
 			},
 			async handler(ctx) {
 				const { index, id, ...body } = ctx.params;
 				await ctx.call("es.bulk", { index, dataset: [body], id });
 				return body;
-			}
+			},
 		},
 
 		synchronize: {
 			rest: {
 				method: "GET",
-				path: "/synchronize"
+				path: "/synchronize",
 			},
 			async handler(ctx) {
-				await Promise.all(["programs", "stages", "concepts", "attributes", "patients", "entities", "organisations"].map((index) => {
-					return ctx.call("es.createIndex", { index });
-				}));
-				const [{ dataElements }, { trackedEntityAttributes }, { trackedEntityTypes }, { programs }, { programStages }] = await Promise.all([
-					ctx.call("dhis2.get", { url: "dataElements.json", paging: false, fields: "id,name,shortName,description,valueType", filter: "domainType:eq:TRACKER" }),
-					ctx.call("dhis2.get", { url: "trackedEntityAttributes.json", paging: false, fields: "id,name,shortName,description,valueType,unique" }),
-					ctx.call("dhis2.get", { url: "trackedEntityTypes.json", paging: false, fields: ID_SHORT_NAME }),
-					ctx.call("dhis2.get", { url: "programs.json", paging: false, fields: ID_SHORT_NAME }),
-					ctx.call("dhis2.get", { url: "programStages.json", paging: false, fields: "id,name,description,repeatable,program[id,name]" }),
+				await Promise.all(
+					[
+						"programs",
+						"stages",
+						"concepts",
+						"attributes",
+						"patients",
+						"entities",
+						"organisations",
+					].map((index) => {
+						return ctx.call("es.createIndex", { index });
+					})
+				);
+				const [
+					{ dataElements },
+					{ trackedEntityAttributes },
+					{ trackedEntityTypes },
+					{ programs },
+					{ programStages },
+				] = await Promise.all([
+					ctx.call("dhis2.get", {
+						url: "dataElements.json",
+						paging: false,
+						fields: "id,name,shortName,description,valueType",
+						filter: "domainType:eq:TRACKER",
+					}),
+					ctx.call("dhis2.get", {
+						url: "trackedEntityAttributes.json",
+						paging: false,
+						fields: "id,name,shortName,description,valueType,unique",
+					}),
+					ctx.call("dhis2.get", {
+						url: "trackedEntityTypes.json",
+						paging: false,
+						fields: ID_SHORT_NAME,
+					}),
+					ctx.call("dhis2.get", {
+						url: "programs.json",
+						paging: false,
+						fields: ID_SHORT_NAME,
+					}),
+					ctx.call("dhis2.get", {
+						url: "programStages.json",
+						paging: false,
+						fields: "id,name,description,repeatable,program[id,name]",
+					}),
 				]);
 				const attributes = trackedEntityAttributes.map((attribute) => {
-					const mappings = [{
-						system: "DHIS2",
-						code: attribute.id
-					}];
-					return { ...attribute, identifier: attribute.unique, type: "", mappings };
+					const mappings = [
+						{
+							system: "DHIS2",
+							code: attribute.id,
+						},
+					];
+					return {
+						...attribute,
+						identifier: attribute.unique,
+						type: "",
+						mappings,
+					};
 				});
 
 				const concepts = dataElements.map((dataElement) => {
-					const mappings = [{
-						system: "DHIS2",
-						code: dataElement.id
-					}];
+					const mappings = [
+						{
+							system: "DHIS2",
+							code: dataElement.id,
+						},
+					];
 					return { ...dataElement, mappings };
 				});
 
 				const entities = trackedEntityTypes.map((trackedEntityType) => {
-					const mappings = [{
-						system: "DHIS2",
-						code: trackedEntityType.id
-					}];
+					const mappings = [
+						{
+							system: "DHIS2",
+							code: trackedEntityType.id,
+						},
+					];
 
-					if (String(trackedEntityType.name).toLocaleLowerCase() === "person" || String(trackedEntityType.name).toLocaleLowerCase() === "case") {
+					if (
+						String(trackedEntityType.name).toLocaleLowerCase() === "person" ||
+						String(trackedEntityType.name).toLocaleLowerCase() === "case"
+					) {
 						return {
 							...trackedEntityType,
 							mappings,
-							type: "Person"
+							type: "Person",
 						};
 					}
 
 					return {
 						...trackedEntityType,
-						mappings
+						mappings,
 					};
 				});
 
 				const progs = programs.map((program) => {
-					const mappings = [{
-						system: "DHIS2",
-						code: program.id
-					}];
+					const mappings = [
+						{
+							system: "DHIS2",
+							code: program.id,
+						},
+					];
 					return {
 						...program,
 						mappings,
-						type: []
+						type: [],
 					};
 				});
 
 				const stages = programStages.map((programStage) => {
-					const mappings = [{
-						system: "DHIS2",
-						code: programStage.id
-					}];
+					const mappings = [
+						{
+							system: "DHIS2",
+							code: programStage.id,
+						},
+					];
 					return {
 						...programStage,
 						mappings,
@@ -134,67 +230,73 @@ module.exports = {
 				});
 
 				const response = await Promise.all([
-					ctx.call("es.bulk", { index: "attributes", dataset: attributes, id: "id" }),
-					ctx.call("es.bulk", { index: "concepts", dataset: concepts, id: "id" }),
-					ctx.call("es.bulk", { index: "entities", dataset: entities, id: "id" }),
+					ctx.call("es.bulk", {
+						index: "attributes",
+						dataset: attributes,
+						id: "id",
+					}),
+					ctx.call("es.bulk", {
+						index: "concepts",
+						dataset: concepts,
+						id: "id",
+					}),
+					ctx.call("es.bulk", {
+						index: "entities",
+						dataset: entities,
+						id: "id",
+					}),
 					ctx.call("es.bulk", { index: "programs", dataset: progs, id: "id" }),
 					ctx.call("es.bulk", { index: "stages", dataset: stages, id: "id" }),
 				]);
 				return response;
-			}
+			},
 		},
 		concepts: {
 			rest: {
 				method: "GET",
-				path: "/concepts"
+				path: "/concepts",
 			},
 			async handler(ctx) {
 				const { q, index } = ctx.params;
-				return ctx.call("es.search", { index, body: { query: { query_string: { query: q } }, size: 1000 } });
-			}
+				return ctx.call("es.search", {
+					index,
+					body: { query: { query_string: { query: q } }, size: 1000 },
+				});
+			},
 		},
 		concept: {
 			rest: {
 				method: "GET",
-				path: "/concepts/:id"
+				path: "/concepts/:id",
 			},
 			handler(ctx) {
 				return ctx.call("es.get", ctx.params);
-			}
-		}
+			},
+		},
 	},
 
 	/**
 	 * Events
 	 */
-	events: {
-
-	},
+	events: {},
 
 	/**
 	 * Methods
 	 */
-	methods: {
-	},
+	methods: {},
 
 	/**
 	 * Service created lifecycle event handler
 	 */
-	created() {
-
-	},
+	created() {},
 
 	/**
 	 * Service started lifecycle event handler
 	 */
-	async started() {
-
-	},
+	async started() {},
 
 	/**
 	 * Service stopped lifecycle event handler
 	 */
-	async stopped() {
-
-	}
+	async stopped() {},
 };
