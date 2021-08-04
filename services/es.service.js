@@ -107,7 +107,6 @@ module.exports = {
 				}
 			}
 		},
-
 		search: {
 			params: {
 				index: "string",
