@@ -1,7 +1,7 @@
 "use strict";
 
 const ID_SHORT_NAME = "id,name,shortName,description";
-
+const csv = require("csvtojson");
 const Fhir = require("fhir").Fhir;
 
 /**
@@ -18,7 +18,7 @@ module.exports = {
 	/**
 	 * Dependencies
 	 */
-	dependencies: ["es", "dhis2", "utils"],
+	dependencies: ["es", "dhis2", "utils", "hapi"],
 
 	/**
 	 * Actions
@@ -35,55 +35,55 @@ module.exports = {
 				path: "/",
 			},
 			async handler(ctx) {
-				const fhir = new Fhir();
-				const { valid, messages } = fhir.validate(ctx.params, {});
-				if (valid) {
-					const { resourceType } = ctx.params;
-					if (resourceType === "Bundle") {
-						let responses = [];
-						const patients = ctx.params.entry.filter(
-							(r) => r.resource.resourceType === "Patient"
-						);
-						const eocs = ctx.params.entry.filter(
-							(r) => r.resource.resourceType === "EpisodeOfCare"
-						);
-						const encounters = ctx.params.entry.filter(
-							(r) => r.resource.resourceType === "Encounter"
-						);
-						const observations = ctx.params.entry.filter(
-							(r) => r.resource.resourceType === "Observation"
-						);
-						for (const p of patients) {
-							const response = await ctx.call(`utils.Patient`, {
-								["Patient"]: p.resource,
-							});
-							responses = [...responses, response];
-						}
-						for (const eoc of eocs) {
-							const response = await ctx.call(`utils.EpisodeOfCare`, {
-								["EpisodeOfCare"]: eoc.resource,
-							});
-							responses = [...responses, response];
-						}
-						for (const encounter of encounters) {
-							const response = await ctx.call(`utils.Encounter`, {
-								["Encounter"]: encounter.resource,
-							});
-							responses = [...responses, response];
-						}
-						for (const obs of observations) {
-							const response = await ctx.call(`utils.Observation`, {
-								["Observation"]: obs.resource,
-							});
-							responses = [...responses, response];
-						}
-						return responses;
+				// const fhir = new Fhir();
+				// const { valid, messages } = fhir.validate(ctx.params, {});
+				// if (valid) {
+				const { resourceType } = ctx.params;
+				if (resourceType === "Bundle") {
+					let responses = [];
+					const patients = ctx.params.entry.filter(
+						(r) => r.resource.resourceType === "Patient"
+					);
+					const eocs = ctx.params.entry.filter(
+						(r) => r.resource.resourceType === "EpisodeOfCare"
+					);
+					const encounters = ctx.params.entry.filter(
+						(r) => r.resource.resourceType === "Encounter"
+					);
+					const observations = ctx.params.entry.filter(
+						(r) => r.resource.resourceType === "Observation"
+					);
+					for (const p of patients) {
+						const response = await ctx.call(`utils.Patient`, {
+							["Patient"]: p.resource,
+						});
+						responses = [...responses, response];
 					}
-					return ctx.call(`utils.${resourceType}`, {
-						[resourceType]: ctx.params,
-					});
+					for (const eoc of eocs) {
+						const response = await ctx.call(`utils.EpisodeOfCare`, {
+							["EpisodeOfCare"]: eoc.resource,
+						});
+						responses = [...responses, response];
+					}
+					for (const encounter of encounters) {
+						const response = await ctx.call(`utils.Encounter`, {
+							["Encounter"]: encounter.resource,
+						});
+						responses = [...responses, response];
+					}
+					for (const obs of observations) {
+						const response = await ctx.call(`utils.Observation`, {
+							["Observation"]: obs.resource,
+						});
+						responses = [...responses, response];
+					}
+					return responses;
 				}
-				return { valid, messages };
+				return ctx.call(`utils.${resourceType}`, {
+					[resourceType]: ctx.params,
+				});
+				// }
+				// return { valid, messages };
 			},
 		},
 
@@ -96,6 +96,74 @@ module.exports = {
 				const { index, id, ...body } = ctx.params;
 				await ctx.call("es.bulk", { index, dataset: [body], id });
 				return body;
+			},
+		},
+
+		obs_sync: {
+			rest: {
+				method: "GET",
+				path: "/obs_sync",
+			},
+			async handler(ctx) {
+				const obs = await csv().fromFile(
+					"/Users/carapai/projects/dhis2-fhir/services/obs.csv"
+				);
+
+				const processedObs = obs
+					.filter((o) => !!o.id)
+					.map((ob) => {
+						const mappings = [
+							{
+								system: "UgandaEMR",
+								code: ob.Code,
+							},
+							{
+								system: "DHIS2",
+								code: ob.id,
+							},
+						];
+						return {
+							id: ob.id,
+							name: ob.name,
+							code: ob.code,
+							mappings,
+						};
+					});
+				const response = await ctx.call("es.bulk", {
+					index: "obs",
+					dataset: processedObs,
+					id: "id",
+				});
+				return response;
+			},
+		},
+
+		ou_sync: {
+			rest: {
+				method: "GET",
+				path: "/ou_sync",
+			},
+			async handler(ctx) {
+				const { organisationUnits } = await ctx.call("dhis2.get", {
+					url: "organisationUnits.json",
+					level: 5,
+					fields: "id,name,shortName,description",
+					paging: false,
+				});
+
+				const ous = organisationUnits.map((ou) => {
+					const mappings = [
+						{
+							system: "DHIS2",
+							code: ou.id,
+						},
+					];
+					return {
+						...ou,
+						mappings,
+					};
+				});
+				return 	ctx.call("es.bulk", { index: "organisations", dataset: ous, id: "id" });
 			},
 		},
 
@@ -271,6 +339,33 @@ module.exports = {
 			},
 			handler(ctx) {
 				return ctx.call("es.get", ctx.params);
+			},
+		},
+		patients: {
+			rest: {
+				method: "GET",
+				path: "/hapi/patients",
+			},
+			handler(ctx) {
+				return ctx.call("hapi.patients", ctx.params);
+			},
+		},
+		obs: {
+			rest: {
+				method: "GET",
+				path: "/hapi/obs",
+			},
+			handler(ctx) {
+				return ctx.call("hapi.obs", ctx.params);
+			},
+		},
+		encounters: {
+			rest: {
+				method: "GET",
+				path: "/hapi/encounters",
+			},
+			handler(ctx) {
+				return ctx.call("hapi.encounters", ctx.params);
 			},
 		},
 	},

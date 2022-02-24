@@ -67,21 +67,41 @@ module.exports = {
 								let attributes = [];
 								let patientIdentifiers = [];
 								identifier.forEach((id) => {
-									const [{ code, system }] = id.type.coding;
-									const attribute = this.searchOne(
-										identifiers,
-										"mappings",
-										"code",
-										"system",
-										code,
-										system
-									);
-									if (attribute) {
-										attributes = [
-											...attributes,
-											{ attribute, value: id.value },
-										];
-										patientIdentifiers = [...patientIdentifiers, id.value];
+									if (id.type.coding) {
+										const [{ code, system }] = id.type.coding;
+										const attribute = this.searchOne(
+											identifiers,
+											"mappings",
+											"code",
+											"system",
+											code,
+											system
+										);
+										if (attribute) {
+											attributes = [
+												...attributes,
+												{ attribute, value: id.value },
+											];
+											patientIdentifiers = [...patientIdentifiers, id.value];
+										}
+									} else if (id.type.text && id.id) {
+										const system = id.text;
+										const code = id.id;
+										const attribute = this.searchOne(
+											identifiers,
+											"mappings",
+											"code",
+											"system",
+											code,
+											system
+										);
+										if (attribute) {
+											attributes = [
+												...attributes,
+												{ attribute, value: id.value },
+											];
+											patientIdentifiers = [...patientIdentifiers, id.value];
+										}
 									}
 								});
 

@@ -19,20 +19,32 @@
   ],
   "author": "",
   "devDependencies": {
+    "@types/hapi": "^18.0.6",
+    "@types/node": "^16.6.2",
     "eslint": "^7.23.0",
     "jest": "^26.6.3",
     "jest-cli": "^26.6.3",
+    "moleculer-cron": "^0.0.2",
     "moleculer-repl": "^0.6.4"
   },
   "dependencies": {
     "@elastic/elasticsearch": "^7.13.0",
     "array.prototype.flatmap": "^1.2.4",
     "axios": "^0.21.1",
+    "bluebird": "^3.7.2",
+    "csv-parser": "^3.0.0",
+    "csvtojson": "^2.0.10",
+    "date-fns": "^2.23.0",
     "dotenv": "^10.0.0",
     "fhir": "^4.8.2",
+    "fhir.js": "^0.0.22",
+    "fhirclient": "^2.4.0",
     "lodash": "^4.17.21",
     "moleculer": "^0.14.13",
-    "moleculer-web": "^0.9.1"
+    "moleculer-web": "^0.9.1",
+    "pg": "^8.7.1",
+    "pg-format": "^1.0.4",
+    "pg-promise": "^10.11.0"
   },
   "engines": {
     "node": ">= 10.x.x"
