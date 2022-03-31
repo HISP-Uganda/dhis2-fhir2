@@ -2,7 +2,6 @@
 
 const ID_SHORT_NAME = "id,name,shortName,description";
 const csv = require("csvtojson");
-const Fhir = require("fhir").Fhir;
 
 /**
  * @typedef {import('moleculer').Context} Context Moleculer's Context
@@ -25,7 +24,6 @@ module.exports = {
 	 */
 	actions: {
 		/**
-		 * Say a 'Hello' action.
 		 *
 		 * @returns
 		 */
@@ -41,42 +39,43 @@ module.exports = {
 				const { resourceType } = ctx.params;
 				if (resourceType === "Bundle") {
 					let responses = [];
-					const patients = ctx.params.entry.filter(
-						(r) => r.resource.resourceType === "Patient"
-					);
-					const eocs = ctx.params.entry.filter(
-						(r) => r.resource.resourceType === "EpisodeOfCare"
-					);
+					// const patients = ctx.params.entry.filter(
+					// 	(r) => r.resource.resourceType === "Patient"
+					// );
+					// const eocs = ctx.params.entry.filter(
+					// 	(r) => r.resource.resourceType === "EpisodeOfCare"
+					// );
 					const encounters = ctx.params.entry.filter(
 						(r) => r.resource.resourceType === "Encounter"
 					);
-					const observations = ctx.params.entry.filter(
-						(r) => r.resource.resourceType === "Observation"
-					);
-					for (const p of patients) {
-						const response = await ctx.call(`utils.Patient`, {
-							["Patient"]: p.resource,
-						});
-						responses = [...responses, response];
-					}
-					for (const eoc of eocs) {
-						const response = await ctx.call(`utils.EpisodeOfCare`, {
-							["EpisodeOfCare"]: eoc.resource,
-						});
-						responses = [...responses, response];
-					}
+					// const observations = ctx.params.entry.filter(
+					// 	(r) => r.resource.resourceType === "Observation"
+					// );
+					// console.log(patients);
+					// for (const p of patients) {
+					// 	const response = await ctx.call(`utils.Patient`, {
+					// 		["Patient"]: p.resource,
+					// 	});
+					// 	responses = [...responses, response];
+					// }
+					// for (const eoc of eocs) {
+					// 	const response = await ctx.call(`utils.EpisodeOfCare`, {
+					// 		["EpisodeOfCare"]: eoc.resource,
+					// 	});
+					// 	responses = [...responses, response];
+					// }
 					for (const encounter of encounters) {
 						const response = await ctx.call(`utils.Encounter`, {
 							["Encounter"]: encounter.resource,
 						});
 						responses = [...responses, response];
 					}
-					for (const obs of observations) {
-						const response = await ctx.call(`utils.Observation`, {
-							["Observation"]: obs.resource,
-						});
-						responses = [...responses, response];
-					}
+					// for (const obs of observations) {
+					// 	const response = await ctx.call(`utils.Observation`, {
+					// 		["Observation"]: obs.resource,
+					// 	});
+					// 	responses = [...responses, response];
+					// }
 					return responses;
 				}
 				return ctx.call(`utils.${resourceType}`, {
@@ -163,7 +162,11 @@ module.exports = {
 						mappings,
 					};
 				});
-				return 	ctx.call("es.bulk", { index: "organisations", dataset: ous, id: "id" });
+				return ctx.call("es.bulk", {
+					index: "organisations",
+					dataset: ous,
+					id: "id",
+				});
 			},
 		},
 

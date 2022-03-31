@@ -1,7 +1,9 @@
 "use strict";
 
+const console = require("console");
 const { capitalize } = require("lodash");
 const { isArray } = require("lodash");
+const { generateUid } = require("./uid");
 /**
  * @typedef {import('moleculer').Context} Context Moleculer's Context
  */
@@ -26,6 +28,7 @@ module.exports = {
 				const {
 					Patient: {
 						birthDate,
+						id: patientId,
 						name,
 						gender,
 						telecom,
@@ -41,11 +44,11 @@ module.exports = {
 				});
 				const refOrganisation = this.getReference(managingOrganization);
 				if (refOrganisation) {
-					const organisationSearch = await ctx.call(
-						"es.searchBySystemAndCode",
-						{ ...refOrganisation, index: "organisations" }
-					);
-					const orgUnit = this.getDHIS2Code(organisationSearch);
+					const organisationSearch = await ctx.call("es.searchById", {
+						id: refOrganisation,
+						index: "organisations",
+					});
+					const orgUnit = this.getDHIS2Code(organisationSearch.mappings);
 					if (orgUnit) {
 						if (entities.length > 0) {
 							const [entity] = entities;
@@ -59,6 +62,7 @@ module.exports = {
 							const identifiers = esAttributes.filter(
 								(a) => a._source.identifier
 							);
+
 							if (identifiers.length > 0 && trackedEntityType !== undefined) {
 								const extensions = esAttributes.filter(
 									(a) => a._source.type === "extension"
@@ -66,9 +70,9 @@ module.exports = {
 								let trackedEntityInstance = { trackedEntityType, orgUnit };
 								let attributes = [];
 								let patientIdentifiers = [];
-								identifier.forEach((id) => {
-									if (id.type.coding) {
-										const [{ code, system }] = id.type.coding;
+								identifier.forEach((currentIdentifier) => {
+									if (currentIdentifier.type.coding) {
+										const [{ code, system }] = currentIdentifier.type.coding;
 										const attribute = this.searchOne(
 											identifiers,
 											"mappings",
@@ -80,13 +84,19 @@ module.exports = {
 										if (attribute) {
 											attributes = [
 												...attributes,
-												{ attribute, value: id.value },
+												{ attribute, value: currentIdentifier.value },
 											];
-											patientIdentifiers = [...patientIdentifiers, id.value];
+											patientIdentifiers = [
+												...patientIdentifiers,
+												currentIdentifier.value,
+											];
 										}
-									} else if (id.type.text && id.id) {
-										const system = id.text;
-										const code = id.id;
+									} else if (
+										currentIdentifier.type.text &&
+										currentIdentifier.id
+									) {
+										const system = currentIdentifier.type.text;
+										const code = currentIdentifier.id;
 										const attribute = this.searchOne(
 											identifiers,
 											"mappings",
@@ -95,21 +105,21 @@ module.exports = {
 											code,
 											system
 										);
+
 										if (attribute) {
 											attributes = [
 												...attributes,
-												{ attribute, value: id.value },
+												{ attribute, value: currentIdentifier.value },
 											];
-											patientIdentifiers = [...patientIdentifiers, id.value];
+											patientIdentifiers = [
+												...patientIdentifiers,
+												currentIdentifier.value,
+											];
 										}
 									}
 								});
 
-								if (extensions && extensions.length > 0) {
-									console.log("testing");
-								}
-
-								if (patientIdentifiers.length > 0) {
+								if (patientIdentifiers.length > 0 || patientId) {
 									if (birthDate) {
 										const attribute = this.searchAttribute(
 											esAttributes,
@@ -129,7 +139,7 @@ module.exports = {
 										const attribute = this.searchAttribute(
 											esAttributes,
 											"type",
-											"family"
+											"given"
 										);
 
 										if (attribute) {
@@ -192,7 +202,6 @@ module.exports = {
 										...trackedEntityInstance,
 										attributes,
 									};
-
 									const patientSearch = await ctx.call("es.searchByValues", {
 										term: "attributes",
 										values: patientIdentifiers,
@@ -205,6 +214,10 @@ module.exports = {
 										encounters: [],
 									};
 
+									if (patientId) {
+										toBeIndexed = { ...toBeIndexed, id: patientId };
+									}
+
 									if (patientSearch) {
 										toBeIndexed = {
 											...toBeIndexed,
@@ -216,9 +229,7 @@ module.exports = {
 												patientSearch.trackedEntityInstance,
 										};
 									} else {
-										const {
-											codes: [code],
-										} = await ctx.call("dhis2.get", { url: "system/id.json" });
+										const code = generateUid();
 										trackedEntityInstance = {
 											...trackedEntityInstance,
 											trackedEntityInstance: code,
@@ -259,30 +270,38 @@ module.exports = {
 							id,
 							type: [
 								{
-									coding: [{ system, code }],
+									coding: [{ system, code, display }],
 								},
 							],
 							period: { start },
-							patient: {
-								identifier: { value },
-							},
+							patient: { identifier, reference: patientReference },
 							managingOrganization: {
 								identifier: { system: ouSystem, value: ou },
 							},
 						},
 					} = ctx.params;
 					const programSearch = await ctx.call("es.searchBySystemAndCode", {
-						system,
+						system: system || display,
 						value: code,
 						index: "programs",
 					});
 					if (programSearch) {
 						const program = this.getDHIS2Code(programSearch);
-						const patientSearch = await ctx.call("es.searchByValues", {
-							term: "attributes",
-							values: [value],
-							index: "patients",
-						});
+						let patientSearch;
+						if (identifier) {
+							patientSearch = await ctx.call("es.searchByValues", {
+								term: "attributes",
+								values: [identifier.value],
+								index: "patients",
+							});
+						} else if (patientReference) {
+							const [resourceType, id] = String(patientReference).split("/");
+							patientSearch = await ctx.call("es.searchById", {
+								index: "patients",
+								id,
+							});
+						}
+
 						if (patientSearch) {
 							const { enrollments, trackedEntityInstance } = patientSearch;
 							const organisationSearch = await ctx.call(
@@ -299,9 +318,7 @@ module.exports = {
 										e.id === id);
 								});
 								if (!previousEnrollment) {
-									const {
-										codes: [enrollment],
-									} = await ctx.call("dhis2.get", { url: "system/id.json" });
+									const enrollment = generateUid();
 									const enroll = {
 										enrollment,
 										enrollmentDate: start,
@@ -351,91 +368,129 @@ module.exports = {
 								},
 							],
 							period: { start },
-							subject: {
-								identifier: { value },
-							},
-							episodeOfCare: [{ reference }],
-							serviceProvider: {
-								identifier: { system: ouSystem, value: ou },
-							},
+							subject,
+							serviceProvider,
+							episodeOfCare,
 						},
 					} = ctx.params;
-					const encounterSearch = await ctx.call("es.searchBySystemAndCode", {
+					let encounterSearch = await ctx.call("es.searchBySystemAndCode", {
 						system,
 						value: code,
 						index: "stages",
 					});
+
 					if (encounterSearch) {
 						const programStage = this.getDHIS2Code(encounterSearch);
 						if (programStage) {
-							const patientSearch = await ctx.call("es.searchByValues", {
-								term: "attributes",
-								values: [value],
-								index: "patients",
-							});
+							let patientSearch;
+							if (subject && subject.identifier) {
+								patientSearch = await ctx.call("es.searchByValues", {
+									term: "attributes",
+									values: [subject.identifier.value],
+									index: "patients",
+								});
+							} else if (subject && subject.reference) {
+								const [resourceType, id] = String(subject.reference).split("/");
+								patientSearch = await ctx.call("es.searchById", {
+									index: "patients",
+									id,
+								});
+							}
 							if (patientSearch) {
 								const { enrollments, trackedEntityInstance, encounters } =
 									patientSearch;
-								const organisationSearch = await ctx.call(
-									"es.searchBySystemAndCode",
-									{ system: ouSystem, value: ou, index: "organisations" }
-								);
+								let organisationSearch;
+								if (
+									serviceProvider.identifier &&
+									serviceProvider.identifier.value &&
+									serviceProvider.identifier.system
+								) {
+									organisationSearch = await ctx.call(
+										"es.searchBySystemAndCode",
+										{
+											system: serviceProvider.identifier.system,
+											value: serviceProvider.identifier.value,
+											index: "organisations",
+										}
+									);
+								} else if (
+									serviceProvider.identifier &&
+									serviceProvider.identifier.value
+								) {
+									const search = await ctx.call("es.searchById", {
+										index: "organisations",
+										id: serviceProvider.identifier.value,
+									});
+									organisationSearch = !!search ? search.mappings : [];
+								} else if (serviceProvider.reference) {
+									const search = await ctx.call("es.searchById", {
+										index: "organisations",
+										id: String(reference).replace("Organization/", ""),
+									});
+									organisationSearch = !!search ? search.mappings : [];
+								}
 								const orgUnit = this.getDHIS2Code(organisationSearch);
 								if (orgUnit) {
-									const previousEnrollment = enrollments.find((e) => {
-										return (
-											e.id === String(reference).replace("EpisodeOfCare/", "")
-										);
-									});
-									if (previousEnrollment) {
-										const { program, enrollment } = previousEnrollment;
-										const previousEncounter = encounters.find((e) => {
-											return (e.eventDate =
-												start &&
-												e.program === program &&
-												e.orgUnit === orgUnit &&
-												e.id === id);
+									if (episodeOfCare) {
+										const previousEnrollment = enrollments.find((e) => {
+											return (
+												e.id ===
+												String(serviceProvider.reference).replace(
+													"EpisodeOfCare/",
+													""
+												)
+											);
 										});
-										if (!previousEncounter) {
-											const {
-												codes: [event],
-											} = await ctx.call("dhis2.get", {
-												url: "system/id.json",
+										if (previousEnrollment) {
+											const { program, enrollment } = previousEnrollment;
+											const previousEncounter = encounters.find((e) => {
+												return (e.eventDate =
+													start &&
+													e.program === program &&
+													e.orgUnit === orgUnit &&
+													e.id === id);
 											});
-											const encounter = {
-												event,
-												trackedEntityInstance,
-												orgUnit,
-												eventDate: start,
-												program,
-												programStage,
-												enrollment,
-											};
-											const response = await ctx.call("dhis2.post", {
-												url: "events",
-												...encounter,
-												dataValues: [],
-											});
-											await ctx.call("es.bulk", {
-												index: "patients",
-												dataset: [
-													{
-														...patientSearch,
-														encounters: [...encounters, { ...encounter, id }],
-													},
-												],
-												id: "trackedEntityInstance",
-											});
-											return response;
+											if (!previousEncounter) {
+												const event = generateUid();
+												const encounter = {
+													event,
+													trackedEntityInstance,
+													orgUnit,
+													eventDate: start,
+													program,
+													programStage,
+													enrollment,
+												};
+												const response = await ctx.call("dhis2.post", {
+													url: "events",
+													...encounter,
+													dataValues: [],
+												});
+												await ctx.call("es.bulk", {
+													index: "patients",
+													dataset: [
+														{
+															...patientSearch,
+															encounters: [...encounters, { ...encounter, id }],
+														},
+													],
+													id: "trackedEntityInstance",
+												});
+												return response;
+											}
+											return { message: "Duplicate encounter" };
 										}
-										return { message: "Duplicate encounter" };
+										return {
+											message: `No enrollment with was found`,
+										};
+									} else {
+										return {
+											message: `No episode of care with was found for given enrollment`,
+										};
 									}
-									return {
-										message: `No enrollment with ${reference} was found`,
-									};
 								}
 								return {
-									message: `Organisation/Service provider with identifier ${ou} was found`,
+									message: `Organisation/Service provider with identifier was not found`,
 								};
 							}
 						}
@@ -574,21 +629,16 @@ module.exports = {
 		},
 
 		searchAttribute(attributes, type, value) {
-			const attribute = attributes.find(
-				({ _source }) => _source[type] === value
-			);
+			const attribute = attributes.find(({ _source }) => {
+				return _source[type] === value;
+			});
 			if (attribute) {
 				return this.getDHIS2Code(attribute._source.mappings);
 			}
 		},
 		getReference(ref) {
-			if (
-				ref &&
-				ref.identifier &&
-				ref.identifier.system &&
-				ref.identifier.value
-			) {
-				return ref.identifier;
+			if (ref && ref.identifier && ref.identifier.value) {
+				return ref.identifier.value;
 			}
 		},
 		getObsValue(value) {},

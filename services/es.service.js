@@ -153,6 +153,32 @@ module.exports = {
 				return _source;
 			},
 		},
+		searchById: {
+			params: {
+				index: "string",
+				id: "string",
+			},
+			async handler(ctx) {
+				const { index, id } = ctx.params;
+
+				const {
+					body: {
+						hits: { hits },
+					},
+				} = await client.search({
+					index,
+					body: {
+						query: {
+							match: { "id.keyword": id },
+						},
+					},
+				});
+				if (hits.length > 0) {
+					return hits[0]._source;
+				}
+				return null
+			},
+		},
 	},
 
 	/**
