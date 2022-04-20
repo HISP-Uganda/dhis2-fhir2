@@ -1,7 +1,7 @@
 "use strict";
 const { Client } = require("@elastic/elasticsearch");
 
-const client = new Client({ node: "http://192.168.64.3:9200" });
+const client = new Client({ node: "http://localhost:9200" });
 
 require("array.prototype.flatmap").shim();
 
