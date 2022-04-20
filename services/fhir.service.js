@@ -17,7 +17,7 @@ module.exports = {
 	/**
 	 * Dependencies
 	 */
-	dependencies: ["es", "dhis2", "utils", "hapi"],
+	dependencies: ["es", "dhis2", "resources", "hapi"],
 
 	/**
 	 * Actions
@@ -33,56 +33,51 @@ module.exports = {
 				path: "/",
 			},
 			async handler(ctx) {
-				// const fhir = new Fhir();
-				// const { valid, messages } = fhir.validate(ctx.params, {});
-				// if (valid) {
 				const { resourceType } = ctx.params;
 				if (resourceType === "Bundle") {
 					let responses = [];
-					// const patients = ctx.params.entry.filter(
-					// 	(r) => r.resource.resourceType === "Patient"
-					// );
-					// const eocs = ctx.params.entry.filter(
-					// 	(r) => r.resource.resourceType === "EpisodeOfCare"
-					// );
+					const patients = ctx.params.entry.filter(
+						(r) => r.resource.resourceType === "Patient"
+					);
+					const eocs = ctx.params.entry.filter(
+						(r) => r.resource.resourceType === "EpisodeOfCare"
+					);
 					const encounters = ctx.params.entry.filter(
 						(r) => r.resource.resourceType === "Encounter"
 					);
-					// const observations = ctx.params.entry.filter(
-					// 	(r) => r.resource.resourceType === "Observation"
-					// );
-					// console.log(patients);
-					// for (const p of patients) {
-					// 	const response = await ctx.call(`utils.Patient`, {
-					// 		["Patient"]: p.resource,
-					// 	});
-					// 	responses = [...responses, response];
-					// }
-					// for (const eoc of eocs) {
-					// 	const response = await ctx.call(`utils.EpisodeOfCare`, {
-					// 		["EpisodeOfCare"]: eoc.resource,
-					// 	});
-					// 	responses = [...responses, response];
-					// }
+
+					const observations = ctx.params.entry.filter(
+						(r) => r.resource.resourceType === "Observation"
+					);
+					for (const p of patients) {
+						const response = await ctx.call("resources.Patient", {
+							["Patient"]: p.resource,
+						});
+						responses = [...responses, response];
+					}
+					for (const eoc of eocs) {
+						const response = await ctx.call(`resources.EpisodeOfCare`, {
+							["EpisodeOfCare"]: eoc.resource,
+						});
+						responses = [...responses, response];
+					}
 					for (const encounter of encounters) {
-						const response = await ctx.call(`utils.Encounter`, {
+						const response = await ctx.call(`resources.Encounter`, {
 							["Encounter"]: encounter.resource,
 						});
 						responses = [...responses, response];
 					}
-					// for (const obs of observations) {
-					// 	const response = await ctx.call(`utils.Observation`, {
-					// 		["Observation"]: obs.resource,
-					// 	});
-					// 	responses = [...responses, response];
-					// }
+					for (const obs of observations) {
+						const response = await ctx.call(`resources.Observation`, {
+							["Observation"]: obs.resource,
+						});
+						responses = [...responses, response];
+					}
 					return responses;
 				}
-				return ctx.call(`utils.${resourceType}`, {
+				return ctx.call(`resources.${resourceType}`, {
 					[resourceType]: ctx.params,
 				});
-				// }
-				// return { valid, messages };
 			},
 		},
 
@@ -107,7 +102,6 @@ module.exports = {
 				const obs = await csv().fromFile(
 					"/Users/carapai/projects/dhis2-fhir/services/obs.csv"
 				);
-
 				const processedObs = obs
 					.filter((o) => !!o.id)
 					.map((ob) => {

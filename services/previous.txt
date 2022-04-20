@@ -1,48 +1,4 @@
-"use strict";
-
-const console = require("console");
-const { capitalize } = require("lodash");
-const { isArray } = require("lodash");
-const { generateUid } = require("./uid");
-/**
- * @typedef {import('moleculer').Context} Context Moleculer's Context
- */
-
-module.exports = {
-	name: "utils",
-	/**
-	 * Settings
-	 */
-	settings: {},
-	/**
-	 * Dependencies
-	 */
-	dependencies: ["es", "dhis2"],
-
-	/**
-	 * Actions
-	 */
-	actions: {
-		Patient: {
-			async handler(ctx) {
-				const {
-					Patient: {
-						birthDate,
-						id: patientId,
-						name,
-						gender,
-						telecom,
-						address,
-						identifier,
-						maritalStatus,
-						managingOrganization,
-					},
-				} = ctx.params;
-				const entities = await ctx.call("es.search", {
-					index: "entities",
-					body: { query: { match: { "type.keyword": "Person" } }, size: 1000 },
-				});
-				const refOrganisation = this.getReference(managingOrganization);
+const refOrganisation = this.getReference(managingOrganization);
 				if (refOrganisation) {
 					const organisationSearch = await ctx.call("es.searchById", {
 						id: refOrganisation,
@@ -62,7 +18,6 @@ module.exports = {
 							const identifiers = esAttributes.filter(
 								(a) => a._source.identifier
 							);
-
 							if (identifiers.length > 0 && trackedEntityType !== undefined) {
 								const extensions = esAttributes.filter(
 									(a) => a._source.type === "extension"
@@ -105,7 +60,6 @@ module.exports = {
 											code,
 											system
 										);
-
 										if (attribute) {
 											attributes = [
 												...attributes,
@@ -118,7 +72,6 @@ module.exports = {
 										}
 									}
 								});
-
 								if (patientIdentifiers.length > 0 || patientId) {
 									if (birthDate) {
 										const attribute = this.searchAttribute(
@@ -133,7 +86,6 @@ module.exports = {
 											];
 										}
 									}
-
 									if (name && name.length > 0) {
 										const [{ family, given }] = name;
 										const attribute = this.searchAttribute(
@@ -141,7 +93,6 @@ module.exports = {
 											"type",
 											"given"
 										);
-
 										if (attribute) {
 											attributes = [
 												...attributes,
@@ -149,7 +100,6 @@ module.exports = {
 											];
 										}
 									}
-
 									if (gender) {
 										const attribute = this.searchAttribute(
 											esAttributes,
@@ -163,7 +113,6 @@ module.exports = {
 											];
 										}
 									}
-
 									if (telecom && telecom.length > 0) {
 										const [{ value }] = telecom;
 										const attribute = this.searchAttribute(
@@ -175,7 +124,6 @@ module.exports = {
 											attributes = [...attributes, { attribute, value }];
 										}
 									}
-
 									if (address && address.length > 0) {
 										const [{ text }] = address;
 										const attribute = this.searchAttribute(
@@ -213,11 +161,9 @@ module.exports = {
 										enrollments: [],
 										encounters: [],
 									};
-
 									if (patientId) {
 										toBeIndexed = { ...toBeIndexed, id: patientId };
 									}
-
 									if (patientSearch) {
 										toBeIndexed = {
 											...toBeIndexed,
@@ -260,10 +206,10 @@ module.exports = {
 				} else {
 					return "Managing organisation missing or identifier of managing organisation missing";
 				}
-			},
-		},
-		EpisodeOfCare: {
-			async handler(ctx) {
+
+
+
+
 				try {
 					const {
 						EpisodeOfCare: {
@@ -354,26 +300,10 @@ module.exports = {
 				} catch (error) {
 					return error;
 				}
-			},
-		},
-		Encounter: {
-			async handler(ctx) {
-				try {
-					const {
-						Encounter: {
-							id,
-							type: [
-								{
-									coding: [{ system, code }],
-								},
-							],
-							period: { start },
-							subject,
-							serviceProvider,
-							episodeOfCare,
-						},
-					} = ctx.params;
-					let encounterSearch = await ctx.call("es.searchBySystemAndCode", {
+
+
+
+				let encounterSearch = await ctx.call("es.searchBySystemAndCode", {
 						system,
 						value: code,
 						index: "stages",
@@ -499,169 +429,3 @@ module.exports = {
 						};
 					}
 					return { message: `No encounter of type with  ${code} was found` };
-				} catch (error) {
-					return error;
-				}
-			},
-		},
-		Observation: {
-			async handler(ctx) {
-				try {
-					const {
-						Observation: {
-							subject: {
-								identifier: { value },
-							},
-							encounter: { reference },
-							code: {
-								coding: [{ system, code }],
-							},
-							valueQuantity,
-							valueCodeableConcept,
-							valueString,
-							valueBoolean,
-							valueInteger,
-							valueTime,
-							valueDateTime,
-						},
-					} = ctx.params;
-
-					let realValue =
-						valueString ||
-						valueBoolean ||
-						valueInteger ||
-						valueTime ||
-						valueDateTime;
-					if (valueQuantity) {
-						realValue = valueQuantity.value;
-					}
-					if (valueCodeableConcept) {
-						const {
-							coding: [{ code: val }],
-						} = valueCodeableConcept;
-						realValue = val;
-					}
-					if (realValue) {
-						const concept = await ctx.call("es.searchBySystemAndCode", {
-							system,
-							value: code,
-							index: "concepts",
-						});
-						const dataElement = this.getDHIS2Code(concept);
-						if (dataElement) {
-							const patientSearch = await ctx.call("es.searchByValues", {
-								term: "attributes",
-								values: [value],
-								index: "patients",
-							});
-							if (patientSearch) {
-								const { encounters } = patientSearch;
-								const previousEncounter = encounters.find((e) => {
-									return e.id === String(reference).replace("Encounter/", "");
-								});
-								if (previousEncounter) {
-									const { id, event, ...others } = previousEncounter;
-									return await ctx.call("dhis2.put", {
-										url: `events/${event}/${dataElement}`,
-										...others,
-										event,
-										dataValues: [{ dataElement, value: realValue }],
-									});
-								}
-							}
-						}
-					}
-				} catch (error) {
-					return error;
-				}
-			},
-		},
-	},
-
-	/**
-	 * Events
-	 */
-	events: {},
-
-	/**
-	 * Methods
-	 */
-	methods: {
-		getDHIS2Code(mappings) {
-			if (mappings !== undefined && isArray(mappings)) {
-				const search = mappings.find((mapping) => mapping.system === "DHIS2");
-				if (search) {
-					return search.code;
-				}
-			}
-		},
-		searchOne(identifies, field, attribute1, attribute2, value1, value2) {
-			const response = identifies.find(({ _source }) => {
-				return (
-					_source[field].find(
-						(mapping) =>
-							mapping[attribute1] === value1 && mapping[attribute2] === value2
-					) !== undefined
-				);
-			});
-			if (response) {
-				const {
-					_source: { mappings },
-				} = response;
-				return this.getDHIS2Code(mappings);
-			}
-			return undefined;
-		},
-		searchOneByOneAttribute(attributes, field, attribute, value) {
-			const response = attributes.find(({ _source }) => {
-				return (
-					_source[field].find((mapping) => mapping[attribute] === value) !==
-					undefined
-				);
-			});
-			if (response) {
-				const {
-					_source: { mappings },
-				} = response;
-				return this.getDHIS2Code(mappings);
-			}
-			return undefined;
-		},
-
-		searchAttribute(attributes, type, value) {
-			const attribute = attributes.find(({ _source }) => {
-				return _source[type] === value;
-			});
-			if (attribute) {
-				return this.getDHIS2Code(attribute._source.mappings);
-			}
-		},
-		getReference(ref) {
-			if (ref && ref.identifier && ref.identifier.value) {
-				return ref.identifier.value;
-			}
-		},
-		getObsValue(value) {},
-		async getOrganisation(managingOrganization) {
-			const organisation = this.getReference(managingOrganization);
-			if (organisation) {
-				const { system, value } = organisation;
-			}
-		},
-	},
-
-	/**
-	 * Service created lifecycle event handler
-	 */
-	created() {},
-
-	/**
-	 * Service started lifecycle event handler
-	 */
-	async started() {},
-
-	/**
-	 * Service stopped lifecycle event handler
-	 */
-	async stopped() {},
-};
