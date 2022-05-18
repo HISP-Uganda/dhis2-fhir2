@@ -33,7 +33,7 @@ module.exports = {
 						);
 						if (orgUnit) {
 							const { identifiers, biodata } = await ctx.call(
-								"search.currentPatient",
+								"search.patient",
 								patient
 							);
 							const identifierValues = identifiers.map((i) => i.value);
