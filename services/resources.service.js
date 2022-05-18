@@ -89,6 +89,8 @@ module.exports = {
 										trackedEntityInstance: code,
 									};
 								}
+
+								console.log(trackedEntityInstance);
 								const response = await ctx.call("dhis2.post", {
 									url: "trackedEntityInstances",
 									...trackedEntityInstance,
