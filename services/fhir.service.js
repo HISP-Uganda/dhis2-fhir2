@@ -111,9 +111,7 @@ module.exports = {
 				path: "/obs_sync",
 			},
 			async handler(ctx) {
-				const obs = await csv().fromFile(
-					"/Users/carapai/projects/dhis2-fhir/services/obs.csv"
-				);
+				const obs = await csv().fromFile("/root/dhis2-fhir2/services/obs.csv");
 				const processedObs = obs
 					.filter((o) => !!o.id)
 					.map((ob) => {
