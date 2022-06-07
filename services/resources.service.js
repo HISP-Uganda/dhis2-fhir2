@@ -214,6 +214,7 @@ module.exports = {
 					} = ctx.params;
 
 					const programStage = await ctx.call("search.stage", { system, code });
+					console.log(programStage);
 					const orgUnit = await ctx.call("search.facility", serviceProvider);
 
 					if (programStage !== null && orgUnit !== null) {
