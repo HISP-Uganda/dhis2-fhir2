@@ -80,7 +80,19 @@ module.exports = {
 				});
 			},
 		},
-
+		search: {
+			rest: {
+				method: "POST",
+				path: "/search",
+			},
+			async handler(ctx) {
+				const { index, ...body } = ctx.params;
+				return await ctx.call("es.search", {
+					index,
+					body,
+				});
+			},
+		},
 		index: {
 			rest: {
 				method: "POST",
