@@ -89,8 +89,6 @@ module.exports = {
 										trackedEntityInstance: code,
 									};
 								}
-
-								console.log(trackedEntityInstance);
 								const response = await ctx.call("dhis2.post", {
 									url: "trackedEntityInstances",
 									...trackedEntityInstance,
@@ -359,7 +357,10 @@ module.exports = {
 							if (previousPatient) {
 								const { encounters } = previousPatient;
 								const previousEncounter = encounters.find((e) => {
-									return e.id === String(encounter.reference).replace("Encounter/", "");
+									return (
+										e.id ===
+										String(encounter.reference).replace("Encounter/", "")
+									);
 								});
 								if (previousEncounter) {
 									const { id, event, ...others } = previousEncounter;

@@ -73,7 +73,7 @@ module.exports = {
 						});
 						responses = [...responses, response];
 					}
-					return responses;
+					return { entry: responses };
 				}
 				return ctx.call(`resources.${resourceType}`, {
 					[resourceType]: ctx.params,
