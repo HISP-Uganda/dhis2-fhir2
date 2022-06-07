@@ -133,7 +133,7 @@ module.exports = {
 						};
 					});
 				const response = await ctx.call("es.bulk", {
-					index: "obs",
+					index: "concepts",
 					dataset: processedObs,
 					id: "id",
 				});
