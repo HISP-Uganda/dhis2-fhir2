@@ -85,16 +85,17 @@ module.exports = {
 									trackedEntityInstance: code,
 								};
 							}
-							const response = await ctx.call("dhis2.post", {
-								url: "trackedEntityInstances",
-								...trackedEntityInstance,
-							});
-							await ctx.call("es.bulk", {
-								index: "patients",
-								dataset: [toBeIndexed],
-								id: "trackedEntityInstance",
-							});
-							return response;
+							return trackedEntityInstance;
+							// const response = await ctx.call("dhis2.post", {
+							// 	url: "trackedEntityInstances",
+							// 	...trackedEntityInstance,
+							// });
+							// await ctx.call("es.bulk", {
+							// 	index: "patients",
+							// 	dataset: [toBeIndexed],
+							// 	id: "trackedEntityInstance",
+							// });
+							// return response;
 						}
 					}
 				}
