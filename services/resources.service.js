@@ -24,84 +24,87 @@ module.exports = {
 		Patient: {
 			async handler(ctx) {
 				const { Patient: patient } = ctx.params;
-				// try {
-				const trackedEntityType = await ctx.call("search.entity");
-				if (trackedEntityType) {
-					const orgUnit = await ctx.call(
-						"search.facility",
-						patient.managingOrganization
-					);
-					if (orgUnit) {
-						const { identifiers, biodata } = await ctx.call(
-							"search.patient",
-							patient
+				try {
+					const trackedEntityType = await ctx.call("search.entity");
+					if (trackedEntityType) {
+						const orgUnit = await ctx.call(
+							"search.facility",
+							patient.managingOrganization
 						);
-						const identifierValues = identifiers.map((i) => i.value);
-						if ([...identifierValues, ...biodata].length > 0 || patient.id) {
-							let trackedEntityInstance = {
-								trackedEntityType,
-								orgUnit,
-								attributes: [...identifiers, ...biodata],
-							};
-
-							let toBeIndexed = {
-								attributes: identifierValues,
-								enrollments: [],
-								encounters: [],
-							};
-
-							if (patient.id) {
-								toBeIndexed = { ...toBeIndexed, id: patient.id };
-							}
-							const previousPatient = await ctx.call("search.previousPatient", {
-								id: patient.id,
-								identifiers: identifierValues,
-							});
-
-							if (previousPatient) {
-								toBeIndexed = {
-									...previousPatient,
-									attributes: identifierValues,
+						if (orgUnit) {
+							const { identifiers, biodata } = await ctx.call(
+								"search.patient",
+								patient
+							);
+							const identifierValues = identifiers.map((i) => i.value);
+							if ([...identifierValues, ...biodata].length > 0 || patient.id) {
+								let trackedEntityInstance = {
+									trackedEntityType,
+									orgUnit,
+									attributes: [...identifiers, ...biodata],
 								};
+
+								let toBeIndexed = {
+									attributes: identifierValues,
+									enrollments: [],
+									encounters: [],
+								};
+
 								if (patient.id) {
+									toBeIndexed = { ...toBeIndexed, id: patient.id };
+								}
+								const previousPatient = await ctx.call(
+									"search.previousPatient",
+									{
+										id: patient.id,
+										identifiers: identifierValues,
+									}
+								);
+
+								if (previousPatient) {
 									toBeIndexed = {
 										...previousPatient,
 										attributes: identifierValues,
-										id: patient.id,
+									};
+									if (patient.id) {
+										toBeIndexed = {
+											...previousPatient,
+											attributes: identifierValues,
+											id: patient.id,
+										};
+									}
+									trackedEntityInstance = {
+										...trackedEntityInstance,
+										trackedEntityInstance:
+											previousPatient.trackedEntityInstance,
+									};
+								} else {
+									const code = generateUid();
+									trackedEntityInstance = {
+										...trackedEntityInstance,
+										trackedEntityInstance: code,
+									};
+									toBeIndexed = {
+										...toBeIndexed,
+										trackedEntityInstance: code,
 									};
 								}
-								trackedEntityInstance = {
+								const response = await ctx.call("dhis2.post", {
+									url: "trackedEntityInstances",
 									...trackedEntityInstance,
-									trackedEntityInstance: previousPatient.trackedEntityInstance,
-								};
-							} else {
-								const code = generateUid();
-								trackedEntityInstance = {
-									...trackedEntityInstance,
-									trackedEntityInstance: code,
-								};
-								toBeIndexed = {
-									...toBeIndexed,
-									trackedEntityInstance: code,
-								};
+								});
+								await ctx.call("es.bulk", {
+									index: "patients",
+									dataset: [toBeIndexed],
+									id: "trackedEntityInstance",
+								});
+								return response;
 							}
-							return trackedEntityInstance;
-							// const response = await ctx.call("dhis2.post", {
-							// 	url: "trackedEntityInstances",
-							// 	...trackedEntityInstance,
-							// });
-							// await ctx.call("es.bulk", {
-							// 	index: "patients",
-							// 	dataset: [toBeIndexed],
-							// 	id: "trackedEntityInstance",
-							// });
-							// return response;
 						}
 					}
+				} catch (error) {
+					return error.message;
 				}
-				// } catch (error) {
-				// 	return error.message;
-				// }
 			},
 		},
 		EpisodeOfCare: {
@@ -194,185 +197,183 @@ module.exports = {
 		},
 		Encounter: {
 			async handler(ctx) {
-				// try {
-				const {
-					Encounter: {
-						id,
-						type: [
-							{
-								coding: [{ system, code }],
-							},
-						],
-						period: { start },
-						subject: { reference, identifier },
-						serviceProvider,
-						episodeOfCare,
-					},
-				} = ctx.params;
-
-				const programStage = await ctx.call("search.stage", { system, code });
-				const orgUnit = await ctx.call("search.facility", serviceProvider);
-
-				if (programStage !== null && orgUnit !== null) {
-					let patient = {
-						identifier: [],
-					};
-					if (reference) {
-						patient = {
-							...patient,
-							id: String(reference).replace("Patient/", ""),
-						};
-					}
-					if (identifier) {
-						patient = {
-							...patient,
-							identifiers: identifier.map((id) => id.value),
-						};
-					}
-					const previousPatient = await ctx.call(
-						"search.previousPatient",
-						patient
-					);
-
-					if (previousPatient !== null) {
-						const { enrollments, trackedEntityInstance, encounters } =
-							previousPatient;
-
-						const previousEnrollment = enrollments.find((e) => {
-							return (
-								e.id ===
-								String(episodeOfCare.reference).replace("EpisodeOfCare/", "")
-							);
-						});
-						if (previousEnrollment && programStage !== null) {
-							const { program, enrollment } = previousEnrollment;
-							const previousEncounter = encounters.find((e) => {
-								return (e.eventDate =
-									start &&
-									e.program === program &&
-									e.orgUnit === orgUnit &&
-									e.id === id);
-							});
-							if (!previousEncounter) {
-								const event = generateUid();
-								const encounter = {
-									event,
-									trackedEntityInstance,
-									orgUnit,
-									eventDate: start,
-									program,
-									programStage,
-									enrollment,
-								};
-								const response = await ctx.call("dhis2.post", {
-									url: "events",
-									...encounter,
-									dataValues: [],
-								});
-								await ctx.call("es.bulk", {
-									index: "patients",
-									dataset: [
-										{
-											...previousPatient,
-											encounters: [...encounters, { ...encounter, id }],
-										},
-									],
-									id: "trackedEntityInstance",
-								});
-								return response;
-							}
-						}
-					}
-				}
-
-				return "No record was inserted some information is missing";
-				// } catch (error) {
-				// 	return error.message;
-				// }
-			},
-		},
-		Observation: {
-			async handler(ctx) {
-				// try {
-				const {
-					Observation: {
-						subject,
-						encounter,
-						code: {
-							coding: [{ system, code }],
-						},
-						valueQuantity,
-						valueCodeableConcept,
-						valueString,
-						valueBoolean,
-						valueInteger,
-						valueTime,
-						valueDateTime,
-					},
-				} = ctx.params;
-
-				let realValue =
-					valueString ||
-					valueBoolean ||
-					valueInteger ||
-					valueTime ||
-					valueDateTime;
-				if (valueQuantity) {
-					realValue = valueQuantity.value;
-				}
-				if (valueCodeableConcept) {
+				try {
 					const {
-						coding: [{ code: val }],
-					} = valueCodeableConcept;
-					realValue = val;
-				}
-				if (realValue) {
-					const dataElement = await await ctx.call("search.concept", {
-						system,
-						code,
-					});
-					let patient = {
-						identifier: [],
-					};
-					if (subject.reference) {
-						patient = {
-							...patient,
-							id: String(subject.reference).replace("Patient/", ""),
+						Encounter: {
+							id,
+							type: [
+								{
+									coding: [{ system, code }],
+								},
+							],
+							period: { start },
+							subject: { reference, identifier },
+							serviceProvider,
+							episodeOfCare,
+						},
+					} = ctx.params;
+
+					const programStage = await ctx.call("search.stage", { system, code });
+					const orgUnit = await ctx.call("search.facility", serviceProvider);
+
+					if (programStage !== null && orgUnit !== null) {
+						let patient = {
+							identifier: [],
 						};
-					}
-					if (subject.identifier) {
-						patient = {
-							...patient,
-							identifiers: subject.identifier.map((id) => id.value),
-						};
-					}
-					if (dataElement) {
+						if (reference) {
+							patient = {
+								...patient,
+								id: String(reference).replace("Patient/", ""),
+							};
+						}
+						if (identifier) {
+							patient = {
+								...patient,
+								identifiers: identifier.map((id) => id.value),
+							};
+						}
 						const previousPatient = await ctx.call(
 							"search.previousPatient",
 							patient
 						);
-						if (previousPatient) {
-							const { encounters } = previousPatient;
-							const previousEncounter = encounters.find((e) => {
+
+						if (previousPatient !== null) {
+							const { enrollments, trackedEntityInstance, encounters } =
+								previousPatient;
+
+							const previousEnrollment = enrollments.find((e) => {
 								return (
-									e.id === String(encounter.reference).replace("Encounter/", "")
+									e.id ===
+									String(episodeOfCare.reference).replace("EpisodeOfCare/", "")
 								);
 							});
-							if (previousEncounter) {
-								const { id, event, ...others } = previousEncounter;
-								return await ctx.call("dhis2.put", {
-									url: `events/${event}/${dataElement}`,
-									...others,
-									event,
-									dataValues: [{ dataElement, value: realValue }],
+							if (previousEnrollment && programStage !== null) {
+								const { program, enrollment } = previousEnrollment;
+								const previousEncounter = encounters.find((e) => {
+									return (e.eventDate =
+										start &&
+										e.program === program &&
+										e.orgUnit === orgUnit &&
+										e.id === id);
 								});
+								if (!previousEncounter) {
+									const event = generateUid();
+									const encounter = {
+										event,
+										trackedEntityInstance,
+										orgUnit,
+										eventDate: start,
+										program,
+										programStage,
+										enrollment,
+									};
+									const response = await ctx.call("dhis2.post", {
+										url: "events",
+										...encounter,
+										dataValues: [],
+									});
+									await ctx.call("es.bulk", {
+										index: "patients",
+										dataset: [
+											{
+												...previousPatient,
+												encounters: [...encounters, { ...encounter, id }],
+											},
+										],
+										id: "trackedEntityInstance",
+									});
+									return response;
+								}
 							}
 						}
 					}
+
+					return "No record was inserted some information is missing";
+				} catch (error) {
+					return error.message;
 				}
-				// } catch (error) {
-				// 	return error;
-				// }
+			},
+		},
+		Observation: {
+			async handler(ctx) {
+				try {
+					const {
+						Observation: {
+							subject,
+							encounter,
+							code: {
+								coding: [{ system, code }],
+							},
+							valueQuantity,
+							valueCodeableConcept,
+							valueString,
+							valueBoolean,
+							valueInteger,
+							valueTime,
+							valueDateTime,
+						},
+					} = ctx.params;
+
+					let realValue =
+						valueString ||
+						valueBoolean ||
+						valueInteger ||
+						valueTime ||
+						valueDateTime;
+					if (valueQuantity) {
+						realValue = valueQuantity.value;
+					}
+					if (valueCodeableConcept) {
+						const {
+							coding: [{ code: val }],
+						} = valueCodeableConcept;
+						realValue = val;
+					}
+					if (realValue) {
+						const dataElement = await await ctx.call("search.concept", {
+							system,
+							code,
+						});
+						let patient = {
+							identifier: [],
+						};
+						if (subject.reference) {
+							patient = {
+								...patient,
+								id: String(subject.reference).replace("Patient/", ""),
+							};
+						}
+						if (subject.identifier) {
+							patient = {
+								...patient,
+								identifiers: subject.identifier.map((id) => id.value),
+							};
+						}
+						if (dataElement) {
+							const previousPatient = await ctx.call(
+								"search.previousPatient",
+								patient
+							);
+							if (previousPatient) {
+								const { encounters } = previousPatient;
+								const previousEncounter = encounters.find((e) => {
+									return e.id === String(encounter.reference).replace("Encounter/", "");
+								});
+								if (previousEncounter) {
+									const { id, event, ...others } = previousEncounter;
+									return await ctx.call("dhis2.put", {
+										url: `events/${event}/${dataElement}`,
+										...others,
+										event,
+										dataValues: [{ dataElement, value: realValue }],
+									});
+								}
+							}
+						}
+					}
+				} catch (error) {
+					return error;
+				}
 			},
 		},
 	},

@@ -39,40 +39,40 @@ module.exports = {
 					const patients = ctx.params.entry.filter(
 						(r) => r.resource.resourceType === "Patient"
 					);
-					// const eocs = ctx.params.entry.filter(
-					// 	(r) => r.resource.resourceType === "EpisodeOfCare"
-					// );
-					// const encounters = ctx.params.entry.filter(
-					// 	(r) => r.resource.resourceType === "Encounter"
-					// );
+					const eocs = ctx.params.entry.filter(
+						(r) => r.resource.resourceType === "EpisodeOfCare"
+					);
+					const encounters = ctx.params.entry.filter(
+						(r) => r.resource.resourceType === "Encounter"
+					);
 
-					// const observations = ctx.params.entry.filter(
-					// 	(r) => r.resource.resourceType === "Observation"
-					// );
+					const observations = ctx.params.entry.filter(
+						(r) => r.resource.resourceType === "Observation"
+					);
 					for (const p of patients) {
 						const response = await ctx.call("resources.Patient", {
 							["Patient"]: p.resource,
 						});
 						responses = [...responses, response];
 					}
-					// for (const eoc of eocs) {
-					// 	const response = await ctx.call(`resources.EpisodeOfCare`, {
-					// 		["EpisodeOfCare"]: eoc.resource,
-					// 	});
-					// 	responses = [...responses, response];
-					// }
-					// for (const encounter of encounters) {
-					// 	const response = await ctx.call(`resources.Encounter`, {
-					// 		["Encounter"]: encounter.resource,
-					// 	});
-					// 	responses = [...responses, response];
-					// }
-					// for (const obs of observations) {
-					// 	const response = await ctx.call(`resources.Observation`, {
-					// 		["Observation"]: obs.resource,
-					// 	});
-					// 	responses = [...responses, response];
-					// }
+					for (const eoc of eocs) {
+						const response = await ctx.call(`resources.EpisodeOfCare`, {
+							["EpisodeOfCare"]: eoc.resource,
+						});
+						responses = [...responses, response];
+					}
+					for (const encounter of encounters) {
+						const response = await ctx.call(`resources.Encounter`, {
+							["Encounter"]: encounter.resource,
+						});
+						responses = [...responses, response];
+					}
+					for (const obs of observations) {
+						const response = await ctx.call(`resources.Observation`, {
+							["Observation"]: obs.resource,
+						});
+						responses = [...responses, response];
+					}
 					return { entry: responses };
 				}
 				return ctx.call(`resources.${resourceType}`, {
