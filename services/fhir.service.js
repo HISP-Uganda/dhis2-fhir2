@@ -62,10 +62,11 @@ module.exports = {
 						responses = [...responses, response];
 					}
 					for (const encounter of encounters) {
-						const response = await ctx.call(`resources.Encounter`, {
-							["Encounter"]: encounter.resource,
-						});
-						responses = [...responses, response];
+						console.log(encounter)
+						// const response = await ctx.call(`resources.Encounter`, {
+						// 	["Encounter"]: encounter.resource,
+						// });
+						// responses = [...responses, response];
 					}
 					for (const obs of observations) {
 						const response = await ctx.call(`resources.Observation`, {
