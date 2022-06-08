@@ -1,7 +1,8 @@
 "use strict";
 const { Client } = require("@elastic/elasticsearch");
 
-const client = new Client({ node: "http://localhost:9200" });
+// const client = new Client({ node: "http://localhost:9200" });
+const client = new Client({ node: "http://192.168.64.3:9200" });
 
 require("array.prototype.flatmap").shim();
 
@@ -47,6 +48,7 @@ module.exports = {
 					{ index: { _index: index, _id: doc[id] } },
 					doc,
 				]);
+				console.log(body);
 				const { body: bulkResponse } = await client.bulk({
 					refresh: true,
 					body,
@@ -176,7 +178,7 @@ module.exports = {
 				if (hits.length > 0) {
 					return hits[0]._source;
 				}
-				return null
+				return null;
 			},
 		},
 	},

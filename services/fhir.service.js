@@ -37,17 +37,17 @@ module.exports = {
 				if (resourceType === "Bundle") {
 					let responses = [];
 					const patients = ctx.params.entry.filter(
-						(r) => r.resource.resourceType === "Patient"
+						(r) => r.resource && r.resource.resourceType === "Patient"
 					);
 					const eocs = ctx.params.entry.filter(
-						(r) => r.resource.resourceType === "EpisodeOfCare"
+						(r) => r.resource && r.resource.resourceType === "EpisodeOfCare"
 					);
 					const encounters = ctx.params.entry.filter(
-						(r) => r.resource.resourceType === "Encounter"
+						(r) => r.resource && r.resource.resourceType === "Encounter"
 					);
 
 					const observations = ctx.params.entry.filter(
-						(r) => r.resource.resourceType === "Observation"
+						(r) => r.resource && r.resource.resourceType === "Observation"
 					);
 					for (const p of patients) {
 						const response = await ctx.call("resources.Patient", {
@@ -104,14 +104,15 @@ module.exports = {
 				return body;
 			},
 		},
-
 		obs_sync: {
 			rest: {
 				method: "GET",
 				path: "/obs_sync",
 			},
 			async handler(ctx) {
-				const obs = await csv().fromFile("/root/dhis2-fhir2/services/obs.csv");
+				const obs = await csv().fromFile(
+					"/Users/carapai/projects/dhis2-fhir/services/obs.csv"
+				);
 				const processedObs = obs
 					.filter((o) => !!o.id)
 					.map((ob) => {

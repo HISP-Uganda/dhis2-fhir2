@@ -302,9 +302,7 @@ module.exports = {
 						Observation: {
 							subject,
 							encounter,
-							code: {
-								coding: [{ system, code }],
-							},
+							code: { coding },
 							valueQuantity,
 							valueCodeableConcept,
 							valueString,
@@ -314,7 +312,6 @@ module.exports = {
 							valueDateTime,
 						},
 					} = ctx.params;
-
 					let realValue =
 						valueString ||
 						valueBoolean ||
@@ -325,55 +322,81 @@ module.exports = {
 						realValue = valueQuantity.value;
 					}
 					if (valueCodeableConcept) {
-						const {
-							coding: [{ code: val }],
-						} = valueCodeableConcept;
-						realValue = val;
+						const valueCode = valueCodeableConcept.coding.find(
+							(code) => !!code.system
+						);
+						if (valueCode) {
+							realValue = valueCode.code;
+						}
 					}
+					const foundMapping = coding.find(
+						(code) => !!code.system && !!code.code
+					);
 					if (realValue) {
-						const dataElement = await await ctx.call("search.concept", {
-							system,
-							code,
-						});
-						let patient = {
-							identifier: [],
-						};
-						if (subject.reference) {
-							patient = {
-								...patient,
-								id: String(subject.reference).replace("Patient/", ""),
+						if (foundMapping) {
+							const { system, code } = foundMapping;
+							const dataElement = await ctx.call("search.concept", {
+								system,
+								code,
+							});
+
+							let patient = {
+								identifier: [],
 							};
-						}
-						if (subject.identifier) {
-							patient = {
-								...patient,
-								identifiers: subject.identifier.map((id) => id.value),
-							};
-						}
-						if (dataElement) {
-							const previousPatient = await ctx.call(
-								"search.previousPatient",
-								patient
-							);
-							if (previousPatient) {
-								const { encounters } = previousPatient;
-								const previousEncounter = encounters.find((e) => {
-									return e.id === String(encounter.reference).replace("Encounter/", "");
-								});
-								if (previousEncounter) {
-									const { id, event, ...others } = previousEncounter;
-									return await ctx.call("dhis2.put", {
-										url: `events/${event}/${dataElement}`,
-										...others,
-										event,
-										dataValues: [{ dataElement, value: realValue }],
-									});
-								}
+							if (subject.reference) {
+								patient = {
+									...patient,
+									id: String(subject.reference).replace("Patient/", ""),
+								};
 							}
+							if (subject.identifier) {
+								patient = {
+									...patient,
+									identifiers: subject.identifier.map((id) => id.value),
+								};
+							}
+							if (dataElement) {
+								const previousPatient = await ctx.call(
+									"search.previousPatient",
+									patient
+								);
+								if (previousPatient) {
+									const { encounters } = previousPatient;
+									const previousEncounter = encounters.find((e) => {
+										return (
+											e.id ===
+											String(encounter.reference).replace("Encounter/", "")
+										);
+									});
+									if (previousEncounter) {
+										const { id, event, ...others } = previousEncounter;
+										return await ctx.call("dhis2.put", {
+											url: `events/${event}/${dataElement}`,
+											...others,
+											event,
+											dataValues: [{ dataElement, value: realValue }],
+										});
+									} else {
+										return `Could not find encounter ${String(
+											encounter.reference
+										).replace("Encounter/", "")}`;
+									}
+								} else {
+									return `Could not find patient ${String(
+										subject.reference
+									).replace("Patient/", "")}`;
+								}
+							} else {
+								return `Could not find mapping for ${code}`;
+							}
+						} else {
+							return `Could not find mapping system and code`;
 						}
+					} else {
+						return "No value found for specified observation";
 					}
 				} catch (error) {
-					return error;
+					return error.message;
 				}
 			},
 		},
