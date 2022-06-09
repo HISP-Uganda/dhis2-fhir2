@@ -214,7 +214,6 @@ module.exports = {
 					} = ctx.params;
 
 					const programStage = await ctx.call("search.stage", { system, code });
-					console.log(programStage);
 					const orgUnit = await ctx.call("search.facility", serviceProvider);
 
 					if (programStage !== null && orgUnit !== null) {
@@ -326,7 +325,15 @@ module.exports = {
 							(code) => !!code.system
 						);
 						if (valueCode) {
-							realValue = valueCode.code;
+							const searchCodeableConcept = await ctx.call("search.option", {
+								system: valueCode.system,
+								code: valueCode.code,
+							});
+							if (searchCodeableConcept) {
+								realValue = searchCodeableConcept;
+							} else {
+								realValue = valueCode.code;
+							}
 						}
 					}
 					const foundMapping = coding.find(

@@ -126,6 +126,20 @@ module.exports = {
 				return null;
 			},
 		},
+		option: {
+			async handler(ctx) {
+				const conceptSearch = await ctx.call("es.searchBySystemAndCode", {
+					system: ctx.params.system,
+					value: ctx.params.code,
+					index: "concepts",
+				});
+
+				if (conceptSearch) {
+					return this.getDHIS2Option(conceptSearch);
+				}
+				return null;
+			},
+		},
 	},
 
 	/**
@@ -140,6 +154,16 @@ module.exports = {
 		getDHIS2Code(mappings) {
 			if (mappings !== undefined && isArray(mappings)) {
 				const search = mappings.find((mapping) => mapping.system === "DHIS2");
+				if (search) {
+					return search.code;
+				}
+			}
+		},
+		getDHIS2Option(mappings) {
+			if (mappings !== undefined && isArray(mappings)) {
+				const search = mappings.find(
+					(mapping) => mapping.system === "http://tbl-ecbss.go.ug/options"
+				);
 				if (search) {
 					return search.code;
 				}

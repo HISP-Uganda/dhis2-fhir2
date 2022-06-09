@@ -35,7 +35,6 @@ module.exports = {
 			async handler(ctx) {
 				const { resourceType } = ctx.params;
 				if (resourceType === "Bundle") {
-					let responses = [];
 					const patients = ctx.params.entry.filter(
 						(r) => r.resource && r.resource.resourceType === "Patient"
 					);
@@ -49,31 +48,46 @@ module.exports = {
 					const observations = ctx.params.entry.filter(
 						(r) => r.resource && r.resource.resourceType === "Observation"
 					);
-					for (const p of patients) {
-						const response = await ctx.call("resources.Patient", {
-							["Patient"]: p.resource,
-						});
-						responses = [...responses, response];
-					}
-					for (const eoc of eocs) {
-						const response = await ctx.call(`resources.EpisodeOfCare`, {
-							["EpisodeOfCare"]: eoc.resource,
-						});
-						responses = [...responses, response];
-					}
-					for (const encounter of encounters) {
-						const response = await ctx.call(`resources.Encounter`, {
-							["Encounter"]: encounter.resource,
-						});
-						responses = [...responses, response];
-					}
-					for (const obs of observations) {
-						const response = await ctx.call(`resources.Observation`, {
-							["Observation"]: obs.resource,
-						});
-						responses = [...responses, response];
-					}
-					return { entry: responses };
+
+					const processedPatients = await Promise.all(
+						patients.map((p) =>
+							ctx.call("resources.Patient", {
+								["Patient"]: p.resource,
+							})
+						)
+					);
+
+					const processedEpisodesOfCare = await Promise.all(
+						eocs.map((eoc) =>
+							ctx.call(`resources.EpisodeOfCare`, {
+								["EpisodeOfCare"]: eoc.resource,
+							})
+						)
+					);
+
+					const processedEncounters = await Promise.all(
+						encounters.map((encounter) =>
+							ctx.call(`resources.Encounter`, {
+								["Encounter"]: encounter.resource,
+							})
+						)
+					);
+
+					const processedObservations = await Promise.all(
+						observations.map((obs) =>
+							ctx.call(`resources.Observation`, {
+								["Observation"]: obs.resource,
+							})
+						)
+					);
+					return {
+						entry: [
+							...processedPatients,
+							...processedEpisodesOfCare,
+							...processedEncounters,
+							...processedObservations,
+						],
+					};
 				}
 				return ctx.call(`resources.${resourceType}`, {
 					[resourceType]: ctx.params,
@@ -102,6 +116,40 @@ module.exports = {
 				const { index, id, ...body } = ctx.params;
 				await ctx.call("es.bulk", { index, dataset: [body], id });
 				return body;
+			},
+		},
+		option_sync: {
+			rest: {
+				method: "POST",
+				path: "/option_sync",
+			},
+			async handler(ctx) {
+				const processedObs = ctx.params.options
+					.filter((o) => !!o.code && !!o.ugandaEmr)
+					.map((ob) => {
+						const mappings = [
+							{
+								system: "UgandaEMR",
+								code: ob.ugandaEmr,
+							},
+							{
+								system: "http://tbl-ecbss.go.ug/options",
+								code: ob.code,
+							},
+						];
+						return {
+							id: `${ob.optionSet}${ob.code}`,
+							name: ob.name,
+							code: ob.code,
+							mappings,
+						};
+					});
+				const response = await ctx.call("es.bulk", {
+					index: "concepts",
+					dataset: processedObs,
+					id: "id",
+				});
+				return response;
 			},
 		},
 		obs_sync: {
