@@ -113,8 +113,8 @@ module.exports = {
 				path: "/index",
 			},
 			async handler(ctx) {
-				const { index, id, ...body } = ctx.params;
-				await ctx.call("es.bulk", { index, dataset: [body], id });
+				const { index, idField, ...body } = ctx.params;
+				await ctx.call("es.bulk", { index, dataset: [body], idField });
 				return body;
 			},
 		},
@@ -147,21 +147,18 @@ module.exports = {
 				const response = await ctx.call("es.bulk", {
 					index: "concepts",
 					dataset: processedObs,
-					id: "id",
+					idField: "id",
 				});
 				return response;
 			},
 		},
 		obs_sync: {
 			rest: {
-				method: "GET",
+				method: "POST",
 				path: "/obs_sync",
 			},
 			async handler(ctx) {
-				const obs = await csv().fromFile(
-					"/Users/carapai/projects/dhis2-fhir/services/obs.csv"
-				);
-				const processedObs = obs
+				const processedObs = ctx.params.obs
 					.filter((o) => !!o.id)
 					.map((ob) => {
 						const mappings = [
@@ -184,7 +181,7 @@ module.exports = {
 				const response = await ctx.call("es.bulk", {
 					index: "concepts",
 					dataset: processedObs,
-					id: "id",
+					idField: "id",
 				});
 				return response;
 			},
@@ -218,7 +215,7 @@ module.exports = {
 				return ctx.call("es.bulk", {
 					index: "organisations",
 					dataset: ous,
-					id: "id",
+					idField: "id",
 				});
 			},
 		},
@@ -357,20 +354,28 @@ module.exports = {
 					ctx.call("es.bulk", {
 						index: "attributes",
 						dataset: attributes,
-						id: "id",
+						idField: "id",
 					}),
 					ctx.call("es.bulk", {
 						index: "concepts",
 						dataset: concepts,
-						id: "id",
+						idField: "id",
 					}),
 					ctx.call("es.bulk", {
 						index: "entities",
 						dataset: entities,
-						id: "id",
+						idField: "id",
 					}),
-					ctx.call("es.bulk", { index: "programs", dataset: progs, id: "id" }),
-					ctx.call("es.bulk", { index: "stages", dataset: stages, id: "id" }),
+					ctx.call("es.bulk", {
+						index: "programs",
+						dataset: progs,
+						idField: "id",
+					}),
+					ctx.call("es.bulk", {
+						index: "stages",
+						dataset: stages,
+						idField: "id",
+					}),
 				]);
 				return response;
 			},
@@ -384,7 +389,15 @@ module.exports = {
 				const { q, index } = ctx.params;
 				return ctx.call("es.search", {
 					index,
-					body: { query: { query_string: { query: q } }, size: 1000 },
+					body: {
+						query: {
+							multi_match: {
+								query: q,
+								fields: ["name", "id"],
+							},
+						},
+						size: 1000,
+					},
 				});
 			},
 		},

@@ -1,6 +1,4 @@
 "use strict";
-const { capitalize } = require("lodash");
-const { isArray } = require("lodash");
 const { generateUid } = require("./uid");
 /**
  * @typedef {import('moleculer').Context} Context Moleculer's Context
@@ -96,7 +94,7 @@ module.exports = {
 								await ctx.call("es.bulk", {
 									index: "patients",
 									dataset: [toBeIndexed],
-									id: "trackedEntityInstance",
+									idField: "trackedEntityInstance",
 								});
 								return response;
 							}
@@ -185,7 +183,7 @@ module.exports = {
 										enrollments: [...enrollments, { ...enroll, id }],
 									},
 								],
-								id: "trackedEntityInstance",
+								idField: "trackedEntityInstance",
 							});
 							return response;
 						} else {
@@ -280,7 +278,7 @@ module.exports = {
 												encounters: [...encounters, { ...encounter, id }],
 											},
 										],
-										id: "trackedEntityInstance",
+										idField: "trackedEntityInstance",
 									});
 									return response;
 								}
@@ -417,71 +415,7 @@ module.exports = {
 	/**
 	 * Methods
 	 */
-	methods: {
-		getDHIS2Code(mappings) {
-			if (mappings !== undefined && isArray(mappings)) {
-				const search = mappings.find((mapping) => mapping.system === "DHIS2");
-				if (search) {
-					return search.code;
-				}
-			}
-		},
-		searchOne(identifies, field, attribute1, attribute2, value1, value2) {
-			const response = identifies.find(({ _source }) => {
-				return (
-					_source[field].find(
-						(mapping) =>
-							mapping[attribute1] === value1 && mapping[attribute2] === value2
-					) !== undefined
-				);
-			});
-			if (response) {
-				const {
-					_source: { mappings },
-				} = response;
-				return this.getDHIS2Code(mappings);
-			}
-			return undefined;
-		},
-		searchOneByOneAttribute(attributes, field, attribute, value) {
-			const response = attributes.find(({ _source }) => {
-				return (
-					_source[field].find((mapping) => mapping[attribute] === value) !==
-					undefined
-				);
-			});
-			if (response) {
-				const {
-					_source: { mappings },
-				} = response;
-				return this.getDHIS2Code(mappings);
-			}
-			return undefined;
-		},
-
-		searchAttribute(attributes, type, value) {
-			const attribute = attributes.find(({ _source }) => {
-				return _source[type] === value;
-			});
-			if (attribute) {
-				return this.getDHIS2Code(attribute._source.mappings);
-			}
-		},
-		getReference(ref) {
-			if (ref && ref.identifier && ref.identifier.value) {
-				return ref.identifier.value;
-			} else if (ref.reference) {
-				return String(ref.reference).replace("Organization/", "");
-			}
-		},
-		getObsValue(value) {},
-		async getOrganisation(managingOrganization) {
-			const organisation = this.getReference(managingOrganization);
-			if (organisation) {
-				const { system, value } = organisation;
-			}
-		},
-	},
+	methods: {},
 
 	/**
 	 * Service created lifecycle event handler

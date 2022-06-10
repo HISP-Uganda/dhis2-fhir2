@@ -1,8 +1,8 @@
 "use strict";
 const { Client } = require("@elastic/elasticsearch");
 
-const client = new Client({ node: "http://localhost:9200" });
-// const client = new Client({ node: "http://192.168.64.3:9200" });
+// const client = new Client({ node: "http://localhost:9200" });
+const client = new Client({ node: "http://192.168.64.3:9200" });
 
 require("array.prototype.flatmap").shim();
 
@@ -43,11 +43,10 @@ module.exports = {
 		},
 		bulk: {
 			async handler(ctx) {
-				const { index, dataset, id } = ctx.params;
-				const body = dataset.flatMap((doc) => [
-					{ index: { _index: index, _id: doc[id] } },
-					doc,
-				]);
+				const { index, dataset, idField } = ctx.params;
+				const body = dataset.flatMap((doc) => {
+					return [{ index: { _index: index, _id: doc[idField] } }, doc];
+				});
 				const { body: bulkResponse } = await client.bulk({
 					refresh: true,
 					body,

@@ -6,6 +6,16 @@ const { isArray } = require("lodash");
  * @typedef {import('moleculer').Context} Context Moleculer's Context
  */
 
+let bfs = function (tree, key, collection) {
+	if (!tree[key] || tree[key].length === 0) return;
+	for (let i = 0; i < tree[key].length; i++) {
+		let child = tree[key][i];
+		collection[`${child.url}`] = child;
+		bfs(child, key, collection);
+	}
+	return;
+};
+
 module.exports = {
 	name: "search",
 	/**
@@ -60,9 +70,10 @@ module.exports = {
 				});
 				const identifiers = this.getIdentifiers(ctx.params, attributes);
 				const biodata = this.getBio(ctx.params, attributes);
+				const extensions = this.getExtensions(ctx.params, attributes);
 				return {
 					identifiers,
-					biodata,
+					biodata: [...biodata, ...extensions],
 				};
 			},
 		},
@@ -192,6 +203,72 @@ module.exports = {
 				return this.getDHIS2Code(mappings);
 			}
 			return undefined;
+		},
+		searchSystem(identifies, value) {
+			const response = identifies.find(({ _source }) => {
+				return (
+					_source["mappings"].find((mapping) => mapping.system === value) !==
+					undefined
+				);
+			});
+			if (response) {
+				const {
+					_source: { mappings },
+				} = response;
+				return this.getDHIS2Code(mappings);
+			}
+			return undefined;
+		},
+		getExtensions(patient, attributes) {
+			let allKeys = {};
+			bfs(patient, "extension", allKeys);
+			patient.address.forEach((a) => {
+				let current = {};
+				bfs(a, "extension", current);
+				allKeys = { ...allKeys, ...current };
+			});
+
+			const extensions = attributes.filter(
+				(a) => a._source.type === "extension"
+			);
+			return Object.values(allKeys).flatMap(
+				({
+					valueQuantity,
+					valueCodeableConcept,
+					valueString,
+					valueBoolean,
+					valueInteger,
+					valueTime,
+					valueDateTime,
+					url,
+				}) => {
+					let realValue =
+						valueString ||
+						valueBoolean ||
+						valueInteger ||
+						valueTime ||
+						valueDateTime;
+					if (valueQuantity) {
+						realValue = valueQuantity.value;
+					}
+					if (valueCodeableConcept) {
+						const valueCode = valueCodeableConcept.coding.find(
+							(code) => !!code.system
+						);
+						if (valueCode) {
+							realValue = valueCode.code;
+						}
+					}
+					if (realValue) {
+						const attribute = this.searchSystem(extensions, url);
+						if (attribute) {
+							return [{ attribute, value: realValue }];
+						}
+						return [];
+					}
+					return [];
+				}
+			);
 		},
 		getIdentifiers(patient, attributes) {
 			const identifiers = attributes.filter((a) => a._source.identifier);
