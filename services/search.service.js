@@ -110,6 +110,9 @@ module.exports = {
 					"address",
 				].flatMap((a) => {
 					const attribute = this.searchAttribute(attributes, "type", a);
+					if (a === "maritalStatus") {
+						console.log(attribute);
+					}
 					const value = obj[a];
 					if (attribute && value) {
 						return [{ attribute, value }];
