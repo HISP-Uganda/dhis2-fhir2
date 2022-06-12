@@ -119,6 +119,7 @@ module.exports = {
 					}
 					return [];
 				});
+				console.log(biodata);
 				const extensions = this.getExtensions(ctx.params, attributes);
 				return {
 					identifiers,
