@@ -69,7 +69,53 @@ module.exports = {
 					body: { query: { match_all: {} }, size: 1000 },
 				});
 				const identifiers = this.getIdentifiers(ctx.params, attributes);
-				const biodata = this.getBio(ctx.params, attributes);
+
+				let maritalStatus = "";
+				if (ctx.params.maritalStatus && ctx.params.maritalStatus.coding) {
+					const [{ system, code }] = ctx.params.maritalStatus.coding;
+
+					const conceptSearch = await ctx.call("es.searchBySystemAndCode", {
+						system,
+						value: code,
+						index: "concepts",
+					});
+
+					if (conceptSearch) {
+						maritalStatus = this.getDHIS2Option(conceptSearch);
+					}
+				} else if (ctx.params.maritalStatus) {
+					maritalStatus = ctx.params.maritalStatus.text;
+				}
+				const obj = {
+					birthDate: ctx.params.birthDate,
+					given:
+						ctx.params.name.length > 0
+							? [ctx.params.name[0].family, ...ctx.params.name[0].given].join(
+									" "
+							  )
+							: "",
+					gender: capitalize(ctx.params.gender),
+					telecom:
+						ctx.params.address.length > 0 ? ctx.params.address[0].text : "",
+					address:
+						ctx.params.address.length > 0 ? ctx.params.address[0].text : "",
+					maritalStatus: ctx.params.maritalStatus?.text,
+				};
+				const biodata = [
+					"birthDate",
+					"maritalStatus",
+					"given",
+					"gender",
+					"telecom",
+					"address",
+				].flatMap((a) => {
+					const attribute = this.searchAttribute(attributes, "type", a);
+					const value = obj[a];
+					if (attribute && value) {
+						return [{ attribute, value }];
+					}
+					return [];
+				});
 				const extensions = this.getExtensions(ctx.params, attributes);
 				return {
 					identifiers,
@@ -315,6 +361,10 @@ module.exports = {
 		},
 
 		getBio(patient, attributes) {
+			let maritalStatus = "";
+			if (patient.maritalStatus && patient.maritalStatus.coding) {
+				const [{ system, code }] = patient.maritalStatus.coding;
+			}
 			const obj = {
 				birthDate: patient.birthDate,
 				given:
@@ -333,7 +383,6 @@ module.exports = {
 				"gender",
 				"telecom",
 				"address",
-				"maritalStatus",
 			].flatMap((a) => {
 				const attribute = this.searchAttribute(attributes, "type", a);
 				const value = obj[a];
