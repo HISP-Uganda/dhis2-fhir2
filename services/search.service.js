@@ -73,7 +73,6 @@ module.exports = {
 				let maritalStatus = "";
 				if (ctx.params.maritalStatus && ctx.params.maritalStatus.coding) {
 					const [{ system, code }] = ctx.params.maritalStatus.coding;
-					console.log(system, code);
 					const conceptSearch = await ctx.call("es.searchBySystemAndCode", {
 						system,
 						value: code,
@@ -95,12 +94,11 @@ module.exports = {
 							: "",
 					gender: capitalize(ctx.params.gender),
 					telecom:
-						ctx.params.address.length > 0 ? ctx.params.address[0].text : "",
+						ctx.params.telecom.length > 0 ? ctx.params.telecom[0].value : "",
 					address:
 						ctx.params.address.length > 0 ? ctx.params.address[0].text : "",
 					maritalStatus,
 				};
-				console.log(obj);
 				const biodata = [
 					"birthDate",
 					"maritalStatus",
