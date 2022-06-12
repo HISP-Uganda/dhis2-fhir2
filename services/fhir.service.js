@@ -107,6 +107,19 @@ module.exports = {
 				});
 			},
 		},
+		delete: {
+			rest: {
+				method: "GET",
+				path: "/delete",
+			},
+			async handler(ctx) {
+				const { index, id } = ctx.params;
+				return await ctx.call("es.delete", {
+					index,
+					id,
+				});
+			},
+		},
 		index: {
 			rest: {
 				method: "POST",
