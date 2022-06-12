@@ -79,7 +79,7 @@ module.exports = {
 						value: code,
 						index: "concepts",
 					});
-
+					console.log(conceptSearch);
 					if (conceptSearch) {
 						maritalStatus = this.getDHIS2Option(conceptSearch);
 					}
@@ -357,7 +357,6 @@ module.exports = {
 			const attribute = attributes.find(({ _source }) => {
 				return _source[type] === value;
 			});
-			console.log(attribute, type, value);
 			if (attribute) {
 				return this.getDHIS2Code(attribute._source.mappings);
 			}
