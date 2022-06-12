@@ -101,6 +101,7 @@ module.exports = {
 						ctx.params.address.length > 0 ? ctx.params.address[0].text : "",
 					maritalStatus,
 				};
+				console.log(obj);
 				const biodata = [
 					"birthDate",
 					"maritalStatus",
