@@ -73,13 +73,12 @@ module.exports = {
 				let maritalStatus = "";
 				if (ctx.params.maritalStatus && ctx.params.maritalStatus.coding) {
 					const [{ system, code }] = ctx.params.maritalStatus.coding;
-
+					console.log(system, code);
 					const conceptSearch = await ctx.call("es.searchBySystemAndCode", {
 						system,
 						value: code,
 						index: "concepts",
 					});
-					console.log(conceptSearch);
 					if (conceptSearch) {
 						maritalStatus = this.getDHIS2Option(conceptSearch);
 					}
