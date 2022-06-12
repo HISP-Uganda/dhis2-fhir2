@@ -99,7 +99,7 @@ module.exports = {
 						ctx.params.address.length > 0 ? ctx.params.address[0].text : "",
 					address:
 						ctx.params.address.length > 0 ? ctx.params.address[0].text : "",
-					maritalStatus: ctx.params.maritalStatus?.text,
+					maritalStatus,
 				};
 				const biodata = [
 					"birthDate",
@@ -357,6 +357,7 @@ module.exports = {
 			const attribute = attributes.find(({ _source }) => {
 				return _source[type] === value;
 			});
+			console.log(attribute, type, value);
 			if (attribute) {
 				return this.getDHIS2Code(attribute._source.mappings);
 			}
