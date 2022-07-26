@@ -382,6 +382,17 @@ module.exports = {
 											programStage,
 											trackedEntityInstance,
 										} = previousEncounter;
+
+										console.log({
+											url: `events/${event}/${dataElement}`,
+											event,
+											orgUnit,
+											program,
+											programStage,
+											trackedEntityInstance,
+											status: "ACTIVE",
+											dataValues: [{ dataElement, value: realValue }],
+										});
 										return await ctx.call("dhis2.put", {
 											url: `events/${event}/${dataElement}`,
 											event,
