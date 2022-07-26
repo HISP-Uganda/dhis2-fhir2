@@ -91,7 +91,7 @@ module.exports = {
 									url: "trackedEntityInstances",
 									...trackedEntityInstance,
 								});
-								await ctx.call("es.bulk", {
+								const response2 = await ctx.call("es.bulk", {
 									index: "patients",
 									dataset: [toBeIndexed],
 									idField: "trackedEntityInstance",
@@ -175,7 +175,7 @@ module.exports = {
 								url: "enrollments",
 								...enroll,
 							});
-							await ctx.call("es.bulk", {
+							const response2 = await ctx.call("es.bulk", {
 								index: "patients",
 								dataset: [
 									{
@@ -270,7 +270,7 @@ module.exports = {
 										...encounter,
 										dataValues: [],
 									});
-									await ctx.call("es.bulk", {
+									const response2 = await ctx.call("es.bulk", {
 										index: "patients",
 										dataset: [
 											{
@@ -374,11 +374,22 @@ module.exports = {
 										);
 									});
 									if (previousEncounter) {
-										const { id, event, ...others } = previousEncounter;
+										const {
+											id,
+											event,
+											orgUnit,
+											program,
+											programStage,
+											trackedEntityInstance,
+										} = previousEncounter;
 										return await ctx.call("dhis2.put", {
 											url: `events/${event}/${dataElement}`,
-											...others,
 											event,
+											orgUnit,
+											program,
+											programStage,
+											trackedEntityInstance,
+											status: "ACTIVE",
 											dataValues: [{ dataElement, value: realValue }],
 										});
 									} else {

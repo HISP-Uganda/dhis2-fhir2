@@ -1,64 +1,64 @@
-code,id,name,System,Code,
-,,Baseline Visit Date,,164431,
-DSBS-01,Aw9p1CCIkqL,DSBS-01 : Disease Classification (Baseline),UgandaEMR,99379,
-DSBS-02,hDaev1EuehO,DSBS-02 : Type of patient,UgandaEMR,99386,
-DSBS-03,kbevqSdQ70w,DSBS-03 : Date of Referral,UgandaEMR,166507,
-DSBS-04,SoFmSjG4m2N,DSBS-04 : Source of Referral,UgandaEMR,166508,
-DSBS-05,UmmVSfVI4uh,DSBS-05 : Name of Referring Facility/Community,UgandaEMR,90211,
-DSBS-06,lYNSA4S86Zc,DSBS-06 : Referral District,UgandaEMR,165853,
-DSBS-07,ztbIMYqegRu,DSBS-07 : Phone contact of referring CHW,UgandaEMR,159635,
-DSBS-08,CxdzmL6vtnx,DSBS-08 : Started on 1st Line Treatment,UgandaEMR,165837,
-DSBS-09,axDtvPeYL2Y,DSBS-09 : DS-TB regimen,UgandaEMR,159958,
-DSBS-10,d5U3hHKHfkt,"DSBS-10 : DS-TB regimen, others specify",UgandaEMR,165836,
-DSBS-11,f0S6DIqAOE5,DSBS-11 : Diagnosed With DR TB,UgandaEMR,166509,
-DSBS-12,eP1Yyb3h0ST,DSBS-12 : Started on DRTB treatment,UgandaEMR,165842,
-DSBS-13,hcqQi9lsEaj,DSBS-13 : Date diagnosed with DR-TB,UgandaEMR,165840,
-DSBS-14,EpvHxcDmxyT,DSBS-14 : Date started on DR-TB treatment,UgandaEMR,165841,
-DSBS-15,SRT2JzW4OFx,DSBS-15 : Started on DRTB treatment DRTB No,UgandaEMR,165843,
-DSBS-16,dtRfCJvzZRF,DSBS-16 : HIV status (Baseline),UgandaEMR,165396,
-DSBS-17,b801bG8cIxt,DSBS-17 : ART Status,UgandaEMR,1358,
-DSBS-18,sQ4Z6lEiiq6,DSBS-18 : ART No,UgandaEMR,99431,
-DSBS-19,pg6UUMn87eM,DSBS-19 : CPT/Dapson (Baseline),UgandaEMR,166070,
-DSBS-20,Bivxg5n4goz,DSBS-20 : HIV status Date,UgandaEMR,164431,
-DSBS-21,QcjaZKRl9D4,DSBS-21 : ART Status Date,UgandaEMR,99161,
-DSBS-22,FtWNuQmVu7j,DSBS-22 : CPT/Dapson Initiation Date,UgandaEMR,165881,
-DSBS-23,ig3ZDT8Mgus,DSBS-23 : Risk Group Health Care Worker,UgandaEMR,5619,
-DSBS-24,t6qq4TXSE7n,DSBS-24 : Risk Group TB Contact,UgandaEMR,165882,
-DSBS-25,WqWIsCuYw14,DSBS-25 : Risk Group Prisoner,UgandaEMR,162277,
-DSBS-26,b7YlcZ0Q1CM,DSBS-26 : Risk Group Pregnant,UgandaEMR,90041,
-DSBS-27,iASKm4dSFOB,DSBS-27 : Risk Group Refugee,UgandaEMR,165127,
-DSBS-28,vWDeR4dliol,DSBS-28 : Risk Group Fisher Folk,UgandaEMR,159674,
-DSBS-29,BQ2qwbH5WXi,DSBS-29 : Risk Group Diabetic,UgandaEMR,119481,
-DSBS-30,hKIFBgKANnh,DSBS-30 : Risk Group Miner,UgandaEMR,165883,
-DSBS-31,HHf4Vff0Xrx,DSBS-31 : Risk Group Tobacco User,UgandaEMR,1455,
-DSBS-32,IcLLS2MJMyc,DSBS-32 : Risk Group Mentally ill,UgandaEMR,134337,
-DSBS-34,x7uZB9y0Qey,DSBS-34 : Results Smear(Baseline),UgandaEMR,90225,
-DSBS-35,pD0tc8UxyGg,DSBS-35 : Results GeneXpert(Baseline),UgandaEMR,165413,
-DSBS-36,e0mTEFrXZDh,DSBS-36 : Results LAM(Baseline),UgandaEMR,165291,
-DSBS-37,LRzaAyb2vGk,DSBS-37 : Results X-ray(Baseline),UgandaEMR,12,
-DSBS-49,FZMwpP1ncnZ,DSBS-49 : Diabetes Status,UgandaEMR,165845,
-DSBS-50,THirpMvAHgw,DSBS-50 : 1st Line treatment start date,UgandaEMR,165838,
-DSBS-51,IGv6SjkM162,DSBS-51 : Extra Pulmonary TB Site,UgandaEMR,165832,
-DSBS-52,K1JiyL94mCT,DSBS-52: Risk Group Uniformed/Armed Personnel,UgandaEMR,165125,
-DSLT-02,P9q2Q6cH0UH,DSLT-02 : Results Smear,UgandaEMR,90225,
-DSLT-03,G15dOa6fDYS,DSLT-03 : Results GeneXpert,UgandaEMR,165413,
-DSLT-04,FW8ZK9jfOPI,DSLT-04 : Results LAM,UgandaEMR,165416,
-DSLT-05,daHRSfMxtgn,DSLT-05 : Results Culture,UgandaEMR,159982,
-DSLT-06,cTM6ybziJqI,DSLT-06 : Results X-ray,UgandaEMR,12,
-DSLT-07,JgQNtDQWrbQ,DSLT-07 : Results FL LPA Rifampicin,UgandaEMR,767,
-DSLT-08,Am31KEDtPsT,DSLT-08 : Results FL LPA Izoniazid,UgandaEMR,78280,
-,t67F5fXumcb,DSLT: Unit TB No,UgandaEMR,165826,
-DSOC-01,TFS9P7tu6U6,DSOC-01 : Treatment outcome,UgandaEMR,99423,
-DSTF-02,BoxLMf7HMff,DSTF-02 : Transfer Type,UgandaEMR,165855,
-DSTF-03,zsi0PiZYMXm,DSTF-03 : Transfer Health Facility,UgandaEMR,165235,
-DSTF-04,N8nrNKMay1o,DSTF-04 : Transfer District,UgandaEMR,165853,
-DSTF-05,ZfZlsKzDqQO,DSTF-05 : Transfer Phone of transfering/receiving Facility,UgandaEMR,159635,
-DSTX-02,xcTT5oXggBZ,DSTX-02 : Weight (kg),UgandaEMR,5089,
-DSTX-03,WBsNDNQUgeX,DSTX-03 : Height,UgandaEMR,5090,
-DSTX-04,E0oIYbS2lcV,DSTX-04 : MUAC Code,UgandaEMR,99030,
-DSTX-08,PZvOW11mGOq,DSTX-08 : HIV status,UgandaEMR,165396,
-DSTX-09,ZjimuF1UNdY,DSTX-09 : CPT/Dapson,UgandaEMR,166070,
-DSTX-28,pDoTShM62yi,DSTX-28: Treatment Model,UgandaEMR,165869,
-DSTX-29,FklL99yLd3h,DSTX-29: RHZE(150/75/400/275 mg) given,UgandaEMR,1131,
-DSTX-31,pZgD6CYOa96,DSTX-31: RHZ (75/50/150mg) given,UgandaEMR,768,
-,P9DY4UW3BTo,DSTX-X : Jaundice,UgandaEMR,90115,
+code,id,name,System,Code
+,,Baseline Visit Date,,164431
+DSBS-01,Aw9p1CCIkqL,DSBS-01 : Disease Classification (Baseline),UgandaEMR,99379
+DSBS-02,hDaev1EuehO,DSBS-02 : Type of patient,UgandaEMR,99386
+DSBS-03,kbevqSdQ70w,DSBS-03 : Date of Referral,UgandaEMR,166507
+DSBS-04,SoFmSjG4m2N,DSBS-04 : Source of Referral,UgandaEMR,166508
+DSBS-05,UmmVSfVI4uh,DSBS-05 : Name of Referring Facility/Community,UgandaEMR,90211
+DSBS-06,lYNSA4S86Zc,DSBS-06 : Referral District,UgandaEMR,165853
+DSBS-07,ztbIMYqegRu,DSBS-07 : Phone contact of referring CHW,UgandaEMR,159635
+DSBS-08,CxdzmL6vtnx,DSBS-08 : Started on 1st Line Treatment,UgandaEMR,165837
+DSBS-09,axDtvPeYL2Y,DSBS-09 : DS-TB regimen,UgandaEMR,159958
+DSBS-10,d5U3hHKHfkt,"DSBS-10 : DS-TB regimen, others specify",UgandaEMR,165836
+DSBS-11,f0S6DIqAOE5,DSBS-11 : Diagnosed With DR TB,UgandaEMR,166509
+DSBS-12,eP1Yyb3h0ST,DSBS-12 : Started on DRTB treatment,UgandaEMR,165842
+DSBS-13,hcqQi9lsEaj,DSBS-13 : Date diagnosed with DR-TB,UgandaEMR,165840
+DSBS-14,EpvHxcDmxyT,DSBS-14 : Date started on DR-TB treatment,UgandaEMR,165841
+DSBS-15,SRT2JzW4OFx,DSBS-15 : Started on DRTB treatment DRTB No,UgandaEMR,165843
+DSBS-16,dtRfCJvzZRF,DSBS-16 : HIV status (Baseline),UgandaEMR,165396
+DSBS-17,b801bG8cIxt,DSBS-17 : ART Status,UgandaEMR,1358
+DSBS-18,sQ4Z6lEiiq6,DSBS-18 : ART No,UgandaEMR,99431
+DSBS-19,pg6UUMn87eM,DSBS-19 : CPT/Dapson (Baseline),UgandaEMR,166070
+DSBS-20,Bivxg5n4goz,DSBS-20 : HIV status Date,UgandaEMR,164431
+DSBS-21,QcjaZKRl9D4,DSBS-21 : ART Status Date,UgandaEMR,99161
+DSBS-22,FtWNuQmVu7j,DSBS-22 : CPT/Dapson Initiation Date,UgandaEMR,165881
+DSBS-23,ig3ZDT8Mgus,DSBS-23 : Risk Group Health Care Worker,UgandaEMR,5619
+DSBS-24,t6qq4TXSE7n,DSBS-24 : Risk Group TB Contact,UgandaEMR,165882
+DSBS-25,WqWIsCuYw14,DSBS-25 : Risk Group Prisoner,UgandaEMR,162277
+DSBS-26,b7YlcZ0Q1CM,DSBS-26 : Risk Group Pregnant,UgandaEMR,90041
+DSBS-27,iASKm4dSFOB,DSBS-27 : Risk Group Refugee,UgandaEMR,165127
+DSBS-28,vWDeR4dliol,DSBS-28 : Risk Group Fisher Folk,UgandaEMR,159674
+DSBS-29,BQ2qwbH5WXi,DSBS-29 : Risk Group Diabetic,UgandaEMR,119481
+DSBS-30,hKIFBgKANnh,DSBS-30 : Risk Group Miner,UgandaEMR,165883
+DSBS-31,HHf4Vff0Xrx,DSBS-31 : Risk Group Tobacco User,UgandaEMR,1455
+DSBS-32,IcLLS2MJMyc,DSBS-32 : Risk Group Mentally ill,UgandaEMR,134337
+DSBS-34,x7uZB9y0Qey,DSBS-34 : Results Smear(Baseline),UgandaEMR,90225
+DSBS-35,pD0tc8UxyGg,DSBS-35 : Results GeneXpert(Baseline),UgandaEMR,165413
+DSBS-36,e0mTEFrXZDh,DSBS-36 : Results LAM(Baseline),UgandaEMR,165291
+DSBS-37,LRzaAyb2vGk,DSBS-37 : Results X-ray(Baseline),UgandaEMR,12
+DSBS-49,FZMwpP1ncnZ,DSBS-49 : Diabetes Status,UgandaEMR,165845
+DSBS-50,THirpMvAHgw,DSBS-50 : 1st Line treatment start date,UgandaEMR,165838
+DSBS-51,IGv6SjkM162,DSBS-51 : Extra Pulmonary TB Site,UgandaEMR,165832
+DSBS-52,K1JiyL94mCT,DSBS-52: Risk Group Uniformed/Armed Personnel,UgandaEMR,165125
+DSLT-02,P9q2Q6cH0UH,DSLT-02 : Results Smear,UgandaEMR,90225
+DSLT-03,G15dOa6fDYS,DSLT-03 : Results GeneXpert,UgandaEMR,165413
+DSLT-04,FW8ZK9jfOPI,DSLT-04 : Results LAM,UgandaEMR,165416
+DSLT-05,daHRSfMxtgn,DSLT-05 : Results Culture,UgandaEMR,159982
+DSLT-06,cTM6ybziJqI,DSLT-06 : Results X-ray,UgandaEMR,12
+DSLT-07,JgQNtDQWrbQ,DSLT-07 : Results FL LPA Rifampicin,UgandaEMR,767
+DSLT-08,Am31KEDtPsT,DSLT-08 : Results FL LPA Izoniazid,UgandaEMR,78280
+,t67F5fXumcb,DSLT: Unit TB No,UgandaEMR,165826
+DSOC-01,TFS9P7tu6U6,DSOC-01 : Treatment outcome,UgandaEMR,99423
+DSTF-02,BoxLMf7HMff,DSTF-02 : Transfer Type,UgandaEMR,165855
+DSTF-03,zsi0PiZYMXm,DSTF-03 : Transfer Health Facility,UgandaEMR,165235
+DSTF-04,N8nrNKMay1o,DSTF-04 : Transfer District,UgandaEMR,165853
+DSTF-05,ZfZlsKzDqQO,DSTF-05 : Transfer Phone of transfering/receiving Facility,UgandaEMR,159635
+DSTX-02,xcTT5oXggBZ,DSTX-02 : Weight (kg),UgandaEMR,5089
+DSTX-03,WBsNDNQUgeX,DSTX-03 : Height,UgandaEMR,5090
+DSTX-04,E0oIYbS2lcV,DSTX-04 : MUAC Code,UgandaEMR,99030
+DSTX-08,PZvOW11mGOq,DSTX-08 : HIV status,UgandaEMR,165396
+DSTX-09,ZjimuF1UNdY,DSTX-09 : CPT/Dapson,UgandaEMR,166070
+DSTX-28,pDoTShM62yi,DSTX-28: Treatment Model,UgandaEMR,165869
+DSTX-29,FklL99yLd3h,DSTX-29: RHZE(150/75/400/275 mg) given,UgandaEMR,1131
+DSTX-31,pZgD6CYOa96,DSTX-31: RHZ (75/50/150mg) given,UgandaEMR,768
+,P9DY4UW3BTo,DSTX-X : Jaundice,UgandaEMR,90115

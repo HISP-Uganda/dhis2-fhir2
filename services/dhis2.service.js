@@ -3,7 +3,7 @@
 const axios = require("axios");
 
 const instance = axios.create({
-	baseURL: "https://ecbss.dev.hispuganda.org/api",
+	baseURL: "https://ecbss.dev.hispuganda.org/api/",
 	auth: {
 		username: "carapai",
 		password: "Baby77@Baby771",

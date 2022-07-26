@@ -17,7 +17,7 @@ module.exports = {
 	/**
 	 * Dependencies
 	 */
-	dependencies: ["es", "dhis2", "resources", "hapi"],
+	dependencies: ["es", "dhis2", "resources"],
 
 	/**
 	 * Actions
@@ -48,7 +48,6 @@ module.exports = {
 					const observations = ctx.params.entry.filter(
 						(r) => r.resource && r.resource.resourceType === "Observation"
 					);
-
 					const processedPatients = await Promise.all(
 						patients.map((p) =>
 							ctx.call("resources.Patient", {
