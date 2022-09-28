@@ -306,11 +306,12 @@ module.exports = {
 							...rest
 						},
 					} = ctx.params;
-					let realValue =
-						valueString || valueInteger || valueTime || valueDateTime;
+					let realValue = valueString || valueInteger || valueTime;
 
+					if (valueDateTime !== undefined) {
+						realValue = String(valueDateTime).slice(0, 10);
+					}
 					if (valueBoolean !== undefined) {
-						console.log("we are here");
 						realValue = valueBoolean ? "Yes" : "No";
 					}
 					if (valueQuantity !== undefined) {
@@ -383,27 +384,6 @@ module.exports = {
 											trackedEntityInstance,
 										} = previousEncounter;
 
-										// console.log({
-										// 	url: `events/${event}/${dataElement}`,
-										// 	event,
-										// 	orgUnit,
-										// 	program,
-										// 	programStage,
-										// 	trackedEntityInstance,
-										// 	status: "ACTIVE",
-										// 	dataValues: [{ dataElement, value: realValue }],
-										// });
-
-										// return {
-										// 	url: `events/${event}/${dataElement}`,
-										// 	event,
-										// 	orgUnit,
-										// 	program,
-										// 	programStage,
-										// 	trackedEntityInstance,
-										// 	status: "ACTIVE",
-										// 	dataValues: [{ dataElement, value: realValue }],
-										// };
 										return await ctx.call("dhis2.put", {
 											url: `events/${event}/${dataElement}`,
 											event,
@@ -434,7 +414,7 @@ module.exports = {
 						return "No value found for specified observation";
 					}
 				} catch (error) {
-					return error.message;
+					return error;
 				}
 			},
 		},
