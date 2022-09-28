@@ -3,12 +3,14 @@
 const axios = require("axios");
 
 const instance = axios.create({
-	baseURL: "https://ecbss.dev.hispuganda.org/api/",
+	baseURL: process.env.DHIS2_URL,
 	auth: {
-		username: "carapai",
-		password: "Baby77@Baby771",
+		username: process.env.DHIS2_USERNAME,
+		password: process.env.DHIS2_PASSWORD,
 	},
 });
+
+console.log(process.env.DHIS2_URL);
 
 /**
  * @typedef {import('moleculer').Context} Context Moleculer's Context

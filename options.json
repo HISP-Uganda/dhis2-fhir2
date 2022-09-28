@@ -1,0 +1,536 @@
+{
+	"options": [
+		{
+			"optionSet": "All Results",
+			"code": "Positive",
+			"name": "Positive",
+			"UgEmr Name": "Positive",
+			"UgEmr Code": 703
+		},
+		{
+			"optionSet": "All Results",
+			"code": "Negative",
+			"name": "Negative",
+			"UgEmr Name": "Negative",
+			"UgEmr Code": 664
+		},
+		{
+			"optionSet": "All Results",
+			"code": "Normal findings",
+			"name": "Normal findings",
+			"UgEmr Name": "",
+			"UgEmr Code": 1115
+		},
+		{
+			"optionSet": "All Results",
+			"code": "Abnormal findings",
+			"name": "Abnormal findings",
+			"UgEmr Name": "",
+			"UgEmr Code": 1116
+		},
+		{
+			"optionSet": "All Results",
+			"code": "Error/Invalid",
+			"name": "Error/Invalid",
+			"UgEmr Name": "",
+			"UgEmr Code": 163611
+		},
+		{
+			"optionSet": "ART Status",
+			"code": "Initiated on ART",
+			"name": "Initiated on ART",
+			"UgEmr Name": "",
+			"UgEmr Code": 1362
+		},
+		{
+			"optionSet": "ART Status",
+			"code": "Already on ART",
+			"name": "Already on ART",
+			"UgEmr Name": "",
+			"UgEmr Code": 1367
+		},
+		{
+			"optionSet": "Client type",
+			"code": "New",
+			"name": "New",
+			"UgEmr Name": "",
+			"UgEmr Code": 99380
+		},
+		{
+			"optionSet": "Client type",
+			"code": "Relapse",
+			"name": "Relapse",
+			"UgEmr Name": "",
+			"UgEmr Code": 99381
+		},
+		{
+			"optionSet": "Client type",
+			"code": "Return after lost to follow up",
+			"name": "Return after lost to follow up",
+			"UgEmr Name": "Treament after lost to follow up",
+			"UgEmr Code": 165833
+		},
+		{
+			"optionSet": "Client type",
+			"code": "Treatment after failure",
+			"name": "Treatment after failure",
+			"UgEmr Name": "Treament after failure",
+			"UgEmr Code": 165834
+		},
+		{
+			"optionSet": "Client type",
+			"code": "Treatment history Unknown",
+			"name": "Treatment history Unknown",
+			"UgEmr Name": "Treament history unknown",
+			"UgEmr Code": 165835
+		},
+		{
+			"optionSet": "Client type",
+			"code": "Transfer in",
+			"name": "Transfer in",
+			"UgEmr Name": "Transfer in",
+			"UgEmr Code": 99110
+		},
+		{
+			"optionSet": "CPT/Dapson",
+			"code": "Initiated on CPT",
+			"name": "Initiated on CPT",
+			"UgEmr Name": "CPT/Dapson",
+			"UgEmr Code": 166070
+		},
+		{
+			"optionSet": "Disease Classification",
+			"code": "Pulmonary Clinically Diagnosed (P-CD) TB",
+			"name": "Pulmonary Clinically Diagnosed (P-CD) TB",
+			"UgEmr Name": "",
+			"UgEmr Code": 165830
+		},
+		{
+			"optionSet": "Disease Classification",
+			"code": "Extra pulmonary (EP) TB",
+			"name": "Extra pulmonary (EP) TB",
+			"UgEmr Name": "",
+			"UgEmr Code": 165831
+		},
+		{
+			"optionSet": "Disease Classification",
+			"code": "Pulmonary bacteriologically confirmed (P-BC)TB",
+			"name": "Pulmonary bacteriologically confirmed (P-BC)TB",
+			"UgEmr Name": "",
+			"UgEmr Code": 165829
+		},
+		{
+			"optionSet": "Drug Susceptible TB Type",
+			"code": "2RHZE/ 4RH",
+			"name": "2RHZE/ 4RH",
+			"UgEmr Name": "2RHZ/4RH",
+			"UgEmr Code": 164960
+		},
+		{
+			"optionSet": "Drug Susceptible TB Type",
+			"code": "2RHZE/ 10 RH",
+			"name": "2RHZE/ 10 RH",
+			"UgEmr Name": "2RHZE/10RH",
+			"UgEmr Code": 99372
+		},
+		{
+			"optionSet": "HIV Status",
+			"code": "Negative",
+			"name": "Negative",
+			"UgEmr Name": "",
+			"UgEmr Code": 90167
+		},
+		{
+			"optionSet": "HIV Status",
+			"code": "Newly tested Positive",
+			"name": "Newly tested Positive",
+			"UgEmr Name": "",
+			"UgEmr Code": 165397
+		},
+		{
+			"optionSet": "HIV Status",
+			"code": "Known Positive",
+			"name": "Known Positive",
+			"UgEmr Name": "",
+			"UgEmr Code": 165350
+		},
+		{
+			"optionSet": "HIV Status",
+			"code": "Unknown",
+			"name": "Unknown",
+			"UgEmr Name": "",
+			"UgEmr Code": 90001
+		},
+		{
+			"optionSet": "Microscopy/Smear Results",
+			"code": "No AFB (0)",
+			"name": "No AFB (0)",
+			"UgEmr Name": "",
+			"UgEmr Code": 90074
+		},
+		{
+			"optionSet": "Microscopy/Smear Results",
+			"code": "1-9 AFB per 100HPF (Scanty)",
+			"name": "1-9 AFB per 100HPF (Scanty)",
+			"UgEmr Name": "",
+			"UgEmr Code": 90307
+		},
+		{
+			"optionSet": "Microscopy/Smear Results",
+			"code": "10-99 AFB per 100 HPF (+)",
+			"name": "10-99 AFB per 100 HPF (+)",
+			"UgEmr Name": "",
+			"UgEmr Code": 90075
+		},
+		{
+			"optionSet": "Microscopy/Smear Results",
+			"code": "1-10 AFB per HPF(++)",
+			"name": "1-10 AFB per HPF(++)",
+			"UgEmr Name": "",
+			"UgEmr Code": 90076
+		},
+		{
+			"optionSet": "Microscopy/Smear Results",
+			"code": "> 10 AFB per HPF(+++)",
+			"name": "> 10 AFB per HPF(+++)",
+			"UgEmr Name": "",
+			"UgEmr Code": 90077
+		},
+		{
+			"optionSet": "Microscopy/Smear Results",
+			"code": "Not Done",
+			"name": "Not Done",
+			"UgEmr Name": "",
+			"UgEmr Code": 1118
+		},
+		{
+			"optionSet": "Microscopy/Smear Results",
+			"code": "Contaminated",
+			"name": "Contaminated",
+			"UgEmr Name": "",
+			"UgEmr Code": 90307
+		},
+		{
+			"optionSet": "MUAC",
+			"code": "Green",
+			"name": "Green",
+			"UgEmr Name": "",
+			"UgEmr Code": 99027
+		},
+		{
+			"optionSet": "MUAC",
+			"code": "Yellow",
+			"name": "Yellow",
+			"UgEmr Name": "",
+			"UgEmr Code": 99029
+		},
+		{
+			"optionSet": "MUAC",
+			"code": "Red",
+			"name": "Red",
+			"UgEmr Name": "",
+			"UgEmr Code": 99028
+		},
+		{
+			"optionSet": "Reasons for Follow Up",
+			"code": "Patient transfered out",
+			"name": "Patient transfered out",
+			"UgEmr Name": "",
+			"UgEmr Code": 160036
+		},
+		{
+			"optionSet": "Registration group",
+			"code": "New (N)",
+			"name": "New (N)",
+			"UgEmr Name": "",
+			"UgEmr Code": 99380
+		},
+		{
+			"optionSet": "Registration group",
+			"code": "Relapse (R)",
+			"name": "Relapse (R)",
+			"UgEmr Name": "",
+			"UgEmr Code": 99381
+		},
+		{
+			"optionSet": "Registration group",
+			"code": "Return after loss to follow-up (Rt)",
+			"name": "Return after loss to follow-up (Rt)",
+			"UgEmr Name": "Treament after lost to follow up",
+			"UgEmr Code": 165833
+		},
+		{
+			"optionSet": "Results(Positive/Negative)",
+			"code": "Positive",
+			"name": "Positive",
+			"UgEmr Name": "",
+			"UgEmr Code": 703
+		},
+		{
+			"optionSet": "Results(Positive/Negative)",
+			"code": "Negative",
+			"name": "Negative",
+			"UgEmr Name": "",
+			"UgEmr Code": 664
+		},
+		{
+			"optionSet": "Skin Smear Result",
+			"code": "Positive",
+			"name": "Positive",
+			"UgEmr Name": "",
+			"UgEmr Code": 703
+		},
+		{
+			"optionSet": "Skin Smear Result",
+			"code": "Negative",
+			"name": "Negative",
+			"UgEmr Name": "",
+			"UgEmr Code": 664
+		},
+		{
+			"optionSet": "Skin Smear Result",
+			"code": "Not done",
+			"name": "Not done",
+			"UgEmr Name": "",
+			"UgEmr Code": 1118
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Cured",
+			"name": "Cured",
+			"UgEmr Name": "",
+			"UgEmr Code": 159791
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Treatment completed",
+			"name": "Treatment completed",
+			"UgEmr Name": "",
+			"UgEmr Code": 99421
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Treatment Failure",
+			"name": "Treatment Failure",
+			"UgEmr Name": "",
+			"UgEmr Code": 159874
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Lost to follow up",
+			"name": "Lost to follow up",
+			"UgEmr Name": "",
+			"UgEmr Code": 5240
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Not Evaluated",
+			"name": "Not Evaluated",
+			"UgEmr Name": "",
+			"UgEmr Code": 160737
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Died",
+			"name": "Died",
+			"UgEmr Name": "",
+			"UgEmr Code": 160034
+		},
+		{
+			"optionSet": "Transfer ype",
+			"code": "Transfered In",
+			"name": "Transfered In",
+			"UgEmr Name": "",
+			"UgEmr Code": 99110
+		},
+		{
+			"optionSet": "Transfer ype",
+			"code": "Transfered Out",
+			"name": "Transfered Out",
+			"UgEmr Name": "",
+			"UgEmr Code": 160036
+		},
+		{
+			"optionSet": "Xray Result",
+			"code": "Normal",
+			"name": "Normal",
+			"UgEmr Name": "",
+			"UgEmr Code": 1115
+		},
+		{
+			"optionSet": "Xray Result",
+			"code": "Abnormal",
+			"name": "Abnormal",
+			"UgEmr Name": "",
+			"UgEmr Code": 1116
+		},
+		{
+			"optionSet": "Skin Smear Result",
+			"code": "Positive",
+			"name": "Positive",
+			"UgEmr Name": "",
+			"UgEmr Code": 703
+		},
+		{
+			"optionSet": "Skin Smear Result",
+			"code": "Negative",
+			"name": "Negative",
+			"UgEmr Name": "",
+			"UgEmr Code": 664
+		},
+		{
+			"optionSet": "Skin Smear Result",
+			"code": "Not done",
+			"name": "Not done",
+			"UgEmr Name": "",
+			"UgEmr Code": 1118
+		},
+		{
+			"optionSet": "Transfer ype",
+			"code": "Transfered In",
+			"name": "Transfered In",
+			"UgEmr Name": "",
+			"UgEmr Code": 99110
+		},
+		{
+			"optionSet": "New DM (NDM) or Known DM (KDM)",
+			"code": "New DM (NDM)",
+			"name": "New Diabetes Mellitus (NDM)",
+			"UgEmr Name": "",
+			"UgEmr Code": 165847
+		},
+		{
+			"optionSet": "New DM (NDM) or Known DM (KDM)",
+			"code": "Known DM (KDM)",
+			"name": "Known Diabetes Mellitus (KDM)",
+			"UgEmr Name": "",
+			"UgEmr Code": 165848
+		},
+		{
+			"optionSet": "Yes/No",
+			"code": "Yes",
+			"name": "Yes",
+			"UgEmr Name": "",
+			"UgEmr Code": 90003
+		},
+		{
+			"optionSet": "Yes/No",
+			"code": "No",
+			"name": "No",
+			"UgEmr Name": "",
+			"UgEmr Code": 90004
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "1-2 Weeks",
+			"name": "1-2 Weeks",
+			"UgEmr Name": "1-2 Weeks",
+			"UgEmr Code": 166759
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "3-4 Weeks",
+			"name": "3-4 Weeks",
+			"UgEmr Name": "3-4 Weeks",
+			"UgEmr Code": 166760
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "5-6 Weeks",
+			"name": "5-6 Weeks",
+			"UgEmr Name": "5-6 Weeks",
+			"UgEmr Code": 166761
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "7-8 Weeks",
+			"name": "7-8 Weeks",
+			"UgEmr Name": "7-8 Weeks",
+			"UgEmr Code": 166762
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 3",
+			"name": "Month 3",
+			"UgEmr Name": "Month 3",
+			"UgEmr Code": 166763
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 4",
+			"name": "Month 4",
+			"UgEmr Name": "Month 4",
+			"UgEmr Code": 166764
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 5",
+			"name": "Month 5",
+			"UgEmr Name": "Month 5",
+			"UgEmr Code": 166765
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 6",
+			"name": "Month 6",
+			"UgEmr Name": "Month 6",
+			"UgEmr Code": 166766
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 7",
+			"name": "Month 7",
+			"UgEmr Name": "Month 7",
+			"UgEmr Code": 166767
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 8",
+			"name": "Month 8",
+			"UgEmr Name": "Month 8",
+			"UgEmr Code": 166768
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 9",
+			"name": "Month 9",
+			"UgEmr Name": "Month 9",
+			"UgEmr Code": 166769
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 10",
+			"name": "Month 10",
+			"UgEmr Name": "Month 10",
+			"UgEmr Code": 166770
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 11",
+			"name": "Month 11",
+			"UgEmr Name": "Month 11",
+			"UgEmr Code": 166771
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 12",
+			"name": "Month 12",
+			"UgEmr Name": "Month 12",
+			"UgEmr Code": 166772
+		},
+		{
+			"optionSet": "Examination type",
+			"code": "Diagnosis",
+			"name": "Diagnosis",
+			"UgEmr Name": "Diagnosis",
+			"UgEmr Code": 99321
+		},
+		{
+			"optionSet": "Examination type",
+			"code": "Follow-Up Month",
+			"name": "Follow-Up Month",
+			"UgEmr Name": "Follow-Up Month",
+			"UgEmr Code": 166773
+		}
+	]
+}

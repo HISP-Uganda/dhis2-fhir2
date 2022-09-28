@@ -1,7 +1,6 @@
 "use strict";
 
 const ID_SHORT_NAME = "id,name,shortName,description";
-const csv = require("csvtojson");
 
 /**
  * @typedef {import('moleculer').Context} Context Moleculer's Context
@@ -71,7 +70,6 @@ module.exports = {
 							})
 						)
 					);
-
 					const processedObservations = await Promise.all(
 						observations.map((obs) =>
 							ctx.call(`resources.Observation`, {
@@ -125,8 +123,8 @@ module.exports = {
 				path: "/index",
 			},
 			async handler(ctx) {
-				const { index, idField, ...body } = ctx.params;
-				await ctx.call("es.bulk", { index, dataset: [body], idField });
+				const { index, ...body } = ctx.params;
+				await ctx.call("es.bulk", { index, dataset: [body] });
 				return body;
 			},
 		},
@@ -137,12 +135,12 @@ module.exports = {
 			},
 			async handler(ctx) {
 				const processedObs = ctx.params.options
-					.filter((o) => !!o.code && !!o.ugandaEmr)
+					.filter((o) => !!o.code && !!o["UgEmr Code"])
 					.map((ob) => {
 						const mappings = [
 							{
 								system: "UgandaEMR",
-								code: ob.ugandaEmr,
+								code: ob["UgEmr Code"],
 							},
 							{
 								system: "http://tbl-ecbss.go.ug/options",
@@ -159,7 +157,6 @@ module.exports = {
 				const response = await ctx.call("es.bulk", {
 					index: "concepts",
 					dataset: processedObs,
-					idField: "id",
 				});
 				return response;
 			},
@@ -170,9 +167,42 @@ module.exports = {
 				path: "/obs_sync",
 			},
 			async handler(ctx) {
+				const savedObs = await ctx.call("es.search", {
+					index: "concepts",
+					body: {
+						size: 1000,
+						query: {
+							match_all: {},
+						},
+					},
+				});
+
 				const processedObs = ctx.params.obs
-					.filter((o) => !!o.id)
+					.filter((o) => !!o.id && !!o["UgEmr Code"])
 					.map((ob) => {
+						const previous = savedObs.find(({ id }) => id === ob.id);
+
+						if (previous) {
+							const search = previous.mappings.find(
+								({ system, code }) =>
+									system === "UgandaEMR" &&
+									String(code) === String(ob["UgEmr Code"])
+							);
+							if (search) {
+								return previous;
+							} else {
+								return {
+									...previous,
+									mappings: [
+										...previous.mappings,
+										{
+											system: "UgandaEMR",
+											code: ob["UgEmr Code"],
+										},
+									],
+								};
+							}
+						}
 						const mappings = [
 							{
 								system: "UgandaEMR",
@@ -190,12 +220,10 @@ module.exports = {
 							mappings,
 						};
 					});
-				const response = await ctx.call("es.bulk", {
+				return await ctx.call("es.bulk", {
 					index: "concepts",
 					dataset: processedObs,
-					idField: "id",
 				});
-				return response;
 			},
 		},
 
@@ -227,11 +255,40 @@ module.exports = {
 				return ctx.call("es.bulk", {
 					index: "organisations",
 					dataset: ous,
-					idField: "id",
 				});
 			},
 		},
+		patient_sync: {
+			rest: {
+				method: "GET",
+				path: "/patient_sync",
+			},
+			async handler(ctx) {
+				const { organisationUnits } = await ctx.call("dhis2.get", {
+					url: "organisationUnits.json",
+					level: 5,
+					fields: "id,name,shortName,description",
+					paging: false,
+				});
 
+				const ous = organisationUnits.map((ou) => {
+					const mappings = [
+						{
+							system: "DHIS2",
+							code: ou.id,
+						},
+					];
+					return {
+						...ou,
+						mappings,
+					};
+				});
+				return ctx.call("es.bulk", {
+					index: "organisations",
+					dataset: ous,
+				});
+			},
+		},
 		synchronize: {
 			rest: {
 				method: "GET",
@@ -349,47 +406,54 @@ module.exports = {
 					};
 				});
 
-				const stages = programStages.map((programStage) => {
-					const mappings = [
-						{
-							system: "DHIS2",
-							code: programStage.id,
-						},
-					];
-					return {
-						...programStage,
-						mappings,
-					};
-				});
+				const stages = programStages.map(
+					({
+						program: { id: programId, name: programName },
+						id,
+						name,
+						description,
+						repeatable,
+					}) => {
+						const mappings = [
+							{
+								system: "DHIS2",
+								code: id,
+							},
+						];
+						return {
+							id,
+							name,
+							description,
+							repeatable,
+							programId,
+							programName,
+							mappings,
+						};
+					}
+				);
 
-				const response = await Promise.all([
+				return await Promise.all([
 					ctx.call("es.bulk", {
 						index: "attributes",
 						dataset: attributes,
-						idField: "id",
 					}),
 					ctx.call("es.bulk", {
 						index: "concepts",
 						dataset: concepts,
-						idField: "id",
 					}),
 					ctx.call("es.bulk", {
 						index: "entities",
 						dataset: entities,
-						idField: "id",
 					}),
 					ctx.call("es.bulk", {
 						index: "programs",
 						dataset: progs,
-						idField: "id",
 					}),
 					ctx.call("es.bulk", {
 						index: "stages",
 						dataset: stages,
-						idField: "id",
 					}),
 				]);
-				return response;
 			},
 		},
 		concepts: {
@@ -422,31 +486,13 @@ module.exports = {
 				return ctx.call("es.get", ctx.params);
 			},
 		},
-		patients: {
+		sql: {
 			rest: {
-				method: "GET",
-				path: "/hapi/patients",
+				method: "POST",
+				path: "/sql",
 			},
 			handler(ctx) {
-				return ctx.call("hapi.patients", ctx.params);
-			},
-		},
-		obs: {
-			rest: {
-				method: "GET",
-				path: "/hapi/obs",
-			},
-			handler(ctx) {
-				return ctx.call("hapi.obs", ctx.params);
-			},
-		},
-		encounters: {
-			rest: {
-				method: "GET",
-				path: "/hapi/encounters",
-			},
-			handler(ctx) {
-				return ctx.call("hapi.encounters", ctx.params);
+				return ctx.call("es.sql", ctx.params);
 			},
 		},
 	},

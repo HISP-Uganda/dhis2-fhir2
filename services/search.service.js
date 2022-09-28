@@ -39,7 +39,7 @@ module.exports = {
 				});
 				if (entities.length > 0) {
 					const [entity] = entities;
-					return this.getDHIS2Code(entity._source.mappings);
+					return this.getDHIS2Code(entity.mappings);
 				}
 				return null;
 			},
@@ -123,23 +123,203 @@ module.exports = {
 		},
 		previousPatient: {
 			async handler(ctx) {
-				if (ctx.params.id) {
-					const patientSearch = await ctx.call("es.searchById", {
-						id: ctx.params.id,
-						index: "patients",
-					});
-					return patientSearch;
-				} else if (ctx.params.identifiers?.length > 0) {
-					const patientSearch = await ctx.call("es.searchByValues", {
-						term: "attributes",
-						values: ctx.params.identifiers,
-						index: "patients",
-					});
-					return patientSearch;
+				let should = [];
+
+				if (ctx.params.patientId) {
+					should = [
+						...should,
+						{ term: { "patientId.keyword": ctx.params.patientId } },
+					];
 				}
-				return null;
+
+				if (ctx.params.identifiers && ctx.params.identifiers.length > 0) {
+					should = [
+						...should,
+						{ terms: { "identifiers.keyword": ctx.params.identifiers } },
+					];
+				}
+				if (should.length > 0) {
+					const search = await ctx.call("es.search", {
+						index: "patients",
+						body: {
+							query: {
+								bool: {
+									should,
+								},
+							},
+						},
+					});
+					if (search.length > 0) {
+						return search[0];
+					}
+				}
 			},
 		},
+		previousEOC: {
+			async handler(ctx) {
+				const { trackedEntityInstance, enrollmentDate, program, orgUnit, id } =
+					ctx.params;
+
+				let must = [];
+
+				if (trackedEntityInstance) {
+					must = [
+						...must,
+						{
+							term: { "trackedEntityInstance.keyword": trackedEntityInstance },
+						},
+					];
+				}
+
+				if (orgUnit) {
+					must = [...must, { term: { "orgUnit.keyword": orgUnit } }];
+				}
+				if (program) {
+					must = [...must, { term: { "program.keyword": program } }];
+				}
+				if (enrollmentDate) {
+					must = [...must, { term: { enrollmentDate: enrollmentDate } }];
+				}
+				if (id) {
+					must = [...must, { term: { "eocId.keyword": id } }];
+				}
+				const search = await ctx.call("es.search", {
+					index: "enrollments",
+					body: {
+						query: {
+							bool: {
+								must,
+							},
+						},
+					},
+				});
+				if (search.length > 0) {
+					return search[0];
+				}
+			},
+		},
+		findEOC: {
+			async handler(ctx) {
+				const { id, trackedEntityInstance, orgUnit } = ctx.params;
+				const search = await ctx.call("es.search", {
+					index: "enrollments",
+					body: {
+						query: {
+							bool: {
+								must: [
+									{
+										term: {
+											"trackedEntityInstance.keyword": trackedEntityInstance,
+										},
+									},
+									{ term: { "orgUnit.keyword": orgUnit } },
+									{ term: { "eocId.keyword": id } },
+								],
+							},
+						},
+					},
+				});
+				if (search.length > 0) {
+					return search[0];
+				}
+			},
+		},
+
+		previousEncounter: {
+			async handler(ctx) {
+				const {
+					id,
+					trackedEntityInstance,
+					eventDate,
+					orgUnit,
+					programStage,
+					enrollment,
+					program,
+				} = ctx.params;
+
+				let must = [];
+
+				if (trackedEntityInstance) {
+					must = [
+						...must,
+						{
+							term: { "trackedEntityInstance.keyword": trackedEntityInstance },
+						},
+					];
+				}
+
+				if (orgUnit) {
+					must = [...must, { term: { "orgUnit.keyword": orgUnit } }];
+				}
+				if (program) {
+					must = [...must, { term: { "program.keyword": program } }];
+				}
+				if (eventDate) {
+					must = [...must, { term: { eventDate } }];
+				}
+				if (id) {
+					must = [...must, { term: { "encounterId.keyword": id } }];
+				}
+				if (enrollment) {
+					must = [...must, { term: { "enrollment.keyword": enrollment } }];
+				}
+				if (programStage) {
+					must = [...must, { term: { "programStage.keyword": programStage } }];
+				}
+				const search = await ctx.call("es.search", {
+					index: "encounters",
+					body: {
+						query: {
+							bool: {
+								must,
+							},
+						},
+					},
+				});
+				if (search.length > 0) {
+					return search[0];
+				}
+			},
+		},
+
+		findEncounter: {
+			async handler(ctx) {
+				const { id, trackedEntityInstance, orgUnit } = ctx.params;
+
+				let must = [];
+
+				if (trackedEntityInstance) {
+					must = [
+						...must,
+						{
+							term: { "trackedEntityInstance.keyword": trackedEntityInstance },
+						},
+					];
+				}
+
+				if (orgUnit) {
+					must = [...must, { term: { "orgUnit.keyword": orgUnit } }];
+				}
+
+				if (id) {
+					must = [...must, { term: { "encounterId.keyword": id } }];
+				}
+				const search = await ctx.call("es.search", {
+					index: "encounters",
+					body: {
+						query: {
+							bool: {
+								must,
+							},
+						},
+					},
+				});
+				if (search.length > 0) {
+					return search[0];
+				}
+			},
+		},
+
 		program: {
 			async handler(ctx) {
 				const programSearch = await ctx.call("es.searchBySystemAndCode", {
@@ -232,33 +412,29 @@ module.exports = {
 			}
 		},
 		searchOne(identifies, field, attribute1, attribute2, value1, value2) {
-			const response = identifies.find(({ _source }) => {
+			const response = identifies.find((identifier) => {
 				return (
-					_source[field].find(
+					identifier[field].find(
 						(mapping) =>
 							mapping[attribute1] === value1 && mapping[attribute2] === value2
 					) !== undefined
 				);
 			});
 			if (response) {
-				const {
-					_source: { mappings },
-				} = response;
+				const { mappings } = response;
 				return this.getDHIS2Code(mappings);
 			}
 			return undefined;
 		},
 		searchSystem(identifies, value) {
-			const response = identifies.find(({ _source }) => {
+			const response = identifies.find((identifier) => {
 				return (
-					_source["mappings"].find((mapping) => mapping.system === value) !==
+					identifier["mappings"].find((mapping) => mapping.system === value) !==
 					undefined
 				);
 			});
 			if (response) {
-				const {
-					_source: { mappings },
-				} = response;
+				const { mappings } = response;
 				return this.getDHIS2Code(mappings);
 			}
 			return undefined;
@@ -272,9 +448,7 @@ module.exports = {
 				allKeys = { ...allKeys, ...current };
 			});
 
-			const extensions = attributes.filter(
-				(a) => a._source.type === "extension"
-			);
+			const extensions = attributes.filter((a) => a.type === "extension");
 			return Object.values(allKeys).flatMap(
 				({
 					valueQuantity,
@@ -315,7 +489,7 @@ module.exports = {
 			);
 		},
 		getIdentifiers(patient, attributes) {
-			const identifiers = attributes.filter((a) => a._source.identifier);
+			const identifiers = attributes.filter((a) => a.identifier);
 			return patient.identifier.flatMap((currentIdentifier) => {
 				if (currentIdentifier.type.coding) {
 					const [{ code, system }] = currentIdentifier.type.coding;
@@ -349,11 +523,11 @@ module.exports = {
 			});
 		},
 		searchAttribute(attributes, type, value) {
-			const attribute = attributes.find(({ _source }) => {
-				return _source[type] === value;
+			const attribute = attributes.find((a) => {
+				return a[type] === value;
 			});
 			if (attribute) {
-				return this.getDHIS2Code(attribute._source.mappings);
+				return this.getDHIS2Code(attribute.mappings);
 			}
 			return null;
 		},

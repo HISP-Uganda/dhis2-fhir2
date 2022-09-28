@@ -1,0 +1,1061 @@
+{
+	"obs": [
+		{
+			"code": "DSBS-01",
+			"id": "Aw9p1CCIkqL",
+			"name": "DSBS-01 : Disease Classification (Baseline)",
+			"UgEmr Name": "Disease Classification",
+			"UgEmr Code": 99379
+		},
+		{
+			"code": "DSBS-02",
+			"id": "hDaev1EuehO",
+			"name": "DSBS-02 : Type of patient",
+			"UgEmr Name": "Patient Type",
+			"UgEmr Code": 99386
+		},
+		{
+			"code": "DSBS-03",
+			"id": "kbevqSdQ70w",
+			"name": "DSBS-03 : Date of Referral",
+			"UgEmr Name": "Referral Date",
+			"UgEmr Code": 166774
+		},
+		{
+			"code": "DSBS-04",
+			"id": "SoFmSjG4m2N",
+			"name": "DSBS-04 : Source of Referral",
+			"UgEmr Name": "Referral Source",
+			"UgEmr Code": 165855
+		},
+		{
+			"code": "DSBS-05",
+			"id": "UmmVSfVI4uh",
+			"name": "DSBS-05 : Name of Referring Facility/Community",
+			"UgEmr Name": "Referring Health Facility",
+			"UgEmr Code": 166758
+		},
+		{
+			"code": "DSBS-06",
+			"id": "lYNSA4S86Zc",
+			"name": "DSBS-06 : Referral District",
+			"UgEmr Name": "Referring District",
+			"UgEmr Code": 166775
+		},
+		{
+			"code": "DSBS-07",
+			"id": "ztbIMYqegRu",
+			"name": "DSBS-07 : Phone contact of referring CHW",
+			"UgEmr Name": "Phone no. of Referring Health Worker",
+			"UgEmr Code": 166777
+		},
+		{
+			"code": "DSBS-08",
+			"id": "CxdzmL6vtnx",
+			"name": "DSBS-08 : Started on 1st Line Treatment",
+			"UgEmr Name": "Started on First Line Treament",
+			"UgEmr Code": 165837
+		},
+		{
+			"code": "DSBS-09",
+			"id": "axDtvPeYL2Y",
+			"name": "DSBS-09 : DS-TB regimen",
+			"UgEmr Name": "DS TB Regimen",
+			"UgEmr Code": 159958
+		},
+		{
+			"code": "DSBS-11",
+			"id": "f0S6DIqAOE5",
+			"name": "DSBS-11 : Diagnosed With DR TB",
+			"UgEmr Name": "Diagnosed with DR TB",
+			"UgEmr Code": 165839
+		},
+		{
+			"code": "DSBS-13",
+			"id": "hcqQi9lsEaj",
+			"name": "DSBS-13 : Date diagnosed with DR-TB",
+			"UgEmr Name": "Date",
+			"UgEmr Code": 165840
+		},
+		{
+			"code": "DSBS-16",
+			"id": "dtRfCJvzZRF",
+			"name": "DSBS-16 : HIV status (Baseline)",
+			"UgEmr Name": "HIV Status",
+			"UgEmr Code": 165396
+		},
+		{
+			"code": "DSBS-17",
+			"id": "b801bG8cIxt",
+			"name": "DSBS-17 : ART Status",
+			"UgEmr Name": "ART Status",
+			"UgEmr Code": 1358
+		},
+		{
+			"code": "DSBS-18",
+			"id": "sQ4Z6lEiiq6",
+			"name": "DSBS-18 : ART No",
+			"UgEmr Name": "ART No.",
+			"UgEmr Code": 99431
+		},
+		{
+			"code": "DSBS-19",
+			"id": "pg6UUMn87eM",
+			"name": "DSBS-19 : CPT/Dapson (Baseline)",
+			"UgEmr Name": "CPT/Dapson",
+			"UgEmr Code": 166070
+		},
+		{
+			"code": "DSBS-20",
+			"id": "Bivxg5n4goz",
+			"name": "DSBS-20 : HIV status Date",
+			"UgEmr Name": "Date",
+			"UgEmr Code": 164431
+		},
+		{
+			"code": "DSBS-21",
+			"id": "QcjaZKRl9D4",
+			"name": "DSBS-21 : ART Status Date",
+			"UgEmr Name": "ART Start Date",
+			"UgEmr Code": 99161
+		},
+		{
+			"code": "DSBS-22",
+			"id": "FtWNuQmVu7j",
+			"name": "DSBS-22 : CPT/Dapson Initiation Date",
+			"UgEmr Name": "CPT/Dapson Start Date",
+			"UgEmr Code": 165881
+		},
+		{
+			"code": "DSBS-23",
+			"id": "ig3ZDT8Mgus",
+			"name": "DSBS-23 : Risk Group Health Care Worker",
+			"UgEmr Name": "Health Worker",
+			"UgEmr Code": 5619
+		},
+		{
+			"code": "DSBS-24",
+			"id": "t6qq4TXSE7n",
+			"name": "DSBS-24 : Risk Group TB Contact",
+			"UgEmr Name": "TB Contact",
+			"UgEmr Code": 165882
+		},
+		{
+			"code": "DSBS-25",
+			"id": "WqWIsCuYw14",
+			"name": "DSBS-25 : Risk Group Prisoner",
+			"UgEmr Name": "Prisoner",
+			"UgEmr Code": 162277
+		},
+		{
+			"code": "DSBS-26",
+			"id": "b7YlcZ0Q1CM",
+			"name": "DSBS-26 : Risk Group Pregnant",
+			"UgEmr Name": "Pregnant",
+			"UgEmr Code": 90041
+		},
+		{
+			"code": "DSBS-27",
+			"id": "iASKm4dSFOB",
+			"name": "DSBS-27 : Risk Group Refugee",
+			"UgEmr Name": "Refugee",
+			"UgEmr Code": 165127
+		},
+		{
+			"code": "DSBS-28",
+			"id": "vWDeR4dliol",
+			"name": "DSBS-28 : Risk Group Fisher Folk",
+			"UgEmr Name": "Fisher Folk",
+			"UgEmr Code": 159674
+		},
+		{
+			"code": "DSBS-29",
+			"id": "BQ2qwbH5WXi",
+			"name": "DSBS-29 : Risk Group Diabetic",
+			"UgEmr Name": "Diabetic Patient",
+			"UgEmr Code": 119481
+		},
+		{
+			"code": "DSBS-30",
+			"id": "hKIFBgKANnh",
+			"name": "DSBS-30 : Risk Group Miner",
+			"UgEmr Name": "Miner",
+			"UgEmr Code": 165883
+		},
+		{
+			"code": "DSBS-31",
+			"id": "HHf4Vff0Xrx",
+			"name": "DSBS-31 : Risk Group Tobacco User",
+			"UgEmr Name": "Tobacco User",
+			"UgEmr Code": 1455
+		},
+		{
+			"code": "DSBS-32",
+			"id": "IcLLS2MJMyc",
+			"name": "DSBS-32 : Risk Group Mentally ill",
+			"UgEmr Name": "Mentally Ill",
+			"UgEmr Code": 134337
+		},
+		{
+			"code": "DSBS-33",
+			"id": "zA3wUzuCUBz",
+			"name": "DSBS-33 : Risk Group Others (specify)",
+			"UgEmr Name": "Other Risk Group",
+			"UgEmr Code": 165184
+		},
+		{
+			"code": "DSBS-34",
+			"id": "x7uZB9y0Qey",
+			"name": "DSBS-34 : Results Smear(Baseline)",
+			"UgEmr Name": "Smear",
+			"UgEmr Code": 90225
+		},
+		{
+			"code": "DSBS-35",
+			"id": "pD0tc8UxyGg",
+			"name": "DSBS-35 : Results GeneXpert(Baseline)",
+			"UgEmr Name": "GeneXpert",
+			"UgEmr Code": 165413
+		},
+		{
+			"code": "DSBS-36",
+			"id": "e0mTEFrXZDh",
+			"name": "DSBS-36 : Results LAM(Baseline)",
+			"UgEmr Name": "LAM",
+			"UgEmr Code": 165416
+		},
+		{
+			"code": "DSBS-37",
+			"id": "LRzaAyb2vGk",
+			"name": "DSBS-37 : Results X-ray(Baseline)",
+			"UgEmr Name": "X-ray",
+			"UgEmr Code": 12
+		},
+		{
+			"code": "DSBS-38",
+			"id": "NTCaur3fg5j",
+			"name": "DSBS-38 : Results others(Baseline)",
+			"UgEmr Name": "Other Results",
+			"UgEmr Code": 99291
+		},
+		{
+			"code": "DSBS-39",
+			"id": "WoPIO7Jd8EL",
+			"name": "DSBS-39 : Test date Smear",
+			"UgEmr Name": "Date sample taken",
+			"UgEmr Code": 164431
+		},
+		{
+			"code": "DSBS-40",
+			"id": "JCdqUjZZuvx",
+			"name": "DSBS-40 : Test date GeneXpert",
+			"UgEmr Name": "Date sample taken",
+			"UgEmr Code": 164431
+		},
+		{
+			"code": "DSBS-41",
+			"id": "aOHalAjOIrJ",
+			"name": "DSBS-41 : Test date LAM",
+			"UgEmr Name": "Date sample taken",
+			"UgEmr Code": 164431
+		},
+		{
+			"code": "DSBS-42",
+			"id": "YSjR80QKKXo",
+			"name": "DSBS-42 : Test date X-ray",
+			"UgEmr Name": "Date sample taken",
+			"UgEmr Code": 164431
+		},
+		{
+			"code": "DSBS-43",
+			"id": "xlADRtruhwp",
+			"name": "DSBS-43 : Test date others(specify)",
+			"UgEmr Name": "Date sample taken",
+			"UgEmr Code": 164431
+		},
+		{
+			"code": "DSBS-44",
+			"id": "z2NcMr02XJs",
+			"name": "DSBS-44 : Lab No Smear",
+			"UgEmr Name": "Lab No.",
+			"UgEmr Code": 165845
+		},
+		{
+			"code": "DSBS-45",
+			"id": "CF6JasgPZtt",
+			"name": "DSBS-45 : Lab No GeneXpert",
+			"UgEmr Name": "Lab No.",
+			"UgEmr Code": 165845
+		},
+		{
+			"code": "DSBS-46",
+			"id": "WWREUMZUm7z",
+			"name": "DSBS-46 : Lab No LAM",
+			"UgEmr Name": "Lab No.",
+			"UgEmr Code": 165845
+		},
+		{
+			"code": "DSBS-47",
+			"id": "wD7EhGND4tu",
+			"name": "DSBS-47 : Lab No X-ray",
+			"UgEmr Name": "Lab No.",
+			"UgEmr Code": 165845
+		},
+		{
+			"code": "DSBS-48",
+			"id": "oyoWvjf1dfj",
+			"name": "DSBS-48 : Lab No others(specify)",
+			"UgEmr Name": "Lab No.",
+			"UgEmr Code": 165845
+		},
+		{
+			"code": "DSBS-49",
+			"id": "FZMwpP1ncnZ",
+			"name": "DSBS-49 : Diabetes Status",
+			"UgEmr Name": "Diabetes Result",
+			"UgEmr Code": 165852
+		},
+		{
+			"code": "DSBS-50",
+			"id": "THirpMvAHgw",
+			"name": "DSBS-50 : 1st Line treatment start date",
+			"UgEmr Name": "Date Started",
+			"UgEmr Code": 165838
+		},
+		{
+			"code": "DSBS-51",
+			"id": "IGv6SjkM162",
+			"name": "DSBS-51 : Extra Pulmonary TB Site",
+			"UgEmr Name": "Indicate Site",
+			"UgEmr Code": 165832
+		},
+		{
+			"code": "DSBS-52",
+			"id": "K1JiyL94mCT",
+			"name": "DSBS-52: Risk Group Uniformed/Armed Personnel",
+			"UgEmr Name": "Uniformed/Armed Personnel",
+			"UgEmr Code": 165125
+		},
+		{
+			"code": "DSBS-53",
+			"id": "j9lDBfNNXlz",
+			"name": "DSBS-53: Date diagnosed with DRTB",
+			"UgEmr Name": "Date",
+			"UgEmr Code": 165840
+		},
+		{
+			"code": "DSLT-01",
+			"id": "t1wRW4bpRrj",
+			"name": "DSLT-01 : Type of Test",
+			"UgEmr Name": "Test",
+			"UgEmr Code": 165844
+		},
+		{
+			"code": "DSLT-02",
+			"id": "P9q2Q6cH0UH",
+			"name": "DSLT-02 : Results Smear",
+			"UgEmr Name": "Test",
+			"UgEmr Code": 90225
+		},
+		{
+			"code": "DSLT-03",
+			"id": "G15dOa6fDYS",
+			"name": "DSLT-03 : Results GeneXpert",
+			"UgEmr Name": "Test",
+			"UgEmr Code": 162202
+		},
+		{
+			"code": "DSLT-04",
+			"id": "FW8ZK9jfOPI",
+			"name": "DSLT-04 : Results LAM",
+			"UgEmr Name": "Test",
+			"UgEmr Code": 165291
+		},
+		{
+			"code": "DSLT-05",
+			"id": "daHRSfMxtgn",
+			"name": "DSLT-05 : Results Culture",
+			"UgEmr Name": "Test",
+			"UgEmr Code": 166839
+		},
+		{
+			"code": "DSLT-06",
+			"id": "cTM6ybziJqI",
+			"name": "DSLT-06 : Results X-ray",
+			"UgEmr Name": "Test",
+			"UgEmr Code": 12
+		},
+		{
+			"code": "DSLT-11",
+			"id": "KNRRxYxjtOz",
+			"name": "DSLT-11 : Results others(specify)",
+			"UgEmr Name": "Other results",
+			"UgEmr Code": 99291
+		},
+		{
+			"code": "DSLT-13",
+			"id": "psTUAQA46vs",
+			"name": "DSLT-13 : Lab Test others(specify)",
+			"UgEmr Name": "Other test",
+			"UgEmr Code": 99114
+		},
+		{
+			"code": "DSLT-14",
+			"id": "Nf4Tz0J2vA6",
+			"name": "DSLT-14 Sample Referred From Community?",
+			"UgEmr Name": "Sample referred from community",
+			"UgEmr Code": 166790
+		},
+		{
+			"code": "",
+			"id": "e8iBvoojj48",
+			"name": "DSLT-15 Name of Facility/ Unit if sample is referred from outside the Facility",
+			"UgEmr Name": "Name of facility/ Unit if sample is referred from outside the facility",
+			"UgEmr Code": 166791
+		},
+		{
+			"code": "",
+			"id": "qZKe08ZA2Jl",
+			"name": "DSLT-16 Examination Type",
+			"UgEmr Name": "Examination type",
+			"UgEmr Code": 166792
+		},
+		{
+			"code": "",
+			"id": "hFd3taQ0aeV",
+			"name": "DSLT : Months of follow-up",
+			"UgEmr Name": "Month of Follow up",
+			"UgEmr Code": 166773
+		},
+		{
+			"code": "",
+			"id": "t67F5fXumcb",
+			"name": "DSLT: Unit TB No",
+			"UgEmr Name": "Unit TB No.",
+			"UgEmr Code": 165826
+		},
+		{
+			"code": "DSOC-01",
+			"id": "TFS9P7tu6U6",
+			"name": "DSOC-01 : Treatment outcome",
+			"UgEmr Name": "Outcome",
+			"UgEmr Code": 99423
+		},
+		{
+			"code": "DSOC-02",
+			"id": "FhUzhlhPXqV",
+			"name": "DSOC-02 : Misclassfied",
+			"UgEmr Name": "Miss-classification",
+			"UgEmr Code": 166813
+		},
+		{
+			"code": "DSOC-03",
+			"id": "wDxPOnKDYLv",
+			"name": "DSOC-03 : Reason for Misclassfication",
+			"UgEmr Name": "Reason for miss-classification",
+			"UgEmr Code": 166814
+		},
+		{
+			"code": "DSOC-04",
+			"id": "P5VaVFKF5i7",
+			"name": "DSOC-04 : Action taken for Misclassification",
+			"UgEmr Name": "Action taken for miss-classification",
+			"UgEmr Code": 166815
+		},
+		{
+			"code": "DSOC-05",
+			"id": "J5kKvyU8mpY",
+			"name": "DSOC-05: Transferred to 2nd line",
+			"UgEmr Name": "Transferred to 2nd line",
+			"UgEmr Code": 166812
+		},
+		{
+			"code": "DSTF-02",
+			"id": "BoxLMf7HMff",
+			"name": "DSTF-02 : Transfer Type",
+			"UgEmr Name": "Transfer type",
+			"UgEmr Code": 166837
+		},
+		{
+			"code": "DSTF-03",
+			"id": "zsi0PiZYMXm",
+			"name": "DSTF-03 : Transfer Health Facility",
+			"UgEmr Name": "Transfer health facility",
+			"UgEmr Code": 166840
+		},
+		{
+			"code": "DSTF-04",
+			"id": "N8nrNKMay1o",
+			"name": "DSTF-04 : Transfer District",
+			"UgEmr Name": "Transfer district",
+			"UgEmr Code": 166801
+		},
+		{
+			"code": "DSTF-05",
+			"id": "ZfZlsKzDqQO",
+			"name": "DSTF-05 : Transfer Phone of transfering/receiving Facility",
+			"UgEmr Name": "Phone No. of receiving health unit",
+			"UgEmr Code": 166802
+		},
+		{
+			"code": "DSTF-06",
+			"id": "E2D2Tohro68",
+			"name": "DSTF-06 : Follow Up DOT Monitoring (Patient active)",
+			"UgEmr Name": "DOT monitoring (Patient active)",
+			"UgEmr Code": 166819
+		},
+		{
+			"code": "DSTF-07",
+			"id": "Nnsfowh07jO",
+			"name": "DSTF-07 : Follow Up Side Effects (Patient active)",
+			"UgEmr Name": "Side effects (Patient active)",
+			"UgEmr Code": 166818
+		},
+		{
+			"code": "DSTF-08",
+			"id": "Wm1cGgToFmR",
+			"name": "DSTF-08 : Follow Up Patient Missed Appointment",
+			"UgEmr Name": "Patient missed appointment",
+			"UgEmr Code": 166817
+		},
+		{
+			"code": "DSTF-09",
+			"id": "TTN4nGIKdgh",
+			"name": "DSTF-09 : Follow Up Patient Evaluated",
+			"UgEmr Name": "Patient evaluated",
+			"UgEmr Code": 166825
+		},
+		{
+			"code": "DSTF-10",
+			"id": "Q3uxHF1DBNX",
+			"name": "DSTF-10 : Follow Up Patient transfered out",
+			"UgEmr Name": "Patient transfered out",
+			"UgEmr Code": 90306
+		},
+		{
+			"code": "DSTF-11",
+			"id": "kMWFLzy0mB0",
+			"name": "DSTF-11 : Mode of Follow up Physical visit",
+			"UgEmr Name": "Physical visit",
+			"UgEmr Code": 165103
+		},
+		{
+			"code": "DSTF-12",
+			"id": "N4v3QcYmCZC",
+			"name": "DSTF-12 : Mode of Follow up Phone call",
+			"UgEmr Name": "Phone call",
+			"UgEmr Code": 165102
+		},
+		{
+			"code": "DSTF-13",
+			"id": "nwV7xRwpBhO",
+			"name": "DSTF-13 : Support Provided Counselling",
+			"UgEmr Name": "Counselling",
+			"UgEmr Code": 99294
+		},
+		{
+			"code": "DSTF-14",
+			"id": "Bf8VAXAgSME",
+			"name": "DSTF-14 : Support Provided Pill refill",
+			"UgEmr Name": "Pill refill",
+			"UgEmr Code": 166820
+		},
+		{
+			"code": "DSTF-15",
+			"id": "UVSc6OLowIy",
+			"name": "DSTF-15 : Support Provided Appointment reminder",
+			"UgEmr Name": "Appointment reminder",
+			"UgEmr Code": 166821
+		},
+		{
+			"code": "DSTF-16",
+			"id": "XgX8u4DHJB0",
+			"name": "DSTF-16 : Support Provided Sputum sample collection",
+			"UgEmr Name": "Sputum sample collection",
+			"UgEmr Code": 166822
+		},
+		{
+			"code": "DSTF-17",
+			"id": "lgo7yGS3LFn",
+			"name": "DSTF-17 : Support Provided Other support",
+			"UgEmr Name": "Other support",
+			"UgEmr Code": 166823
+		},
+		{
+			"code": "DSTF-18",
+			"id": "uqAATgtvI5e",
+			"name": "DSTF-18 : Outcome of Followup",
+			"UgEmr Name": "Outcome of follow up",
+			"UgEmr Code": 165104
+		},
+		{
+			"code": "DSTF-19",
+			"id": "CLIWYDqeNAZ",
+			"name": "DSTF-19 : Found with a treatment supporter (Y/N)",
+			"UgEmr Name": "Found with a treatment supporter",
+			"UgEmr Code": 166826
+		},
+		{
+			"code": "DSTX-01",
+			"id": "TWFRHSAaoK7",
+			"name": "DSTX-01 : Next appointment Date (Due date)",
+			"UgEmr Name": "Next Date of Appointment",
+			"UgEmr Code": 5096
+		},
+		{
+			"code": "DSTX-02",
+			"id": "xcTT5oXggBZ",
+			"name": "DSTX-02 : Weight (kg)",
+			"UgEmr Name": "Weight (kg)",
+			"UgEmr Code": 5089
+		},
+		{
+			"code": "DSTX-03",
+			"id": "WBsNDNQUgeX",
+			"name": "DSTX-03 : Height",
+			"UgEmr Name": "Height (cm)",
+			"UgEmr Code": 5090
+		},
+		{
+			"code": "DSTX-04",
+			"id": "E0oIYbS2lcV",
+			"name": "DSTX-04 : MUAC Code",
+			"UgEmr Name": "MUAC Code",
+			"UgEmr Code": 99030
+		},
+		{
+			"code": "DSTX-05",
+			"id": "HzhDngURGLk",
+			"name": "DSTX-05 : BMI for Age Z-Score",
+			"UgEmr Name": "BMI for Age Z-Score",
+			"UgEmr Code": 166756
+		},
+		{
+			"code": "DSTX-08",
+			"id": "PZvOW11mGOq",
+			"name": "DSTX-08 : HIV status",
+			"UgEmr Name": "HIV status",
+			"UgEmr Code": 165396
+		},
+		{
+			"code": "DSTX-09",
+			"id": "ZjimuF1UNdY",
+			"name": "DSTX-09 : CPT/Dapson",
+			"UgEmr Name": "CPT/Dapson",
+			"UgEmr Code": 99413
+		},
+		{
+			"code": "DSTX-10",
+			"id": "vKn3Mq4nqOF",
+			"name": "DSTX-10 : ARV Drugs",
+			"UgEmr Name": "ARV drugs",
+			"UgEmr Code": 165871
+		},
+		{
+			"code": "DSTX-11",
+			"id": "rluc10OPm1I",
+			"name": "DSTX-11 : Adverse Event Gastrointestinal",
+			"UgEmr Name": "Gastrointestinal",
+			"UgEmr Code": 119242
+		},
+		{
+			"code": "DSTX-12",
+			"id": "DrbIE582o34",
+			"name": "DSTX-12 : Adverse Event Drug Causing",
+			"UgEmr Name": "Drug causing adverse events",
+			"UgEmr Code": 166836
+		},
+		{
+			"code": "DSTX-13",
+			"id": "F5P1buF4RHP",
+			"name": "DSTX-13 : Adverse Event Hepatotoxicity",
+			"UgEmr Name": "Hepatotoxicity",
+			"UgEmr Code": 159098
+		},
+		{
+			"code": "DSTX-14",
+			"id": "UtGpqsuTmrD",
+			"name": "DSTX-14 : Adverse Event Musculoskeletal",
+			"UgEmr Name": "Musculoskeletal",
+			"UgEmr Code": 159347
+		},
+		{
+			"code": "DSTX-15",
+			"id": "rHEeM6ha268",
+			"name": "DSTX-15 : Adverse Event Renal toxicity",
+			"UgEmr Name": "Renal toxicity",
+			"UgEmr Code": 166083
+		},
+		{
+			"code": "DSTX-16",
+			"id": "DHPzkmTcDUv",
+			"name": "DSTX-16 : Adverse Event Vestibular/Ototoxicity",
+			"UgEmr Name": "Vestibular/Ototoxicity",
+			"UgEmr Code": 131103
+		},
+		{
+			"code": "DSTX-17",
+			"id": "RTKE58980U7",
+			"name": "DSTX-17 : Adverse Event Vision changes",
+			"UgEmr Name": "Vision changes",
+			"UgEmr Code": 118939
+		},
+		{
+			"code": "DSTX-18",
+			"id": "luQQ9zNTgFM",
+			"name": "DSTX-18 : Adverse Event Neuropathy",
+			"UgEmr Name": "Neuropathy",
+			"UgEmr Code": 821
+		},
+		{
+			"code": "DSTX-19",
+			"id": "k5LrUGjAGD5",
+			"name": "DSTX-19 : Adverse Event Psychiatric",
+			"UgEmr Name": "Psychiatric",
+			"UgEmr Code": 134337
+		},
+		{
+			"code": "DSTX-20",
+			"id": "EDFvw8DsJuH",
+			"name": "DSTX-20 : Adverse Event Hypothyroid",
+			"UgEmr Name": "Hypothyroid",
+			"UgEmr Code": 117321
+		},
+		{
+			"code": "DSTX-21",
+			"id": "Wbp0DL9fQYj",
+			"name": "DSTX-21 : Adverse Event Dysglycemia",
+			"UgEmr Name": "Dysglycemia",
+			"UgEmr Code": 166081
+		},
+		{
+			"code": "DSTX-22",
+			"id": "pDR49oOtJrc",
+			"name": "DSTX-22 : Adverse Event Dermatologic",
+			"UgEmr Name": "Dermatologic",
+			"UgEmr Code": 119506
+		},
+		{
+			"code": "DSTX-23",
+			"id": "mDmVRrzihu0",
+			"name": "DSTX-23 : Adverse Event Cardiovascular",
+			"UgEmr Name": "Cardiovascular",
+			"UgEmr Code": 119270
+		},
+		{
+			"code": "DSTX-24",
+			"id": "KAykkHp1p2F",
+			"name": "DSTX-24 : Adverse Event Hematological",
+			"UgEmr Name": "Hematological",
+			"UgEmr Code": 164923
+		},
+		{
+			"code": "DSTX-25",
+			"id": "EoO16H5lLK5",
+			"name": "DSTX-25 : Adverse Event New onset Seizure",
+			"UgEmr Name": "New onset Seizure",
+			"UgEmr Code": 206
+		},
+		{
+			"code": "DSTX-26",
+			"id": "lpJPqjVUToo",
+			"name": "DSTX-26 : Adverse Event Electrolyte Abnormality",
+			"UgEmr Name": "Electrolyte Abnormality",
+			"UgEmr Code": 119204
+		},
+		{
+			"code": "DSTX-27",
+			"id": "sM7PAEYRqEP",
+			"name": "DSTX-27 : Adverse Event reported during the visit",
+			"UgEmr Name": "Adverse event reported during the visit",
+			"UgEmr Code": 166816
+		},
+		{
+			"code": "DSTX-28",
+			"id": "pDoTShM62yi",
+			"name": "DSTX-28: Treatment Model",
+			"UgEmr Name": "Treatment model",
+			"UgEmr Code": 165869
+		},
+		{
+			"code": "DSTX-29",
+			"id": "FklL99yLd3h",
+			"name": "DSTX-29: RHZE(150/75/400/275 mg) given",
+			"UgEmr Name": "RHZE(150/75/400/275 mg) given",
+			"UgEmr Code": 166780
+		},
+		{
+			"code": "DSTX-30",
+			"id": "QzfjeqlwN2c",
+			"name": "DSTX-30: RH (150/75mg) given",
+			"UgEmr Name": "RH (150/75mg) given",
+			"UgEmr Code": 166782
+		},
+		{
+			"code": "DSTX-31",
+			"id": "pZgD6CYOa96",
+			"name": "DSTX-31: RHZ (75/50/150mg) given",
+			"UgEmr Name": "RHZ (75/50/150mg) given",
+			"UgEmr Code": 166784
+		},
+		{
+			"code": "DSTX-32",
+			"id": "TevjEqHRBdC",
+			"name": "DSTX-32: RH (75/50 mg) given",
+			"UgEmr Name": "RH (75/50 mg) given",
+			"UgEmr Code": 166786
+		},
+		{
+			"code": "DSTX-33",
+			"id": "EWsKHldwJxa",
+			"name": "DSTX-33: Ethambutol (100mg) given",
+			"UgEmr Name": "Ethambutol (100mg) given",
+			"UgEmr Code": 166788
+		},
+		{
+			"code": "DSTX-35",
+			"id": "Ghsh3wqVTif",
+			"name": "DSTX-35: RHZE(150/75/400/275 mg) blisters given",
+			"UgEmr Name": "RHZE(150/75/400/275 mg) blisters given",
+			"UgEmr Code": 166781
+		},
+		{
+			"code": "DSTX-36",
+			"id": "vZMCHh6nEBZ",
+			"name": "DSTX-36: RH (150/75mg) blisters given",
+			"UgEmr Name": "RH (150/75mg) blisters given",
+			"UgEmr Code": 166783
+		},
+		{
+			"code": "DSTX-37",
+			"id": "LyiHJrtjNTX",
+			"name": "DSTX-37: RHZ (75/50/150mg) blisters given",
+			"UgEmr Name": "RHZ (75/50/150mg) blisters given",
+			"UgEmr Code": 166785
+		},
+		{
+			"code": "DSTX-38",
+			"id": "muBnQUtbS9R",
+			"name": "DSTX-38: RH (75/50 mg) blisters given",
+			"UgEmr Name": "RH (75/50 mg) blisters given",
+			"UgEmr Code": 166787
+		},
+		{
+			"code": "DSTX-39",
+			"id": "wpV8b2x6uDP",
+			"name": "DSTX-39: Ethambutol (100mg) blisters given",
+			"UgEmr Name": "Ethambutol (100mg) blisters given",
+			"UgEmr Code": 166789
+		},
+		{
+			"code": "",
+			"id": "ywUNEl0vi3Y",
+			"name": "DSTX-X : Burning sensation in the feet",
+			"UgEmr Name": "Burning sensation in the feet",
+			"UgEmr Code": 166841
+		},
+		{
+			"code": "",
+			"id": "XzNqEEXo00j",
+			"name": "DSTX-X : Deafness",
+			"UgEmr Name": "Deafness",
+			"UgEmr Code": 166832
+		},
+		{
+			"code": "",
+			"id": "Ep0hN5HdQKS",
+			"name": "DSTX-X : dermatitis",
+			"UgEmr Name": "dermatitis",
+			"UgEmr Code": 119
+		},
+		{
+			"code": "",
+			"id": "zJWyXO06Rhi",
+			"name": "DSTX-X : Dizziness",
+			"UgEmr Name": "Dizziness",
+			"UgEmr Code": 90117
+		},
+		{
+			"code": "",
+			"id": "OZkvrZWZL0u",
+			"name": "DSTX-X : Flu syndrome",
+			"UgEmr Name": "Flu syndrome",
+			"UgEmr Code": 166833
+		},
+		{
+			"code": "",
+			"id": "H85OvvFGG6i",
+			"name": "DSTX-X : Hepatitis",
+			"UgEmr Name": "Hepatitis",
+			"UgEmr Code": 29
+		},
+		{
+			"code": "",
+			"id": "P9DY4UW3BTo",
+			"name": "DSTX-X : Jaundice",
+			"UgEmr Name": "Jaundice",
+			"UgEmr Code": 90115
+		},
+		{
+			"code": "",
+			"id": "iUyb0JGgeqn",
+			"name": "DSTX-X : Joint pains",
+			"UgEmr Name": "Joint pains",
+			"UgEmr Code": 80
+		},
+		{
+			"code": "",
+			"id": "vvlAUOFU1lc",
+			"name": "DSTX-X : Low appetite, nausea, abdominal pain",
+			"UgEmr Name": "Low appetite, nausea, abdominal pain",
+			"UgEmr Code": 166834
+		},
+		{
+			"code": "",
+			"id": "omFhxVHAHW8",
+			"name": "DSTX-X : Mental confusion",
+			"UgEmr Name": "Mental confusion",
+			"UgEmr Code": 134337
+		},
+		{
+			"code": "",
+			"id": "hZ4HR3lEOWm",
+			"name": "DSTX-X : nystagmus",
+			"UgEmr Name": "nystagmus",
+			"UgEmr Code": 166831
+		},
+		{
+			"code": "",
+			"id": "G0m1TnJ9CaB",
+			"name": "DSTX-X : peripheral neuropathy",
+			"UgEmr Name": "Peripheral neuropathy",
+			"UgEmr Code": 821
+		},
+		{
+			"code": "",
+			"id": "fhEVXFPNNUc",
+			"name": "DSTX-X : reddish-brown coloration of urine",
+			"UgEmr Name": "Reddish-brown coloration of urine",
+			"UgEmr Code": 166835
+		},
+		{
+			"code": "",
+			"id": "cdGuoKHI3fp",
+			"name": "DSTX-X : Skin rash",
+			"UgEmr Name": "Skin rash",
+			"UgEmr Code": 512
+		},
+		{
+			"code": "",
+			"id": "WLqYnkV6qx1",
+			"name": "DSTX-X : vertigo",
+			"UgEmr Name": "vertigo",
+			"UgEmr Code": 166830
+		},
+		{
+			"code": "",
+			"id": "P6eKotYRIvT",
+			"name": "DSTX-X : Visual impairment",
+			"UgEmr Name": "Visual impairment",
+			"UgEmr Code": 159298
+		},
+		{
+			"code": "",
+			"id": "zPfT9mkYEoe",
+			"name": "No. days of incomplete doses",
+			"UgEmr Name": "No. days of incomplete doses",
+			"UgEmr Code": 166806
+		},
+		{
+			"code": "",
+			"id": "Xk5817UHGzE",
+			"name": "No. of days electronic message notifications of drug refills were received",
+			"UgEmr Name": "No. of days electronic message notifications of drug refills were received",
+			"UgEmr Code": 166807
+		},
+		{
+			"code": "",
+			"id": "bQcSfnHSBKP",
+			"name": "No. of days of Video Observed therapy",
+			"UgEmr Name": "No. of days of video observed therapy",
+			"UgEmr Code": 166808
+		},
+		{
+			"code": "",
+			"id": "a07BsgpwFan",
+			"name": "No. of days when doses were taken under observation of a treatment supporter",
+			"UgEmr Name": "No. of days when doses were taken under observation of a treatment supporter",
+			"UgEmr Code": 166810
+		},
+		{
+			"code": "",
+			"id": "MMF7R6HiTre",
+			"name": "No. of days when DOT was not supervised",
+			"UgEmr Name": "No. of days when DOT was not supervised",
+			"UgEmr Code": 166809
+		},
+		{
+			"code": "",
+			"id": "JG79kasyRkw",
+			"name": "No. of days when drugs were not taken",
+			"UgEmr Name": "No. of days when drugs were not taken",
+			"UgEmr Code": 166811
+		},
+		{
+			"code": "",
+			"id": "jnw3HP0Kehx",
+			"name": "CSM: Total # of <5 years old Contacts screened for TB",
+			"UgEmr Name": "Total # of < 5 years old Contacts screened for TB",
+			"UgEmr Code": 166796
+		},
+		{
+			"code": "",
+			"id": "BQVLvsEJmSq",
+			"name": "CSM: Total # of <5 years old contacts on TPT",
+			"UgEmr Name": "Total # of < 5 years old contacts on TPT",
+			"UgEmr Code": 164421
+		},
+		{
+			"code": "",
+			"id": "YFOzTDRhjkF",
+			"name": "CSM: Total # of <5 years old contacts with TB",
+			"UgEmr Name": "Total # of < 5 years old contacts with TB",
+			"UgEmr Code": 166799
+		},
+		{
+			"code": "",
+			"id": "A0cMF4wzukz",
+			"name": "CSM: Total # of contacts � 5 years old",
+			"UgEmr Name": "Total # of contacts � 5 years",
+			"UgEmr Code": 166794
+		},
+		{
+			"code": "",
+			"id": "R8wHHdIp2zv",
+			"name": "CSM: Total # of � 5 years old contacts on TPT",
+			"UgEmr Name": "Total # of � 5 years old contacts on TPT",
+			"UgEmr Code": 166800
+		},
+		{
+			"code": "",
+			"id": "KSzr7m65j5q",
+			"name": "CSM: Total # of � 5 years old contacts screened for TB",
+			"UgEmr Name": "Total # of � 5 years old contacts screened for TB",
+			"UgEmr Code": 166795
+		},
+		{
+			"code": "",
+			"id": "IrXoOEno4my",
+			"name": "CSM: Total # of � 5 years old contacts with TB",
+			"UgEmr Name": "Total # of � 5 years old contacts with TB",
+			"UgEmr Code": 166798
+		},
+		{
+			"code": "",
+			"id": "QtDbhbhXw8w",
+			"name": "CSM: Total # of contacts <5 years",
+			"UgEmr Name": "Total # contcts of < 5 years",
+			"UgEmr Code": 164419
+		}
+	]
+}

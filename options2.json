@@ -1,0 +1,3184 @@
+{
+	"options": [
+		{
+			"optionSet": "All Results",
+			"code": "MTB detected, rifampicin resistance not detected",
+			"name": "MTB detected, rifampicin resistance not detected",
+			"UgEmr Code": 162204
+		},
+		{
+			"optionSet": "All Results",
+			"code": "MTB detected, rifampicin resistance detected",
+			"name": "MTB detected, rifampicin resistance detected",
+			"UgEmr Code": 162203
+		},
+		{
+			"optionSet": "All Results",
+			"code": "MTB detected, rifampicin resistance indeterminate",
+			"name": "MTB detected, rifampicin resistance indeterminate",
+			"UgEmr Code": 164104
+		},
+		{
+			"optionSet": "All Results",
+			"code": "MTB Trace Detected RR indeterminate",
+			"name": "MTB Trace Detected RR indeterminate",
+			"UgEmr Code": 1138
+		},
+		{
+			"optionSet": "All Results",
+			"code": "MTB not detected",
+			"name": "MTB not detected",
+			"UgEmr Code": 1302
+		},
+		{
+			"optionSet": "All Results",
+			"code": "No AFB (0)",
+			"name": "No AFB (0)",
+			"UgEmr Code": 90074
+		},
+		{
+			"optionSet": "All Results",
+			"code": "1-9 AFB per 100HPF (Scanty)",
+			"name": "1-9 AFB per 100HPF (Scanty)",
+			"UgEmr Code": 90307
+		},
+		{
+			"optionSet": "All Results",
+			"code": "10-99 AFB per 100 HPF (+)",
+			"name": "10-99 AFB per 100 HPF (+)",
+			"UgEmr Code": 90075
+		},
+		{
+			"optionSet": "All Results",
+			"code": "1-10 AFB per HPF(++)",
+			"name": "1-10 AFB per HPF(++)",
+			"UgEmr Code": 90076
+		},
+		{
+			"optionSet": "All Results",
+			"code": "> 10 AFB per HPF(+++)",
+			"name": "> 10 AFB per HPF(+++)",
+			"UgEmr Code": 90077
+		},
+		{
+			"optionSet": "All Results",
+			"code": "Positive",
+			"name": "Positive",
+			"UgEmr Code": 703
+		},
+		{
+			"optionSet": "All Results",
+			"code": "Negative",
+			"name": "Negative",
+			"UgEmr Code": 664
+		},
+		{
+			"optionSet": "All Results",
+			"code": "Normal findings",
+			"name": "Normal findings",
+			"UgEmr Code": 1115
+		},
+		{
+			"optionSet": "All Results",
+			"code": "Abnormal findings",
+			"name": "Abnormal findings",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "All Results",
+			"code": "Error/Invalid",
+			"name": "Error/Invalid",
+			"UgEmr Code": 163611
+		},
+		{
+			"optionSet": "ART Status",
+			"code": "Initiated on ART",
+			"name": "Initiated on ART",
+			"UgEmr Code": 1362
+		},
+		{
+			"optionSet": "ART Status",
+			"code": "Already on ART",
+			"name": "Already on ART",
+			"UgEmr Code": 1367
+		},
+		{
+			"optionSet": "Bacteriological index",
+			"code": "1+ At least 1 bacillus in every 100 fields",
+			"name": "1+ At least 1 bacillus in every 100 fields",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Bacteriological index",
+			"code": "2+ At least 1 bacillus in every 10 fields",
+			"name": "2+ At least 1 bacillus in every 10 fields",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Bacteriological index",
+			"code": "3+ At least 1 bacillus in every field",
+			"name": "3+ At least 1 bacillus in every field",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Bacteriological index",
+			"code": "4+ At least 10 bacilli in every field",
+			"name": "4+ At least 10 bacilli in every field",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Bacteriological index",
+			"code": "5+ At least 100 bacilli in every field",
+			"name": "5+ At least 100 bacilli in every field",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Bacteriological index",
+			"code": "6+ At least 1000 bacilli in every field",
+			"name": "6+ At least 1000 bacilli in every field",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Client type",
+			"code": "New",
+			"name": "New",
+			"UgEmr Code": 99380
+		},
+		{
+			"optionSet": "Client type",
+			"code": "Relapse",
+			"name": "Relapse",
+			"UgEmr Code": 99381
+		},
+		{
+			"optionSet": "Client type",
+			"code": "Return after lost to follow up",
+			"name": "Return after lost to follow up",
+			"UgEmr Code": 165833
+		},
+		{
+			"optionSet": "Client type",
+			"code": "Treatment after failure",
+			"name": "Treatment after failure",
+			"UgEmr Code": 165834
+		},
+		{
+			"optionSet": "Client type",
+			"code": "Treatment history Unknown",
+			"name": "Treatment history Unknown",
+			"UgEmr Code": 165835
+		},
+		{
+			"optionSet": "Client type",
+			"code": "Transfer in",
+			"name": "Transfer in",
+			"UgEmr Code": 99110
+		},
+		{
+			"optionSet": "Contact Tracing Results",
+			"code": "Referred for TPT",
+			"name": "Referred for TPT",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Contact Tracing Results",
+			"code": "Initiated on TPT",
+			"name": "Initiated on TPT",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Contact Tracing Results",
+			"code": "Diagnosed with DS-TB",
+			"name": "Diagnosed with DS-TB",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Contact Tracing Results",
+			"code": "Diagnosed with DR-TB",
+			"name": "Diagnosed with DR-TB",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Contact Tracing Results",
+			"code": "Not eligible for TPT",
+			"name": "Not eligible for TPT",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Contact Tracing Results",
+			"code": "Advised to monitor for TB symptoms (Under test results)",
+			"name": "Advised to monitor for TB symptoms (Under test results)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Corneal sensation",
+			"code": "Present",
+			"name": "Present",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Corneal sensation",
+			"code": "Absent",
+			"name": "Absent",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Counts Fingers",
+			"code": "Can count",
+			"name": "Can count",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Counts Fingers",
+			"code": "Cannot count",
+			"name": "Cannot count",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "CPT/Dapson",
+			"code": "Initiated on CPT",
+			"name": "Initiated on CPT",
+			"UgEmr Code": 166070
+		},
+		{
+			"optionSet": "CPT/Dapson",
+			"code": "Already on CPT",
+			"name": "Already on CPT",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "CPT/Dapson",
+			"code": "Not on CPT",
+			"name": "Not on CPT",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Culture Results",
+			"code": "No growth reported (0)",
+			"name": "No growth reported (0)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Culture Results",
+			"code": "Fewer than 10 colonies(Actual number)",
+			"name": "Fewer than 10 colonies(Actual number)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Culture Results",
+			"code": "10-100 colonies (+)",
+			"name": "10-100 colonies (+)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Culture Results",
+			"code": "More than 100 colonies(++)",
+			"name": "More than 100 colonies(++)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Culture Results",
+			"code": "Innumerable/confluent growth(+++)",
+			"name": "Innumerable/confluent growth(+++)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Death Preventable",
+			"code": "Definitely",
+			"name": "Definitely",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Death Preventable",
+			"code": "Probably",
+			"name": "Probably",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Death Preventable",
+			"code": "Probably not",
+			"name": "Probably not",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Death Preventable",
+			"code": "Definitely not",
+			"name": "Definitely not",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Death Preventable",
+			"code": "Don’t know",
+			"name": "Don’t know",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Diagnosis",
+			"code": "PBC",
+			"name": "PBC",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Diagnosis",
+			"code": "PCD",
+			"name": "PCD",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Diagnosis",
+			"code": "EC",
+			"name": "EC",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Disease Classification",
+			"code": "Pulmonary Clinically Diagnosed (P-CD) TB",
+			"name": "Pulmonary Clinically Diagnosed (P-CD) TB",
+			"UgEmr Code": 165830
+		},
+		{
+			"optionSet": "Disease Classification",
+			"code": "Extra pulmonary (EP) TB",
+			"name": "Extra pulmonary (EP) TB",
+			"UgEmr Code": 165831
+		},
+		{
+			"optionSet": "Disease Classification",
+			"code": "Pulmonary bacteriologically confirmed (P-BC)TB",
+			"name": "Pulmonary bacteriologically confirmed (P-BC)TB",
+			"UgEmr Code": 165829
+		},
+		{
+			"optionSet": "Drug Susceptible TB Type",
+			"code": "2RHZE/ 4RH",
+			"name": "2RHZE/ 4RH",
+			"UgEmr Code": 99372
+		},
+		{
+			"optionSet": "Drug Susceptible TB Type",
+			"code": "2RHZE/ 10 RH",
+			"name": "2RHZE/ 10 RH",
+			"UgEmr Code": 164960
+		},
+		{
+			"optionSet": "DSTB Lab Examination Types",
+			"code": "Diagnosis",
+			"name": "Diagnosis",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "DSTB Lab Examination Types",
+			"code": "Follow-Up Month",
+			"name": "Follow-Up Month",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "DST Results",
+			"code": "Resistant",
+			"name": "Resistant",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "DST Results",
+			"code": "Susceptible",
+			"name": "Susceptible",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "DST Results",
+			"code": "Indeterminate",
+			"name": "Indeterminate",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "ECG Monitoring Results",
+			"code": "N- Normal(<=500 ms)",
+			"name": "N- Normal(<=500 ms)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "ECG Monitoring Results",
+			"code": "A- Abnormal(<=500 ms)",
+			"name": "A- Abnormal(>500 ms)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Event Type (Transfer or Followup)",
+			"code": "Transfer",
+			"name": "Transfer",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Event Type (Transfer or Followup)",
+			"code": "Followup",
+			"name": "Followup",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Final TPT Outcome",
+			"code": "Completed",
+			"name": "Completed",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Final TPT Outcome",
+			"code": "Developed TB Disease",
+			"name": "Developed TB Disease",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Final TPT Outcome",
+			"code": "Lost To Follow-up",
+			"name": "Lost To Follow-up",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Final TPT Outcome",
+			"code": "Defaulted",
+			"name": "Defaulted",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "First Line Drugs",
+			"code": "Isoniazid",
+			"name": "Isoniazid",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "First Line Drugs",
+			"code": "Rifampicin",
+			"name": "Rifampicin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "First Line Drugs",
+			"code": "Ethambutol",
+			"name": "Ethambutol",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "First Line Drugs",
+			"code": "Pyrazinamide",
+			"name": "Pyrazinamide",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "First Line Drugs",
+			"code": "Streptomycin",
+			"name": "Streptomycin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "First Line Drugs",
+			"code": "High-dose isoniazid",
+			"name": "High-dose isoniazid",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 1",
+			"name": "Month 1",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 2",
+			"name": "Month 2",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 3",
+			"name": "Month 3",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 4",
+			"name": "Month 4",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 5",
+			"name": "Month 5",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 6",
+			"name": "Month 6",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 7",
+			"name": "Month 7",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 8",
+			"name": "Month 8",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 9",
+			"name": "Month 9",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 10",
+			"name": "Month 10",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 11",
+			"name": "Month 11",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 12",
+			"name": "Month 12",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 13",
+			"name": "Month 13",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 14",
+			"name": "Month 14",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 15",
+			"name": "Month 15",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 16",
+			"name": "Month 16",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 17",
+			"name": "Month 17",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 18",
+			"name": "Month 18",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 19",
+			"name": "Month 19",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 20",
+			"name": "Month 20",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 21",
+			"name": "Month 21",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 22",
+			"name": "Month 22",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 23",
+			"name": "Month 23",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 0",
+			"name": "Month 0",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 1",
+			"name": "Month 1",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 2",
+			"name": "Month 2",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Follow up Months",
+			"code": "Month 24+",
+			"name": "Month 24+",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Grading",
+			"code": 0,
+			"name": "Grade 0 (No disability found)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Grading",
+			"code": 1,
+			"name": "Grade 1 (Loss of sensation)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Grading",
+			"code": 2,
+			"name": "Grade 2 (Visible damage or disability)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "HIV Status",
+			"code": "Negative",
+			"name": "Negative",
+			"UgEmr Code": 90167
+		},
+		{
+			"optionSet": "HIV Status",
+			"code": "Newly tested Positive",
+			"name": "Newly tested Positive",
+			"UgEmr Code": 165397
+		},
+		{
+			"optionSet": "HIV Status",
+			"code": "Known Positive",
+			"name": "Known Positive",
+			"UgEmr Code": 165350
+		},
+		{
+			"optionSet": "HIV Status",
+			"code": "Unknown",
+			"name": "Unknown",
+			"UgEmr Code": 90001
+		},
+		{
+			"optionSet": "Leprosy Current status",
+			"code": "Have atleast one insensitive foot(all)",
+			"name": "Have at least one insensitive foot (all)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Current status",
+			"code": "With ulcers(all)",
+			"name": "With ulcers (all)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Current status",
+			"code": "Disabled still on MDT",
+			"name": "Disabled still on MDT",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Current status",
+			"code": "Disabled no longer on MDT",
+			"name": "Disabled no longer on MDT",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Current status",
+			"code": "Released from treatment",
+			"name": "Released from treatment",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Detection Method",
+			"code": "Self Report",
+			"name": "Self Report",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Detection Method",
+			"code": "Referral",
+			"name": "Referral",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Detection Method",
+			"code": "Contact Examination",
+			"name": "Contact Examination",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Detection Method",
+			"code": "Survey",
+			"name": "Survey",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Detection Method",
+			"code": "Examination of General Suspects",
+			"name": "Examination of General Suspects",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Disease classification",
+			"code": "PB",
+			"name": "PB",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Disease classification",
+			"code": "MB",
+			"name": "MB",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy MDT Regimen",
+			"code": "MB (adult): Rifampicin, Clofazimine, Dapsone",
+			"name": "MB (adult): Rifampicin, Clofazimine, Dapsone",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy MDT Regimen",
+			"code": "MB (child): Rifampicin, Clofazimine, Dapsone",
+			"name": "MB (child): Rifampicin, Clofazimine, Dapsone",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy MDT Regimen",
+			"code": "PB (adult): Rifampicin, Dapsone",
+			"name": "PB (adult): Rifampicin, Dapsone",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy MDT Regimen",
+			"code": "PB (child): Rifampicin, Dapsone",
+			"name": "PB (child): Rifampicin, Dapsone",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy MDT Regimen",
+			"code": "Second line (adult): Clarithromycin, Clofazimine, Minocycline",
+			"name": "Second line (adult): Clarithromycin, Clofazimine, Minocycline",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy MDT Regimen",
+			"code": "Second line (adult): Clarithromycin, Clofazimine, Quinolone",
+			"name": "Second line (adult): Clarithromycin, Clofazimine, Quinolone",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy MDT Regimen",
+			"code": "Second line (child): Clarithromycin, Clofazimine, Minocycline",
+			"name": "Second line (child): Clarithromycin, Clofazimine, Minocycline",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy MDT Regimen",
+			"code": "Second line (child): Clarithromycin, Clofazimine, Quinolone",
+			"name": "Second line (child): Clarithromycin, Clofazimine, Quinolone",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Reasons for Adverse Events",
+			"code": "Rifampicin",
+			"name": "Rifampicin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Reasons for Adverse Events",
+			"code": "Clofazimine",
+			"name": "Clofazimine",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Reasons for Adverse Events",
+			"code": "Dapsone",
+			"name": "Dapsone",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Reasons for Adverse Events",
+			"code": "Levofloxacin",
+			"name": "Levofloxacin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Reasons for Adverse Events",
+			"code": "Clarithromycin",
+			"name": "Clarithromycin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Reasons for Adverse Events",
+			"code": "Unknown",
+			"name": "Unknown",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy reasons for transfer",
+			"code": "Distance to nearest facility",
+			"name": "Distance to nearest facility",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy reasons for transfer",
+			"code": "Others",
+			"name": "Others",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Treatment outcomes",
+			"code": "Treatment Completed",
+			"name": "Treatment Completed",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Treatment outcomes",
+			"code": "Lost to follow up",
+			"name": "Lost to follow up",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Treatment outcomes",
+			"code": "Died",
+			"name": "Died",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Leprosy Treatment outcomes",
+			"code": "Transfered out",
+			"name": "Transfered out",
+			"UgEmr Code": 99110
+		},
+		{
+			"optionSet": "Leprosy Treatment outcomes",
+			"code": "Reclassified as MB",
+			"name": "Reclassified as MB",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Lessions",
+			"code": "Normal chest radiograph",
+			"name": "Normal chest radiograph",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Lessions",
+			"code": "Focal upper lobe opacities",
+			"name": "Focal upper lobe opacities",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Lessions",
+			"code": "Diffuse opacities",
+			"name": "Diffuse opacities",
+			"UgEmr Code": 6050
+		},
+		{
+			"optionSet": "Lessions",
+			"code": "Unilateral Consolidation",
+			"name": "Unilateral Consolidation",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Lessions",
+			"code": "Bilateral Consolidation",
+			"name": "Bilateral Consolidation",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Lessions",
+			"code": "Reticulonodular opacities",
+			"name": "Reticulonodular opacities",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Lessions",
+			"code": "Cavities",
+			"name": "Cavities",
+			"UgEmr Code": 6052
+		},
+		{
+			"optionSet": "Lessions",
+			"code": "Nodules",
+			"name": "Nodules",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Lessions",
+			"code": "Miliary pattern",
+			"name": "Miliary pattern",
+			"UgEmr Code": 1137
+		},
+		{
+			"optionSet": "Lessions",
+			"code": "ntrathoracic lymphadenopathy",
+			"name": "ntrathoracic lymphadenopathy",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Lessions",
+			"code": "Pleural effusion",
+			"name": "Pleural effusion",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Lessions",
+			"code": "Xray Lesions",
+			"name": "Xray Lesions",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Marital status",
+			"code": "Single",
+			"name": "Single",
+			"UgEmr Code": 1057
+		},
+		{
+			"optionSet": "Marital status",
+			"code": "Widowed",
+			"name": "Widowed",
+			"UgEmr Code": 90009
+		},
+		{
+			"optionSet": "Marital status",
+			"code": "Separated",
+			"name": "Separated",
+			"UgEmr Code": 90008
+		},
+		{
+			"optionSet": "Marital status",
+			"code": "Married",
+			"name": "Married",
+			"UgEmr Code": 90006
+		},
+		{
+			"optionSet": "Marital status",
+			"code": "Divorced",
+			"name": "Divorced",
+			"UgEmr Code": 90007
+		},
+		{
+			"optionSet": "Microscopy/Smear Results",
+			"code": "No AFB (0)",
+			"name": "No AFB (0)",
+			"UgEmr Code": 90074
+		},
+		{
+			"optionSet": "Microscopy/Smear Results",
+			"code": "1-9 AFB per 100HPF (Scanty)",
+			"name": "1-9 AFB per 100HPF (Scanty)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Microscopy/Smear Results",
+			"code": "10-99 AFB per 100 HPF (+)",
+			"name": "10-99 AFB per 100 HPF (+)",
+			"UgEmr Code": 90075
+		},
+		{
+			"optionSet": "Microscopy/Smear Results",
+			"code": "1-10 AFB per HPF(++)",
+			"name": "1-10 AFB per HPF(++)",
+			"UgEmr Code": 90076
+		},
+		{
+			"optionSet": "Microscopy/Smear Results",
+			"code": "> 10 AFB per HPF(+++)",
+			"name": "> 10 AFB per HPF(+++)",
+			"UgEmr Code": 90077
+		},
+		{
+			"optionSet": "Microscopy/Smear Results",
+			"code": "Not Done",
+			"name": "Not Done",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Microscopy/Smear Results",
+			"code": "Contaminated",
+			"name": "Contaminated",
+			"UgEmr Code": 90307
+		},
+		{
+			"optionSet": "Microscopy/Smear Results",
+			"code": "Others Specify",
+			"name": "Others Specify",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Mode of care",
+			"code": "FBIM",
+			"name": "FBIM",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Mode of care",
+			"code": "FBG",
+			"name": "FBG",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Mode of care",
+			"code": "FTDR",
+			"name": "FTDR",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Mode of care",
+			"code": "CDDP",
+			"name": "CDDP",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Mode of care",
+			"code": "CCLAD",
+			"name": "CCLAD",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Mode of Follow up",
+			"code": "Physical visit",
+			"name": "Physical visit",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Mode of Follow up",
+			"code": "Phone call",
+			"name": "Phone call",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "MUAC",
+			"code": "Green",
+			"name": "Green",
+			"UgEmr Code": 99027
+		},
+		{
+			"optionSet": "MUAC",
+			"code": "Yellow",
+			"name": "Yellow",
+			"UgEmr Code": 99029
+		},
+		{
+			"optionSet": "MUAC",
+			"code": "Red",
+			"name": "Red",
+			"UgEmr Code": 99028
+		},
+		{
+			"optionSet": "Muscle Strength",
+			"code": "S(Strong)",
+			"name": "S(Strong)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Muscle Strength",
+			"code": "W(Weak)",
+			"name": "W(Weak)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Muscle Strength",
+			"code": "P(Paralysed)",
+			"name": "P(Paralysed)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "New DM (NDM) or Known DM (KDM)",
+			"code": "New DM (NDM)",
+			"name": "New Diabetes Mellitus (NDM)",
+			"UgEmr Code": 165847
+		},
+		{
+			"optionSet": "New DM (NDM) or Known DM (KDM)",
+			"code": "Known DM (KDM)",
+			"name": "Known Diabetes Mellitus (KDM)",
+			"UgEmr Code": 165848
+		},
+		{
+			"optionSet": "New DM (NDM) or Known DM (KDM)",
+			"code": "Not Known",
+			"name": "Not Known",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "New DM (NDM) or Known DM (KDM)",
+			"code": "Normal",
+			"name": "Normal",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Number Skin Lesions",
+			"code": "Single",
+			"name": "Single",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Number Skin Lesions",
+			"code": "2 to 5",
+			"name": "2 to 5",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Number Skin Lesions",
+			"code": "6 or more",
+			"name": "6 or more",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Outcome of Follow up",
+			"code": "Linked back into care",
+			"name": "Linked back into care",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Outcome of Follow up",
+			"code": "Died",
+			"name": "Died",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Outcome of Follow up",
+			"code": "Self transferred",
+			"name": "Self transferred",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Outcome of Follow up",
+			"code": "Refused to return",
+			"name": "Refused to return",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Outcome of Follow up",
+			"code": "Unreached",
+			"name": "Unreached",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Patient Category (Nationality)",
+			"code": "National",
+			"name": "National",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Patient Category (Nationality)",
+			"code": "Foreigner",
+			"name": "Foreigner",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Patient Category (Nationality)",
+			"code": "Refugee",
+			"name": "Refugee",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Previous TB Treatment, outcome",
+			"code": "Cured",
+			"name": "Cured",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Previous TB Treatment, outcome",
+			"code": "Completed",
+			"name": "Completed",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Previous TB Treatment, outcome",
+			"code": "Treatment Failed",
+			"name": "Treatment Failed",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Previous TB Treatment, outcome",
+			"code": "Lost to Followup",
+			"name": "Lost to Followup",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Primary Findings",
+			"code": "Focal infiltrate/nodule(s)",
+			"name": "Focal infiltrate/nodule(s)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Primary Findings",
+			"code": "Multi-focal infiltrates/nodules",
+			"name": "Multi-focal infiltrates/nodules",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Primary Findings",
+			"code": "Lymphadenopathy only",
+			"name": "Lymphadenopathy only",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Primary Findings",
+			"code": "Fibrosis",
+			"name": "Fibrosis",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Primary Findings",
+			"code": "Pleural effusion",
+			"name": "Pleural effusion",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Primary Findings",
+			"code": "Miliary disease",
+			"name": "Miliary disease",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Programs",
+			"code": "DSTB",
+			"name": "TB Surveillance Program",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Programs",
+			"code": "LP",
+			"name": "Leprosy Surveillance Program",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Programs",
+			"code": "MDRTB",
+			"name": "MDR Surveillance Program",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reaction",
+			"code": "Present",
+			"name": "Present",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reaction",
+			"code": "Absent",
+			"name": "Absent",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reaction Type",
+			"code": "Type 1",
+			"name": "Type 1 (Reversal reaction)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reaction Type",
+			"code": "Type 2",
+			"name": "Type 2 (Erythema Nodosum Leprosum - ENL reaction)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reason For Entering 2nd Line TB Register",
+			"code": "Bacteriologically confirmed MDR /XDR / RR",
+			"name": "Bacteriologically confirmed MDR /XDR / RR",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reason For Entering 2nd Line TB Register",
+			"code": "Presumptive MDR /XDR/RR",
+			"name": "Presumptive MDR /XDR/RR",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reason for Examination",
+			"code": "Diagnosis",
+			"name": "Diagnosis",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reason for Examination",
+			"code": "BaselineTests",
+			"name": "BaselineTests",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reason for Examination",
+			"code": "Follow-upTreatment",
+			"name": "Follow-upTreatment",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reason for not starting on TPT",
+			"code": "Out of stock",
+			"name": "Out of stock",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reason for not starting on TPT",
+			"code": "Contra Indication",
+			"name": "Contra Indication",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reason for not starting on TPT",
+			"code": "Not Eligible",
+			"name": "Not Eligible",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reason for not starting on TPT",
+			"code": "Declined",
+			"name": "Declined",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reason for not starting on TPT",
+			"code": "DSTB or DS Diagnosed",
+			"name": "DSTB or DS Diagnosed",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reasons for adverse effects",
+			"code": "1=Rifampicin",
+			"name": "1=Rifampicin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reasons for adverse effects",
+			"code": "2=Clofazimine",
+			"name": "2=Clofazimine",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reasons for adverse effects",
+			"code": "3=Dapsone",
+			"name": "3=Dapsone",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reasons for adverse effects",
+			"code": "4=Unknown",
+			"name": "4=Unknown",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reasons for entering in the 2nd line treatment register",
+			"code": "Bacteriologically confirmed MDR / XDR / RR",
+			"name": "Bacteriologically confirmed MDR / XDR / RR",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reasons for entering in the 2nd line treatment register",
+			"code": "Presumptive MDR /XDR/RR",
+			"name": "Presumptive MDR /XDR/RR",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reasons for Follow Up",
+			"code": "DOT Monitoring (Patient active)",
+			"name": "DOT Monitoring (Patient active)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reasons for Follow Up",
+			"code": "Side Effects Management (Patient active)",
+			"name": "Side Effects Management (Patient active)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reasons for Follow Up",
+			"code": "LTFU case",
+			"name": "LTFU case",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reasons for Follow Up",
+			"code": "Patient Missed Appointment",
+			"name": "Patient Missed Appointment",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reasons for Follow Up",
+			"code": "Patient Not Evaluated",
+			"name": "Patient Not Evaluated",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Reasons for Follow Up",
+			"code": "Patient transfered out",
+			"name": "Patient transfered out",
+			"UgEmr Code": 160036
+		},
+		{
+			"optionSet": "Regimen",
+			"code": "Short-course Treatment Regimen",
+			"name": "Short-course Treatment Regimen",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Regimen",
+			"code": "Modified sshort course treatment regimen",
+			"name": "Modified sshort course treatment regimen",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Regimen",
+			"code": "Individualized",
+			"name": "Individualized",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Registration group",
+			"code": "New (N)",
+			"name": "New (N)",
+			"UgEmr Code": 99380
+		},
+		{
+			"optionSet": "Registration group",
+			"code": "Relapse (R)",
+			"name": "Relapse (R)",
+			"UgEmr Code": 99381
+		},
+		{
+			"optionSet": "Registration group",
+			"code": "Return after loss to follow-up (Rt)",
+			"name": "Return after loss to follow-up (Rt)",
+			"UgEmr Code": 165833
+		},
+		{
+			"optionSet": "Registration group",
+			"code": "After failure of the first treatment with first-li",
+			"name": "After failure of the first treatment with first-line drugs (F1)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Registration group",
+			"code": "After failure of regimen with second-line (F2)",
+			"name": "After failure of regimen with second-line (F2)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Registration group",
+			"code": "Other (Previously treated without known outcome) (",
+			"name": "Other (Previously treated without known outcome) (O)",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Relation to Index",
+			"code": "Other member of the household",
+			"name": "Other member of the household",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Relation to Index",
+			"code": "Spouse",
+			"name": "Spouse",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Relation to Index",
+			"code": "Child",
+			"name": "Child",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Relation to Index",
+			"code": "Other institutional contact",
+			"name": "Other institutional contact",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Relation to Index",
+			"code": "Prison mate",
+			"name": "Prison mate",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Relation to Index",
+			"code": "Coworker",
+			"name": "Coworker",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Report Information",
+			"code": "New Report",
+			"name": "New Report",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Report Information",
+			"code": "Follow-up Report",
+			"name": "Follow-up Report",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Results(Positive/Negative)",
+			"code": "Positive",
+			"name": "Positive",
+			"UgEmr Code": 703
+		},
+		{
+			"optionSet": "Results(Positive/Negative)",
+			"code": "Negative",
+			"name": "Negative",
+			"UgEmr Code": 664
+		},
+		{
+			"optionSet": "Review period",
+			"code": "Initial",
+			"name": "Initial",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Review period",
+			"code": "F/U1",
+			"name": "F/U1",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Review period",
+			"code": "F/U2",
+			"name": "F/U2",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Review period",
+			"code": "F/U3",
+			"name": "F/U3",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Review Period",
+			"code": "Treatment initiation period",
+			"name": "Treatment initiation period",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Review Period",
+			"code": "End of intensive phase",
+			"name": "End of intensive phase",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Review Period",
+			"code": "Other period",
+			"name": "Other period",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "Health worker",
+			"name": "Health worker",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "TB Contact",
+			"name": "TB Contact",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "Prisoner Miner",
+			"name": "Prisoner Miner",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "Refugee",
+			"name": "Refugee",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "Uniformed/Armed Personnel",
+			"name": "Uniformed/Armed Personnel",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "Fisher Folk",
+			"name": "Fisher Folk",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "Diabetic Patient",
+			"name": "Diabetic Patient",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "Miner",
+			"name": "Miner",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "Tobacco User",
+			"name": "Tobacco User",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "Mentally ill",
+			"name": "Mentally ill",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Kanamycin",
+			"name": "Kanamycin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Prothionamide",
+			"name": "Prothionamide",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Linezolid",
+			"name": "Linezolid",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Capreomycin",
+			"name": "Capreomycin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "p-aminosalicylic acid",
+			"name": "p-aminosalicylic acid",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Imipenem",
+			"name": "Imipenem",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Amikacin",
+			"name": "Amikacin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Bedaquiline",
+			"name": "Bedaquiline",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Clofazimin",
+			"name": "Clofazimin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Cycloserine",
+			"name": "Cycloserine",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Thiacetazone",
+			"name": "Thiacetazone",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Clofazimine",
+			"name": "Clofazimine",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Delamanid",
+			"name": "Delamanid",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Ethionamide",
+			"name": "Ethionamide",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Moxifloxacin",
+			"name": "Moxifloxacin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Levofloxacin",
+			"name": "Levofloxacin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Sensation Loss",
+			"code": "Definite",
+			"name": "Definite",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Sensation Loss",
+			"code": "Doubtful",
+			"name": "Doubtful",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Severity",
+			"code": "Mild",
+			"name": "Mild",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Severity",
+			"code": "Moderate",
+			"name": "Moderate",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Severity",
+			"code": "Severe",
+			"name": "Severe",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Sex",
+			"code": "Male",
+			"name": "Male",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Sex",
+			"code": "Female",
+			"name": "Female",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Site",
+			"code": "PTB",
+			"name": "PTB",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Site",
+			"code": "EPTB",
+			"name": "EPTB",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Site",
+			"code": "Both",
+			"name": "Both",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Skin Smear Result",
+			"code": "Positive",
+			"name": "Positive",
+			"UgEmr Code": 703
+		},
+		{
+			"optionSet": "Skin Smear Result",
+			"code": "Negative",
+			"name": "Negative",
+			"UgEmr Code": 664
+		},
+		{
+			"optionSet": "Skin Smear Result",
+			"code": "Not done",
+			"name": "Not done",
+			"UgEmr Code": 1118
+		},
+		{
+			"optionSet": "Source of Referral",
+			"code": "Community",
+			"name": "Community",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Source of Referral",
+			"code": "Facility",
+			"name": "Facility",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Status",
+			"code": "Recovered / Resolved",
+			"name": "Recovered / Resolved",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Status",
+			"code": "Recovering / Resolving",
+			"name": "Recovering / Resolving",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Status",
+			"code": "Recovered / Recovered with Sequelae",
+			"name": "Recovered / Recovered with Sequelae",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Status",
+			"code": "Not Recovered / Not Resolved",
+			"name": "Not Recovered / Not Resolved",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Status",
+			"code": "Died",
+			"name": "Died",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Status",
+			"code": "Unknown",
+			"name": "Unknown",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Support Provided during follow up",
+			"code": "Counselling, Pill refill",
+			"name": "Counselling, Pill refill",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Support Provided during follow up",
+			"code": "Appointment reminder",
+			"name": "Appointment reminder",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Support Provided during follow up",
+			"code": "Sputum sample collection",
+			"name": "Sputum sample collection",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Surface raised",
+			"code": "Edge only",
+			"name": "Edge only",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Surface raised",
+			"code": "Whole lesion",
+			"name": "Whole lesion",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Class",
+			"code": "DS",
+			"name": "DS",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Class",
+			"code": "DR TB",
+			"name": "DR TB",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Entry Points",
+			"code": "OPD",
+			"name": "OPD",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Entry Points",
+			"code": "IPD",
+			"name": "IPD",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Entry Points",
+			"code": "ANC",
+			"name": "ANC",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Entry Points",
+			"code": "ART",
+			"name": "ART",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Cured",
+			"name": "Cured",
+			"UgEmr Code": 159791
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Treatment completed",
+			"name": "Treatment completed",
+			"UgEmr Code": 99421
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Treatment Failure",
+			"name": "Treatment Failure",
+			"UgEmr Code": 159874
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Lost to follow up",
+			"name": "Lost to follow up",
+			"UgEmr Code": 5240
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Not Evaluated",
+			"name": "Not Evaluated",
+			"UgEmr Code": 160737
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Died",
+			"name": "Died",
+			"UgEmr Code": 160034
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Culture Negative",
+			"name": "Culture Negative",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Culture Positive",
+			"name": "Culture Positive",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Test / evaluation Results",
+			"code": "P-BC",
+			"name": "P-BC",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Test / evaluation Results",
+			"code": "P-CD",
+			"name": "P-CD",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Test / evaluation Results",
+			"code": "EP",
+			"name": "EPTB",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Test / evaluation Results",
+			"code": "DR TB",
+			"name": "DR TB",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Test / evaluation Results",
+			"code": "No TB",
+			"name": "No TB",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Transfer ype",
+			"code": "Transfered In",
+			"name": "Transfered In",
+			"UgEmr Code": 99110
+		},
+		{
+			"optionSet": "Transfer ype",
+			"code": "Transfered Out",
+			"name": "Transfered Out",
+			"UgEmr Code": 160036
+		},
+		{
+			"optionSet": "Treatment model",
+			"code": "Facility DOT",
+			"name": "Facility DOT",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Treatment model",
+			"code": "Digital Community DOT",
+			"name": "Digital Community DOT",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Treatment model",
+			"code": "Non-Digital Community DOT",
+			"name": "Non-Digital Community DOT",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Treatment Progress",
+			"code": "Improved",
+			"name": "Improved",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Treatment Progress",
+			"code": "Stable / Unchanged",
+			"name": "Stable / Unchanged",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Treatment Progress",
+			"code": "Worsened",
+			"name": "Worsened",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Treatment Supporter Type",
+			"code": "Health worker",
+			"name": "Health worker",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Treatment Supporter Type",
+			"code": "Family member",
+			"name": "Family member",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Treatment Supporter Type",
+			"code": "Community volunteer",
+			"name": "Community volunteer",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Adverse Events",
+			"code": "Red Urine",
+			"name": "Red Urine",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Adverse Events",
+			"code": "Darkening of the Skin",
+			"name": "Darkening of the Skin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Adverse Events",
+			"code": "Gastrointestinal irritation",
+			"name": "Gastrointestinal irritation",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Adverse Events",
+			"code": "Anaemia",
+			"name": "Anaemia",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Adverse Events",
+			"code": "Itchy Skin Rash",
+			"name": "Itchy Skin Rash",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Adverse Events",
+			"code": "Allergy, Utricaria",
+			"name": "Allergy, Utricaria",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Adverse Events",
+			"code": "Jaundice",
+			"name": "Jaundice",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Adverse Events",
+			"code": "Shock, Purpura, Renal Failure",
+			"name": "Shock, Purpura, Renal Failure",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Skin Lesions",
+			"code": "Patches",
+			"name": "Patches",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Skin Lesions",
+			"code": "Nodules",
+			"name": "Nodules",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Test",
+			"code": "Smear",
+			"name": "Smear",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Test",
+			"code": "GeneXpert",
+			"name": "GeneXpert",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Test",
+			"code": "LAM",
+			"name": "LAM",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Test",
+			"code": "Culture",
+			"name": "Culture",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Test",
+			"code": "X-ray",
+			"name": "X-ray",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Test",
+			"code": "SL LPA",
+			"name": "SL LPA",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Test",
+			"code": "FL LPA",
+			"name": "FL LPA",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "1-2 Weeks",
+			"name": "1-2 Weeks",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "3-4 Weeks",
+			"name": "3-4 Weeks",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "5-6 Weeks",
+			"name": "5-6 Weeks",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "7-8 Weeks",
+			"name": "7-8 Weeks",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 3",
+			"name": "Month 3",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 4",
+			"name": "Month 4",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 5",
+			"name": "Month 5",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 6",
+			"name": "Month 6",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 7",
+			"name": "Month 7",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 8",
+			"name": "Month 8",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 9",
+			"name": "Month 9",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 10",
+			"name": "Month 10",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 11",
+			"name": "Month 11",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 12",
+			"name": "Month 12",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Xpert MTB/RIF Results",
+			"code": "MTB detected, rifampicin resistance not detected",
+			"name": "MTB detected, rifampicin resistance not detected",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Xpert MTB/RIF Results",
+			"code": "MTB detected, rifampicin resistance detected",
+			"name": "MTB detected, rifampicin resistance detected",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Xpert MTB/RIF Results",
+			"code": "MTB detected, rifampicin resistance indeterminate",
+			"name": "MTB detected, rifampicin resistance indeterminate",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Xpert MTB/RIF Results",
+			"code": "MTB Trace Detected RR indeterminate",
+			"name": "MTB Trace Detected RR indeterminate",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Xpert MTB/RIF Results",
+			"code": "MTB not detected",
+			"name": "MTB not detected",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Xpert MTB/RIF Results",
+			"code": "Invalid",
+			"name": "Invalid",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Xpert MTB/RIF Results",
+			"code": "Error",
+			"name": "Error",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Xpert MTB/RIF Results",
+			"code": "No result",
+			"name": "No result",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Xray Result",
+			"code": "Normal",
+			"name": "Normal",
+			"UgEmr Code": 1115
+		},
+		{
+			"optionSet": "Xray Result",
+			"code": "Abnormal",
+			"name": "Abnormal",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "X-Ray results",
+			"code": "Normal",
+			"name": "Normal",
+			"UgEmr Code": 1115
+		},
+		{
+			"optionSet": "X-Ray results",
+			"code": "Abnormal",
+			"name": "Abnormal",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "YesNo",
+			"code": "Yes",
+			"name": "Yes",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "YesNo",
+			"code": "No",
+			"name": "No",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Yes/No/Unknown",
+			"code": "Yes",
+			"name": "Yes",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Yes/No/Unknown",
+			"code": "No",
+			"name": "No",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Yes/No/Unknown",
+			"code": "Unknown",
+			"name": "Unknown",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Yes/No/Unknown",
+			"code": "F/U1",
+			"name": "F/U1",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Yes/No/Unknown",
+			"code": "F/U2",
+			"name": "F/U2",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Yes/No/Unknown",
+			"code": "F/U3",
+			"name": "F/U3",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Review Period",
+			"code": "Treatment initiation period",
+			"name": "Treatment initiation period",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Review Period",
+			"code": "End of intensive phase",
+			"name": "End of intensive phase",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Review Period",
+			"code": "Other period",
+			"name": "Other period",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "Health worker",
+			"name": "Health worker",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "TB Contact",
+			"name": "TB Contact",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "Prisoner Miner",
+			"name": "Prisoner Miner",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "Refugee",
+			"name": "Refugee",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "Uniformed/Armed Personnel",
+			"name": "Uniformed/Armed Personnel",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "Fisher Folk",
+			"name": "Fisher Folk",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "Diabetic Patient",
+			"name": "Diabetic Patient",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "Miner",
+			"name": "Miner",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "Tobacco User",
+			"name": "Tobacco User",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Risk Group",
+			"code": "Mentally ill",
+			"name": "Mentally ill",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Kanamycin",
+			"name": "Kanamycin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Prothionamide",
+			"name": "Prothionamide",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Linezolid",
+			"name": "Linezolid",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Capreomycin",
+			"name": "Capreomycin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "p-aminosalicylic acid",
+			"name": "p-aminosalicylic acid",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Imipenem",
+			"name": "Imipenem",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Amikacin",
+			"name": "Amikacin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Bedaquiline",
+			"name": "Bedaquiline",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Clofazimin",
+			"name": "Clofazimin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Cycloserine",
+			"name": "Cycloserine",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Thiacetazone",
+			"name": "Thiacetazone",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Clofazimine",
+			"name": "Clofazimine",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Delamanid",
+			"name": "Delamanid",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Ethionamide",
+			"name": "Ethionamide",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Moxifloxacin",
+			"name": "Moxifloxacin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Second line drugs",
+			"code": "Levofloxacin",
+			"name": "Levofloxacin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Sensation Loss",
+			"code": "Definite",
+			"name": "Definite",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Sensation Loss",
+			"code": "Doubtful",
+			"name": "Doubtful",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Severity",
+			"code": "Mild",
+			"name": "Mild",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Severity",
+			"code": "Moderate",
+			"name": "Moderate",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Severity",
+			"code": "Severe",
+			"name": "Severe",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Sex",
+			"code": "Male",
+			"name": "Male",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Sex",
+			"code": "Female",
+			"name": "Female",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Site",
+			"code": "PTB",
+			"name": "PTB",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Site",
+			"code": "EPTB",
+			"name": "EPTB",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Site",
+			"code": "Both",
+			"name": "Both",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Skin Smear Result",
+			"code": "Positive",
+			"name": "Positive",
+			"UgEmr Code": 703
+		},
+		{
+			"optionSet": "Skin Smear Result",
+			"code": "Negative",
+			"name": "Negative",
+			"UgEmr Code": 664
+		},
+		{
+			"optionSet": "Skin Smear Result",
+			"code": "Not done",
+			"name": "Not done",
+			"UgEmr Code": 1118
+		},
+		{
+			"optionSet": "Source of Referral",
+			"code": "Community",
+			"name": "Community",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Source of Referral",
+			"code": "Facility",
+			"name": "Facility",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Status",
+			"code": "Recovered / Resolved",
+			"name": "Recovered / Resolved",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Status",
+			"code": "Recovering / Resolving",
+			"name": "Recovering / Resolving",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Status",
+			"code": "Recovered / Recovered with Sequelae",
+			"name": "Recovered / Recovered with Sequelae",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Status",
+			"code": "Not Recovered / Not Resolved",
+			"name": "Not Recovered / Not Resolved",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Status",
+			"code": "Died",
+			"name": "Died",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Status",
+			"code": "Unknown",
+			"name": "Unknown",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Support Provided during follow up",
+			"code": "Counselling, Pill refill",
+			"name": "Counselling, Pill refill",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Support Provided during follow up",
+			"code": "Appointment reminder",
+			"name": "Appointment reminder",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Support Provided during follow up",
+			"code": "Sputum sample collection",
+			"name": "Sputum sample collection",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Surface raised",
+			"code": "Edge only",
+			"name": "Edge only",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Surface raised",
+			"code": "Whole lesion",
+			"name": "Whole lesion",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Class",
+			"code": "DS",
+			"name": "DS",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Class",
+			"code": "DR TB",
+			"name": "DR TB",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Entry Points",
+			"code": "OPD",
+			"name": "OPD",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Entry Points",
+			"code": "IPD",
+			"name": "IPD",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Entry Points",
+			"code": "ANC",
+			"name": "ANC",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Entry Points",
+			"code": "ART",
+			"name": "ART",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Cured",
+			"name": "Cured",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Treatment completed",
+			"name": "Treatment completed",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Treatment Failure",
+			"name": "Treatment Failure",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Lost to follow up",
+			"name": "Lost to follow up",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Not Evaluated",
+			"name": "Not Evaluated",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Died",
+			"name": "Died",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Culture Negative",
+			"name": "Culture Negative",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "TB Treatment outcome",
+			"code": "Culture Positive",
+			"name": "Culture Positive",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Test / evaluation Results",
+			"code": "P-BC",
+			"name": "P-BC",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Test / evaluation Results",
+			"code": "P-CD",
+			"name": "P-CD",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Test / evaluation Results",
+			"code": "EP",
+			"name": "EPTB",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Test / evaluation Results",
+			"code": "DR TB",
+			"name": "DR TB",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Test / evaluation Results",
+			"code": "No TB",
+			"name": "No TB",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Transfer ype",
+			"code": "Transfered In",
+			"name": "Transfered In",
+			"UgEmr Code": 99110
+		},
+		{
+			"optionSet": "Transfer ype",
+			"code": "Transfered Out",
+			"name": "Transfered Out",
+			"UgEmr Code": 160036
+		},
+		{
+			"optionSet": "Treatment model",
+			"code": "Facility DOT",
+			"name": "Facility DOT",
+			"UgEmr Code": 165866
+		},
+		{
+			"optionSet": "Treatment model",
+			"code": "Digital Community DOT",
+			"name": "Digital Community DOT",
+			"UgEmr Code": 165867
+		},
+		{
+			"optionSet": "Treatment model",
+			"code": "Non-Digital Community DOT",
+			"name": "Non-Digital Community DOT",
+			"UgEmr Code": 165868
+		},
+		{
+			"optionSet": "Treatment Progress",
+			"code": "Improved",
+			"name": "Improved",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Treatment Progress",
+			"code": "Stable / Unchanged",
+			"name": "Stable / Unchanged",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Treatment Progress",
+			"code": "Worsened",
+			"name": "Worsened",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Treatment Supporter Type",
+			"code": "Health worker",
+			"name": "Health worker",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Treatment Supporter Type",
+			"code": "Family member",
+			"name": "Family member",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Treatment Supporter Type",
+			"code": "Community volunteer",
+			"name": "Community volunteer",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Adverse Events",
+			"code": "Red Urine",
+			"name": "Red Urine",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Adverse Events",
+			"code": "Darkening of the Skin",
+			"name": "Darkening of the Skin",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Adverse Events",
+			"code": "Gastrointestinal irritation",
+			"name": "Gastrointestinal irritation",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Adverse Events",
+			"code": "Anaemia",
+			"name": "Anaemia",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Adverse Events",
+			"code": "Itchy Skin Rash",
+			"name": "Itchy Skin Rash",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Adverse Events",
+			"code": "Allergy, Utricaria",
+			"name": "Allergy, Utricaria",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Adverse Events",
+			"code": "Jaundice",
+			"name": "Jaundice",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Adverse Events",
+			"code": "Shock, Purpura, Renal Failure",
+			"name": "Shock, Purpura, Renal Failure",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Skin Lesions",
+			"code": "Patches",
+			"name": "Patches",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Skin Lesions",
+			"code": "Nodules",
+			"name": "Nodules",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Test",
+			"code": "Smear",
+			"name": "Smear",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Test",
+			"code": "GeneXpert",
+			"name": "GeneXpert",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Test",
+			"code": "LAM",
+			"name": "LAM",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Test",
+			"code": "Culture",
+			"name": "Culture",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Test",
+			"code": "X-ray",
+			"name": "X-ray",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Test",
+			"code": "SL LPA",
+			"name": "SL LPA",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Type of Test",
+			"code": "FL LPA",
+			"name": "FL LPA",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "1-2 Weeks",
+			"name": "1-2 Weeks",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "3-4 Weeks",
+			"name": "3-4 Weeks",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "5-6 Weeks",
+			"name": "5-6 Weeks",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "7-8 Weeks",
+			"name": "7-8 Weeks",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 3",
+			"name": "Month 3",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 4",
+			"name": "Month 4",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 5",
+			"name": "Month 5",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 6",
+			"name": "Month 6",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 7",
+			"name": "Month 7",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 8",
+			"name": "Month 8",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 9",
+			"name": "Month 9",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 10",
+			"name": "Month 10",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 11",
+			"name": "Month 11",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Visit Months",
+			"code": "Month 12",
+			"name": "Month 12",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Xpert MTB/RIF Results",
+			"code": "MTB detected, rifampicin resistance not detected",
+			"name": "MTB detected, rifampicin resistance not detected",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Xpert MTB/RIF Results",
+			"code": "MTB detected, rifampicin resistance detected",
+			"name": "MTB detected, rifampicin resistance detected",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Xpert MTB/RIF Results",
+			"code": "MTB detected, rifampicin resistance indeterminate",
+			"name": "MTB detected, rifampicin resistance indeterminate",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Xpert MTB/RIF Results",
+			"code": "MTB Trace Detected RR indeterminate",
+			"name": "MTB Trace Detected RR indeterminate",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Xpert MTB/RIF Results",
+			"code": "MTB not detected",
+			"name": "MTB not detected",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Xpert MTB/RIF Results",
+			"code": "Invalid",
+			"name": "Invalid",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Xpert MTB/RIF Results",
+			"code": "Error",
+			"name": "Error",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Xpert MTB/RIF Results",
+			"code": "No result",
+			"name": "No result",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Xray Result",
+			"code": "Normal",
+			"name": "Normal",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Xray Result",
+			"code": "Abnormal",
+			"name": "Abnormal",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "X-Ray results",
+			"code": "Normal",
+			"name": "Normal",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "X-Ray results",
+			"code": "Abnormal",
+			"name": "Abnormal",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "YesNo",
+			"code": "Yes",
+			"name": "Yes",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "YesNo",
+			"code": "No",
+			"name": "No",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Yes/No/Unknown",
+			"code": "Yes",
+			"name": "Yes",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Yes/No/Unknown",
+			"code": "No",
+			"name": "No",
+			"UgEmr Code": ""
+		},
+		{
+			"optionSet": "Yes/No/Unknown",
+			"code": "Unknown",
+			"name": "Unknown",
+			"UgEmr Code": ""
+		}
+	]
+}

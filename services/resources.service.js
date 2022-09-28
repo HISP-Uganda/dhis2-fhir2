@@ -1,4 +1,5 @@
 "use strict";
+const { isEmpty } = require("lodash");
 const { generateUid } = require("./uid");
 /**
  * @typedef {import('moleculer').Context} Context Moleculer's Context
@@ -44,17 +45,15 @@ module.exports = {
 
 								let toBeIndexed = {
 									attributes: identifierValues,
-									enrollments: [],
-									encounters: [],
 								};
 
 								if (patient.id) {
-									toBeIndexed = { ...toBeIndexed, id: patient.id };
+									toBeIndexed = { ...toBeIndexed, patientId: patient.id };
 								}
 								const previousPatient = await ctx.call(
 									"search.previousPatient",
 									{
-										id: patient.id,
+										patientId: patient.id,
 										identifiers: identifierValues,
 									}
 								);
@@ -68,7 +67,7 @@ module.exports = {
 										toBeIndexed = {
 											...previousPatient,
 											attributes: identifierValues,
-											id: patient.id,
+											patientId: patient.id,
 										};
 									}
 									trackedEntityInstance = {
@@ -85,16 +84,17 @@ module.exports = {
 									toBeIndexed = {
 										...toBeIndexed,
 										trackedEntityInstance: code,
+										id: code,
+										patientId: patient.id,
 									};
 								}
 								const response = await ctx.call("dhis2.post", {
 									url: "trackedEntityInstances",
 									...trackedEntityInstance,
 								});
-								const response2 = await ctx.call("es.bulk", {
+								await ctx.call("es.bulk", {
 									index: "patients",
 									dataset: [toBeIndexed],
-									idField: "trackedEntityInstance",
 								});
 								return response;
 							}
@@ -127,7 +127,7 @@ module.exports = {
 				if (reference) {
 					patient = {
 						...patient,
-						id: String(reference).replace("Patient/", ""),
+						patientId: String(reference).replace("Patient/", ""),
 					};
 				}
 
@@ -150,18 +150,15 @@ module.exports = {
 						"search.previousPatient",
 						patient
 					);
-
 					if (previousPatient !== null) {
-						const { enrollments, trackedEntityInstance } = previousPatient;
-						const previousEnrollment = enrollments.find((e) => {
-							return (e.enrollmentDate =
-								start &&
-								e.program === program &&
-								e.orgUnit === orgUnit &&
-								e.id === id);
+						const { trackedEntityInstance } = previousPatient;
+						const previousEnrollment = await ctx.call("search.previousEOC", {
+							trackedEntityInstance,
+							orgUnit,
+							program,
+							enrollmentDate: start,
 						});
-
-						if (!previousEnrollment) {
+						if (isEmpty(previousEnrollment)) {
 							const enrollment = generateUid();
 							const enroll = {
 								enrollment,
@@ -175,15 +172,15 @@ module.exports = {
 								url: "enrollments",
 								...enroll,
 							});
-							const response2 = await ctx.call("es.bulk", {
-								index: "patients",
+							await ctx.call("es.bulk", {
+								index: "enrollments",
 								dataset: [
 									{
-										...previousPatient,
-										enrollments: [...enrollments, { ...enroll, id }],
+										...enroll,
+										id: enrollment,
+										eocId: id,
 									},
 								],
-								idField: "trackedEntityInstance",
 							});
 							return response;
 						} else {
@@ -221,7 +218,7 @@ module.exports = {
 						if (reference) {
 							patient = {
 								...patient,
-								id: String(reference).replace("Patient/", ""),
+								patientId: String(reference).replace("Patient/", ""),
 							};
 						}
 						if (identifier) {
@@ -234,26 +231,31 @@ module.exports = {
 							"search.previousPatient",
 							patient
 						);
-
 						if (previousPatient !== null) {
-							const { enrollments, trackedEntityInstance, encounters } =
-								previousPatient;
-
-							const previousEnrollment = enrollments.find((e) => {
-								return (
-									e.id ===
-									String(episodeOfCare.reference).replace("EpisodeOfCare/", "")
-								);
+							const { trackedEntityInstance } = previousPatient;
+							const previousEnrollment = await ctx.call("search.findEOC", {
+								id: String(episodeOfCare.reference).replace(
+									"EpisodeOfCare/",
+									""
+								),
+								trackedEntityInstance,
+								orgUnit,
 							});
+
 							if (previousEnrollment && programStage !== null) {
 								const { program, enrollment } = previousEnrollment;
-								const previousEncounter = encounters.find((e) => {
-									return (e.eventDate =
-										start &&
-										e.program === program &&
-										e.orgUnit === orgUnit &&
-										e.id === id);
-								});
+								const previousEncounter = await ctx.call(
+									"search.previousEncounter",
+									{
+										id,
+										trackedEntityInstance,
+										orgUnit,
+										eventDate: start,
+										programStage,
+										enrollment,
+										program,
+									}
+								);
 								if (!previousEncounter) {
 									const event = generateUid();
 									const encounter = {
@@ -270,22 +272,16 @@ module.exports = {
 										...encounter,
 										dataValues: [],
 									});
-									const response2 = await ctx.call("es.bulk", {
-										index: "patients",
-										dataset: [
-											{
-												...previousPatient,
-												encounters: [...encounters, { ...encounter, id }],
-											},
-										],
-										idField: "trackedEntityInstance",
+									await await ctx.call("es.bulk", {
+										index: "encounters",
+										dataset: [{ ...encounter, encounterId: id, id: event }],
 									});
 									return response;
 								}
+								return "Already inserted";
 							}
 						}
 					}
-
 					return "No record was inserted some information is missing";
 				} catch (error) {
 					return error.message;
@@ -307,18 +303,20 @@ module.exports = {
 							valueInteger,
 							valueTime,
 							valueDateTime,
+							...rest
 						},
 					} = ctx.params;
 					let realValue =
-						valueString ||
-						valueBoolean ||
-						valueInteger ||
-						valueTime ||
-						valueDateTime;
-					if (valueQuantity) {
+						valueString || valueInteger || valueTime || valueDateTime;
+
+					if (valueBoolean !== undefined) {
+						console.log("we are here");
+						realValue = valueBoolean ? "Yes" : "No";
+					}
+					if (valueQuantity !== undefined) {
 						realValue = valueQuantity.value;
 					}
-					if (valueCodeableConcept) {
+					if (valueCodeableConcept !== undefined) {
 						const valueCode = valueCodeableConcept.coding.find(
 							(code) => !!code.system
 						);
@@ -351,7 +349,7 @@ module.exports = {
 							if (subject.reference) {
 								patient = {
 									...patient,
-									id: String(subject.reference).replace("Patient/", ""),
+									patientId: String(subject.reference).replace("Patient/", ""),
 								};
 							}
 							if (subject.identifier) {
@@ -366,16 +364,18 @@ module.exports = {
 									patient
 								);
 								if (previousPatient) {
-									const { encounters } = previousPatient;
-									const previousEncounter = encounters.find((e) => {
-										return (
-											e.id ===
-											String(encounter.reference).replace("Encounter/", "")
-										);
-									});
+									const { trackedEntityInstance, orgUnit } = previousPatient;
+									const previousEncounter = await ctx.call(
+										"search.findEncounter",
+										{
+											id: String(encounter.reference).replace("Encounter/", ""),
+											trackedEntityInstance,
+											orgUnit,
+										}
+									);
+
 									if (previousEncounter) {
 										const {
-											id,
 											event,
 											orgUnit,
 											program,
@@ -383,16 +383,27 @@ module.exports = {
 											trackedEntityInstance,
 										} = previousEncounter;
 
-										console.log({
-											url: `events/${event}/${dataElement}`,
-											event,
-											orgUnit,
-											program,
-											programStage,
-											trackedEntityInstance,
-											status: "ACTIVE",
-											dataValues: [{ dataElement, value: realValue }],
-										});
+										// console.log({
+										// 	url: `events/${event}/${dataElement}`,
+										// 	event,
+										// 	orgUnit,
+										// 	program,
+										// 	programStage,
+										// 	trackedEntityInstance,
+										// 	status: "ACTIVE",
+										// 	dataValues: [{ dataElement, value: realValue }],
+										// });
+
+										// return {
+										// 	url: `events/${event}/${dataElement}`,
+										// 	event,
+										// 	orgUnit,
+										// 	program,
+										// 	programStage,
+										// 	trackedEntityInstance,
+										// 	status: "ACTIVE",
+										// 	dataValues: [{ dataElement, value: realValue }],
+										// };
 										return await ctx.call("dhis2.put", {
 											url: `events/${event}/${dataElement}`,
 											event,

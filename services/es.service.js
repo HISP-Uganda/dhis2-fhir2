@@ -2,10 +2,8 @@
 const { Client } = require("@elastic/elasticsearch");
 
 const client = new Client({ node: "http://localhost:9200" });
-// const client = new Client({ node: "http://192.168.64.3:9200" });
 
 require("array.prototype.flatmap").shim();
-
 /**
  * @typedef {import('moleculer').Context} Context Moleculer's Context
  */
@@ -54,41 +52,27 @@ module.exports = {
 
 		bulk: {
 			async handler(ctx) {
-				const { index, dataset, idField } = ctx.params;
-				const body = dataset.flatMap((doc) => {
-					return [{ index: { _index: index, _id: doc[idField] } }, doc];
-				});
-				const { body: bulkResponse } = await client.bulk({
+				const { index, dataset } = ctx.params;
+				const body = dataset.flatMap((doc) => [
+					{ index: { _index: index, _id: doc["id"] } },
+					doc,
+				]);
+				return await client.bulk({
 					refresh: true,
 					body,
 				});
-				const errorDocuments = [];
-				if (bulkResponse.errors) {
-					bulkResponse.items.forEach((action, i) => {
-						const operation = Object.keys(action)[0];
-						if (action[operation].error) {
-							errorDocuments.push({
-								status: action[operation].status,
-								error: action[operation].error,
-								operation: body[i * 2],
-								document: body[i * 2 + 1],
-							});
-						}
-					});
-				}
-				return {
-					errorDocuments,
-					inserted: dataset.length - errorDocuments.length,
-				};
+			},
+		},
+		sql: {
+			async handler(ctx) {
+				return await client.sql.query(ctx.params);
 			},
 		},
 		searchBySystemAndCode: {
 			async handler(ctx) {
 				const { system, value, index } = ctx.params;
 				const {
-					body: {
-						hits: { hits },
-					},
+					hits: { hits },
 				} = await client.search({
 					index,
 					body: {
@@ -111,18 +95,12 @@ module.exports = {
 			async handler(ctx) {
 				const { term, values, index } = ctx.params;
 				const {
-					body: {
-						hits: { hits },
-					},
+					hits: { hits },
 				} = await client.search({
 					index,
 					body: {
 						query: {
-							bool: {
-								filter: {
-									terms: { [`${term}.keyword`]: values },
-								},
-							},
+							terms: { [`${term}.keyword`]: values },
 						},
 					},
 				});
@@ -138,14 +116,12 @@ module.exports = {
 			},
 			async handler(ctx) {
 				const {
-					body: {
-						hits: { hits },
-					},
+					hits: { hits },
 				} = await client.search({
 					index: ctx.params.index,
 					body: ctx.params.body,
 				});
-				return hits;
+				return hits.map(({ _source }) => _source);
 			},
 		},
 		get: {
@@ -155,9 +131,7 @@ module.exports = {
 			},
 			async handler(ctx) {
 				const { index, id } = ctx.params;
-				const {
-					body: { _source },
-				} = await client.get({
+				const { _source } = await client.get({
 					index,
 					id,
 				});
@@ -171,16 +145,35 @@ module.exports = {
 			},
 			async handler(ctx) {
 				const { index, id } = ctx.params;
-
 				const {
-					body: {
-						hits: { hits },
-					},
+					hits: { hits },
 				} = await client.search({
 					index,
 					body: {
 						query: {
 							match: { "id.keyword": id },
+						},
+					},
+				});
+				if (hits.length > 0) {
+					return hits[0]._source;
+				}
+				return null;
+			},
+		},
+		searchByPatientId: {
+			params: {
+				patientId: "string",
+			},
+			async handler(ctx) {
+				const { patientId } = ctx.params;
+				const {
+					hits: { hits },
+				} = await client.search({
+					index: "patients",
+					body: {
+						query: {
+							match: { "patientId.keyword": patientId },
 						},
 					},
 				});
