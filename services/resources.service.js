@@ -151,6 +151,7 @@ module.exports = {
 						"search.previousPatient",
 						patient
 					);
+					console.log(previousPatient);
 					if (previousPatient !== null) {
 						const { trackedEntityInstance } = previousPatient;
 						const previousEnrollment = await ctx.call("search.previousEOC", {
