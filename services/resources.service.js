@@ -101,7 +101,7 @@ module.exports = {
 						}
 					}
 				} catch (error) {
-					return error.message;
+					return error;
 				}
 			},
 		},
@@ -231,7 +231,7 @@ module.exports = {
 							"search.previousPatient",
 							patient
 						);
-						if (previousPatient !== null) {
+						if (previousPatient) {
 							const { trackedEntityInstance } = previousPatient;
 							const previousEnrollment = await ctx.call("search.findEOC", {
 								id: String(episodeOfCare.reference).replace(
@@ -284,7 +284,7 @@ module.exports = {
 					}
 					return "No record was inserted some information is missing";
 				} catch (error) {
-					return error.message;
+					return error;
 				}
 			},
 		},
