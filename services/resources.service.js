@@ -35,6 +35,7 @@ module.exports = {
 								"search.patient",
 								patient
 							);
+							console.log(identifiers, biodata);
 							const identifierValues = identifiers.map((i) => i.value);
 							if ([...identifierValues, ...biodata].length > 0 || patient.id) {
 								let trackedEntityInstance = {
