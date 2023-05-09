@@ -82,6 +82,29 @@ module.exports = {
 				return await client.get(ctx.params);
 			},
 		},
+		searchById: {
+			params: {
+				index: "string",
+				id: "string",
+			},
+			async handler(ctx) {
+				const { index, id } = ctx.params;
+				const {
+					hits: { hits },
+				} = await client.search({
+					index,
+					body: {
+						query: {
+							match: { "id.keyword": id },
+						},
+					},
+				});
+				if (hits.length > 0) {
+					return hits[0]._source;
+				}
+				return null;
+			},
+		},
 		bulk: {
 			async handler(ctx) {
 				const { index, dataset, id } = ctx.params;
