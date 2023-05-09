@@ -150,7 +150,7 @@ module.exports = {
 						"search.previousPatient",
 						patient
 					);
-					if (previousPatient !== null) {
+					if (previousPatient !== null && previousPatient !== undefined) {
 						const { trackedEntityInstance } = previousPatient;
 						const previousEnrollment = await ctx.call("search.previousEOC", {
 							trackedEntityInstance,
