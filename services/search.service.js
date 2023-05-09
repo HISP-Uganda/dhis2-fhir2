@@ -149,7 +149,7 @@ module.exports = {
 							},
 						},
 					});
-					if (search.length > 0) {
+					if (search && search.length > 0) {
 						return search[0];
 					}
 				}
