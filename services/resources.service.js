@@ -35,7 +35,6 @@ module.exports = {
 								"search.patient",
 								patient
 							);
-							console.log(identifiers, biodata);
 							const identifierValues = identifiers.map((i) => i.value);
 							if ([...identifierValues, ...biodata].length > 0 || patient.id) {
 								let trackedEntityInstance = {
@@ -151,7 +150,6 @@ module.exports = {
 						"search.previousPatient",
 						patient
 					);
-					console.log(previousPatient);
 					if (previousPatient !== null) {
 						const { trackedEntityInstance } = previousPatient;
 						const previousEnrollment = await ctx.call("search.previousEOC", {
@@ -274,7 +272,7 @@ module.exports = {
 										...encounter,
 										dataValues: [],
 									});
-									await await ctx.call("es.bulk", {
+									await ctx.call("es.bulk", {
 										index: "encounters",
 										dataset: [{ ...encounter, encounterId: id, id: event }],
 									});
@@ -295,7 +293,7 @@ module.exports = {
 				try {
 					const {
 						Observation: {
-							subject,
+							subject: { identifier, reference },
 							encounter,
 							code: { coding },
 							valueQuantity,
@@ -349,13 +347,13 @@ module.exports = {
 							let patient = {
 								identifier: [],
 							};
-							if (subject.reference) {
+							if (reference) {
 								patient = {
 									...patient,
 									patientId: String(subject.reference).replace("Patient/", ""),
 								};
 							}
-							if (subject.identifier) {
+							if (identifier) {
 								patient = {
 									...patient,
 									identifiers: subject.identifier.map((id) => id.value),

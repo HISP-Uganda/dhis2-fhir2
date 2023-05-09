@@ -9,9 +9,6 @@ const instance = axios.create({
 		password: process.env.DHIS2_PASSWORD,
 	},
 });
-
-console.log(process.env.DHIS2_URL);
-
 /**
  * @typedef {import('moleculer').Context} Context Moleculer's Context
  */

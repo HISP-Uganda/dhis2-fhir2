@@ -40,13 +40,72 @@ module.exports = {
 					const eocs = ctx.params.entry.filter(
 						(r) => r.resource && r.resource.resourceType === "EpisodeOfCare"
 					);
-					const encounters = ctx.params.entry.filter(
+					let encounters = ctx.params.entry.filter(
 						(r) => r.resource && r.resource.resourceType === "Encounter"
 					);
-
-					const observations = ctx.params.entry.filter(
+					let observations = ctx.params.entry.filter(
 						(r) => r.resource && r.resource.resourceType === "Observation"
 					);
+					const obsGroups = observations.flatMap((obs) => {
+						if (obs.resource.hasMember && obs.resource.hasMember.length > 0) {
+							return obs.resource.hasMember.flatMap(({ reference }) => {
+								const id = String(reference).replace("Observation/", "");
+								const currentObs = observations.find(
+									(o) => o.resource.id === id
+								);
+								if (currentObs) {
+									return {
+										resource: {
+											...currentObs.resource,
+											encounter: { reference: `Encounter/${obs.resource.id}` },
+										},
+									};
+								}
+								return [];
+							});
+						}
+						return [];
+					});
+
+					const obsGroupEncounters = observations.flatMap((obs) => {
+						if (
+							obs.resource.encounter &&
+							obs.resource.hasMember &&
+							obs.resource.hasMember.length > 0
+						) {
+							const encounterId = String(
+								obs.resource.encounter.reference
+							).replace("Encounter/", "");
+
+							const searchEncounter = encounters.find(
+								(e) => e.resource.id === encounterId
+							);
+							if (searchEncounter) {
+								return {
+									resource: {
+										episodeOfCare: searchEncounter.resource.episodeOfCare,
+										id: obs.resource.id,
+										type: obs.resource.code.coding,
+										subject: obs.resource.subject,
+										serviceProvider: searchEncounter.resource.serviceProvider,
+										period: { start: obs.resource.effectiveDateTime },
+										resourceType: "Encounter",
+									},
+								};
+							}
+						}
+						return [];
+					});
+
+					observations = [
+						...observations.filter(
+							(obs) =>
+								!obs.resource.hasMember || obs.resource.hasMember.length === 0
+						),
+						...obsGroups,
+					];
+					encounters = [...encounters, ...obsGroupEncounters];
+
 					const processedPatients = await Promise.all(
 						patients.map((p) =>
 							ctx.call("resources.Patient", {
@@ -62,7 +121,6 @@ module.exports = {
 							})
 						)
 					);
-
 					const processedEncounters = await Promise.all(
 						encounters.map((encounter) =>
 							ctx.call(`resources.Encounter`, {

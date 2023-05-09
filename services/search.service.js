@@ -35,7 +35,7 @@ module.exports = {
 			async handler(ctx) {
 				const entities = await ctx.call("es.search", {
 					index: "entities",
-					body: { query: { match: { "type.keyword": "Person" } }, size: 1000 },
+					body: { query: { match: { "type.keyword": "Person" } }, size: 1 },
 				});
 				if (entities.length > 0) {
 					const [entity] = entities;
@@ -533,10 +533,9 @@ module.exports = {
 		},
 
 		getBio(patient, attributes) {
-			let maritalStatus = "";
-			if (patient.maritalStatus && patient.maritalStatus.coding) {
-				const [{ system, code }] = patient.maritalStatus.coding;
-			}
+			// if (patient.maritalStatus && patient.maritalStatus.coding) {
+			// 	const [{ system, code }] = patient.maritalStatus.coding;
+			// }
 			const obj = {
 				birthDate: patient.birthDate,
 				given:
