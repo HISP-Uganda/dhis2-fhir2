@@ -39,26 +39,38 @@ module.exports = {
 				});
 				if (entities.length > 0) {
 					const [entity] = entities;
-					return this.getDHIS2Code(entity.mappings);
+					const code = this.getDHIS2Code(entity.mappings);
+					console.log(code);
+					return code;
 				}
 				return null;
 			},
 		},
 		facility: {
 			async handler(ctx) {
-				if (ctx.params.ref && ctx.identifier && ctx.params.identifier.value) {
-					const organisationSearch = await ctx.call("es.searchById", {
-						id: ctx.identifier.value,
-						index: "organisations",
-					});
-					return this.getDHIS2Code(organisationSearch.mappings);
+				if (
+					ctx.params.identifier &&
+					ctx.params.identifier.value &&
+					ctx.params.identifier.system
+				) {
+					const organisationSearch = await ctx.call(
+						"es.searchBySystemAndCode",
+						{
+							value: ctx.params.identifier.value,
+							index: "organisations",
+							system: ctx.params.identifier.system,
+						}
+					);
+
+					return this.getDHIS2Code(organisationSearch);
 				} else if (ctx.params.reference) {
 					const id = String(ctx.params.reference).replace("Organization/", "");
 					const organisationSearch = await ctx.call("es.searchById", {
 						id,
 						index: "organisations",
 					});
-					return this.getDHIS2Code(organisationSearch.mappings);
+					return {};
+					// return this.getDHIS2Code(organisationSearch.mappings);
 				}
 			},
 		},
@@ -68,6 +80,7 @@ module.exports = {
 					index: "attributes",
 					body: { query: { match_all: {} }, size: 1000 },
 				});
+
 				const identifiers = this.getIdentifiers(ctx.params, attributes);
 
 				let maritalStatus = "";

@@ -1,9 +1,7 @@
 "use strict";
 const { Client } = require("@elastic/elasticsearch");
-
 const client = new Client({ node: "http://localhost:9200" });
 
-require("array.prototype.flatmap").shim();
 /**
  * @typedef {import('moleculer').Context} Context Moleculer's Context
  */
@@ -62,6 +60,22 @@ module.exports = {
 				}
 			},
 		},
+		searchAll: {
+			async handler(ctx) {
+				const { index } = ctx.params;
+				const {
+					hits: { hits },
+				} = await client.search({
+					index,
+					body: {
+						query: {
+							match_all: {},
+						},
+					},
+				});
+				return hits.map(({ _source }) => _source);
+			},
+		},
 		sql: {
 			async handler(ctx) {
 				return await client.sql.query(ctx.params);
@@ -79,7 +93,11 @@ module.exports = {
 		},
 		get: {
 			async handler(ctx) {
-				return await client.get(ctx.params);
+				const record = await client.get(ctx.params);
+				if (record) {
+					return record._source;
+				}
+				return { message: "Unknown record" };
 			},
 		},
 		searchById: {
@@ -107,33 +125,16 @@ module.exports = {
 		},
 		bulk: {
 			async handler(ctx) {
-				const { index, dataset, id } = ctx.params;
-				const body = flatMap(dataset, (doc) => [
-					{ index: { _index: index, _id: doc[id] } },
+				const { index, dataset } = ctx.params;
+				const body = dataset.flatMap((doc) => [
+					{ index: { _index: index, _id: doc["id"] } },
 					doc,
 				]);
-				const { body: bulkResponse } = await client.bulk({
+
+				const response = await client.bulk({
 					refresh: true,
 					body,
 				});
-				const errorDocuments = [];
-				if (bulkResponse.errors) {
-					bulkResponse.items.forEach((action, i) => {
-						const operation = Object.keys(action)[0];
-						if (action[operation].error) {
-							errorDocuments.push({
-								status: action[operation].status,
-								error: action[operation].error,
-								operation: body[i * 2],
-								document: body[i * 2 + 1],
-							});
-						}
-					});
-				}
-				return {
-					errorDocuments,
-					inserted: dataset.length - errorDocuments.length,
-				};
 			},
 		},
 		searchByValues: {
@@ -215,8 +216,10 @@ module.exports = {
 				body: "object",
 			},
 			async handler(ctx) {
-				const { body } = await client.search(ctx.params);
-				return body;
+				const {
+					hits: { hits },
+				} = await client.search(ctx.params);
+				return hits.map(({ _source }) => _source);
 			},
 		},
 		search2: {

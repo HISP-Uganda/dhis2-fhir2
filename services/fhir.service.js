@@ -143,6 +143,7 @@ module.exports = {
 							...processedObservations,
 						],
 					};
+					// return observations;
 				}
 				return ctx.call(`resources.${resourceType}`, {
 					[resourceType]: ctx.params,
@@ -353,19 +354,23 @@ module.exports = {
 				path: "/synchronize",
 			},
 			async handler(ctx) {
-				await Promise.all(
-					[
-						"programs",
-						"stages",
-						"concepts",
-						"attributes",
-						"patients",
-						"entities",
-						"organisations",
-					].map((index) => {
-						return ctx.call("es.createIndex", { index });
-					})
-				);
+				// try {
+				// 	await Promise.all(
+				// 		[
+				// 			"programs",
+				// 			"stages",
+				// 			"concepts",
+				// 			"attributes",
+				// 			"patients",
+				// 			"entities",
+				// 			"organisations",
+				// 		].map((index) => {
+				// 			return ctx.call("es.createIndex", { index });
+				// 		})
+				// 	);
+				// } catch (error) {
+				// 	console.log(error.message);
+				// }
 				const [
 					{ dataElements },
 					{ trackedEntityAttributes },
@@ -528,6 +533,7 @@ module.exports = {
 							multi_match: {
 								query: q,
 								fields: ["name", "id"],
+								type: "bool_prefix",
 							},
 						},
 						size: 1000,

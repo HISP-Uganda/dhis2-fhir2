@@ -42,11 +42,9 @@ module.exports = {
 									orgUnit,
 									attributes: [...identifiers, ...biodata],
 								};
-
 								let toBeIndexed = {
 									attributes: identifierValues,
 								};
-
 								if (patient.id) {
 									toBeIndexed = { ...toBeIndexed, patientId: patient.id };
 								}
@@ -57,7 +55,6 @@ module.exports = {
 										identifiers: identifierValues,
 									}
 								);
-
 								if (previousPatient) {
 									toBeIndexed = {
 										...previousPatient,
@@ -211,7 +208,7 @@ module.exports = {
 					const programStage = await ctx.call("search.stage", { system, code });
 					const orgUnit = await ctx.call("search.facility", serviceProvider);
 
-					if (programStage !== null && orgUnit !== null) {
+					if (programStage && orgUnit) {
 						let patient = {
 							identifier: [],
 						};
@@ -307,7 +304,6 @@ module.exports = {
 						},
 					} = ctx.params;
 					let realValue = valueString || valueInteger || valueTime;
-
 					if (valueDateTime !== undefined) {
 						realValue = String(valueDateTime).slice(0, 10);
 					}
@@ -350,13 +346,13 @@ module.exports = {
 							if (reference) {
 								patient = {
 									...patient,
-									patientId: String(subject.reference).replace("Patient/", ""),
+									patientId: String(reference).replace("Patient/", ""),
 								};
 							}
 							if (identifier) {
 								patient = {
 									...patient,
-									identifiers: subject.identifier.map((id) => id.value),
+									identifiers: identifier.map((id) => id.value),
 								};
 							}
 							if (dataElement) {
@@ -374,7 +370,6 @@ module.exports = {
 											orgUnit,
 										}
 									);
-
 									if (previousEncounter) {
 										const {
 											event,
@@ -383,7 +378,15 @@ module.exports = {
 											programStage,
 											trackedEntityInstance,
 										} = previousEncounter;
-
+										// return {
+										// 	event,
+										// 	orgUnit,
+										// 	program,
+										// 	programStage,
+										// 	trackedEntityInstance,
+										// 	status: "ACTIVE",
+										// 	dataValues: [{ dataElement, value: realValue }],
+										// };
 										return await ctx.call("dhis2.put", {
 											url: `events/${event}/${dataElement}`,
 											event,
@@ -405,7 +408,7 @@ module.exports = {
 									).replace("Patient/", "")}`;
 								}
 							} else {
-								return `Could not find mapping for ${code}`;
+								// return `Could not find mapping for ${code}`;
 							}
 						} else {
 							return `Could not find mapping system and code`;

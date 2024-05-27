@@ -2,6 +2,8 @@
 
 const axios = require("axios");
 
+console.log(process.env);
+
 const instance = axios.create({
 	baseURL: process.env.DHIS2_URL,
 	auth: {
