@@ -1,5 +1,7 @@
 "use strict";
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 const ID_SHORT_NAME = "id,name,shortName,description";
 
 /**
@@ -104,46 +106,53 @@ module.exports = {
 						),
 						...obsGroups,
 					];
+
 					encounters = [...encounters, ...obsGroupEncounters];
 
-					const processedPatients = await Promise.all(
-						patients.map((p) =>
-							ctx.call("resources.Patient", {
-								["Patient"]: p.resource,
-							})
-						)
-					);
+					let allResponses = [];
 
-					const processedEpisodesOfCare = await Promise.all(
-						eocs.map((eoc) =>
-							ctx.call(`resources.EpisodeOfCare`, {
-								["EpisodeOfCare"]: eoc.resource,
-							})
-						)
-					);
-					const processedEncounters = await Promise.all(
-						encounters.map((encounter) =>
-							ctx.call(`resources.Encounter`, {
-								["Encounter"]: encounter.resource,
-							})
-						)
-					);
-					const processedObservations = await Promise.all(
-						observations.map((obs) =>
-							ctx.call(`resources.Observation`, {
-								["Observation"]: obs.resource,
-							})
-						)
-					);
+					for (const p of patients) {
+						const r = await ctx.call("resources.Patient", {
+							["Patient"]: p.resource,
+						});
+
+						if (r) {
+							allResponses = allResponses.concat(r);
+						}
+					}
+
+					for (const eoc of eocs) {
+						const r = await ctx.call(`resources.EpisodeOfCare`, {
+							["EpisodeOfCare"]: eoc.resource,
+						});
+
+						if (r) {
+							allResponses = allResponses.concat(r);
+						}
+					}
+
+					for (const encounter of encounters) {
+						const r = await ctx.call(`resources.Encounter`, {
+							["Encounter"]: encounter.resource,
+						});
+
+						if (r) {
+							allResponses = allResponses.concat(r);
+						}
+					}
+
+					for (const obs of observations) {
+						const r = await ctx.call(`resources.Observation`, {
+							["Observation"]: obs.resource,
+						});
+
+						if (r) {
+							allResponses = allResponses.concat(r);
+						}
+					}
 					return {
-						entry: [
-							...processedPatients,
-							...processedEpisodesOfCare,
-							...processedEncounters,
-							...processedObservations,
-						],
+						entry: allResponses,
 					};
-					// return observations;
 				}
 				return ctx.call(`resources.${resourceType}`, {
 					[resourceType]: ctx.params,
@@ -354,23 +363,23 @@ module.exports = {
 				path: "/synchronize",
 			},
 			async handler(ctx) {
-				// try {
-				// 	await Promise.all(
-				// 		[
-				// 			"programs",
-				// 			"stages",
-				// 			"concepts",
-				// 			"attributes",
-				// 			"patients",
-				// 			"entities",
-				// 			"organisations",
-				// 		].map((index) => {
-				// 			return ctx.call("es.createIndex", { index });
-				// 		})
-				// 	);
-				// } catch (error) {
-				// 	console.log(error.message);
-				// }
+				try {
+					await Promise.all(
+						[
+							"programs",
+							"stages",
+							"concepts",
+							"attributes",
+							"patients",
+							"entities",
+							"organisations",
+						].map((index) => {
+							return ctx.call("es.createIndex", { index });
+						})
+					);
+				} catch (error) {
+					console.log(error.message);
+				}
 				const [
 					{ dataElements },
 					{ trackedEntityAttributes },

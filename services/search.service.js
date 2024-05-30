@@ -40,7 +40,6 @@ module.exports = {
 				if (entities.length > 0) {
 					const [entity] = entities;
 					const code = this.getDHIS2Code(entity.mappings);
-					console.log(code);
 					return code;
 				}
 				return null;
@@ -61,28 +60,28 @@ module.exports = {
 							system: ctx.params.identifier.system,
 						}
 					);
-
-					return this.getDHIS2Code(organisationSearch);
-				} else if (ctx.params.reference) {
+					const orgUnit = this.getDHIS2Code(organisationSearch);
+					if (orgUnit) return orgUnit;
+				}
+				if (ctx.params.reference) {
 					const id = String(ctx.params.reference).replace("Organization/", "");
 					const organisationSearch = await ctx.call("es.searchById", {
 						id,
 						index: "organisations",
 					});
-					return {};
-					// return this.getDHIS2Code(organisationSearch.mappings);
+					const orgUnit = this.getDHIS2Code(organisationSearch.mappings);
+
+					if (orgUnit) return orgUnit;
 				}
 			},
 		},
 		patient: {
 			async handler(ctx) {
-				const attributes = await ctx.call("es.search", {
+				const attributes = await ctx.call("es.scroll", {
 					index: "attributes",
-					body: { query: { match_all: {} }, size: 1000 },
+					body: { query: { match_all: {} }, size: 100 },
 				});
-
 				const identifiers = this.getIdentifiers(ctx.params, attributes);
-
 				let maritalStatus = "";
 				if (ctx.params.maritalStatus && ctx.params.maritalStatus.coding) {
 					const [{ system, code }] = ctx.params.maritalStatus.coding;
@@ -107,9 +106,9 @@ module.exports = {
 							: "",
 					gender: capitalize(ctx.params.gender),
 					telecom:
-						ctx.params.telecom.length > 0 ? ctx.params.telecom[0].value : "",
+						ctx.params.telecom?.length > 0 ? ctx.params.telecom[0].value : "",
 					address:
-						ctx.params.address.length > 0 ? ctx.params.address[0].text : "",
+						ctx.params.address?.length > 0 ? ctx.params.address[0].text : "",
 					maritalStatus,
 				};
 				const biodata = [

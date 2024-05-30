@@ -35,6 +35,7 @@ module.exports = {
 								"search.patient",
 								patient
 							);
+							console.log(identifiers);
 							const identifierValues = identifiers.map((i) => i.value);
 							if ([...identifierValues, ...biodata].length > 0 || patient.id) {
 								let trackedEntityInstance = {
@@ -287,106 +288,104 @@ module.exports = {
 		},
 		Observation: {
 			async handler(ctx) {
-				try {
-					const {
-						Observation: {
-							subject: { identifier, reference },
-							encounter,
-							code: { coding },
-							valueQuantity,
-							valueCodeableConcept,
-							valueString,
-							valueBoolean,
-							valueInteger,
-							valueTime,
-							valueDateTime,
-							...rest
-						},
-					} = ctx.params;
-					let realValue = valueString || valueInteger || valueTime;
-					if (valueDateTime !== undefined) {
-						realValue = String(valueDateTime).slice(0, 10);
-					}
-					if (valueBoolean !== undefined) {
-						realValue = valueBoolean ? "Yes" : "No";
-					}
-					if (valueQuantity !== undefined) {
-						realValue = valueQuantity.value;
-					}
-					if (valueCodeableConcept !== undefined) {
-						const valueCode = valueCodeableConcept.coding.find(
-							(code) => !!code.system
-						);
-						if (valueCode) {
-							const searchCodeableConcept = await ctx.call("search.option", {
-								system: valueCode.system,
-								code: valueCode.code,
-							});
-							if (searchCodeableConcept) {
-								realValue = searchCodeableConcept;
-							} else {
-								realValue = valueCode.code;
-							}
+				// try {
+				const {
+					Observation: {
+						subject: { identifier, reference },
+						encounter,
+						code: { coding },
+						valueQuantity,
+						valueCodeableConcept,
+						valueString,
+						valueBoolean,
+						valueInteger,
+						valueTime,
+						valueDateTime,
+						...rest
+					},
+				} = ctx.params;
+				let realValue = valueString || valueInteger || valueTime;
+				if (valueDateTime !== undefined) {
+					realValue = String(valueDateTime).slice(0, 10);
+				} else if (valueBoolean !== undefined) {
+					realValue = valueBoolean ? "Yes" : "No";
+				} else if (valueQuantity !== undefined) {
+					realValue = valueQuantity.value;
+				} else if (valueCodeableConcept !== undefined) {
+					const valueCode = valueCodeableConcept.coding.find(
+						(code) => !!code.system
+					);
+					if (valueCode) {
+						const searchCodeableConcept = await ctx.call("search.option", {
+							system: valueCode.system,
+							code: valueCode.code,
+						});
+						if (searchCodeableConcept) {
+							realValue = searchCodeableConcept;
+						} else {
+							realValue = valueCode.code;
 						}
 					}
-					const foundMapping = coding.find(
-						(code) => !!code.system && !!code.code
-					);
-					if (realValue) {
-						if (foundMapping) {
-							const { system, code } = foundMapping;
-							const dataElement = await ctx.call("search.concept", {
-								system,
-								code,
-							});
+				}
+				const foundMapping = coding.find(
+					(code) => !!code.system && !!code.code
+				);
+				if (realValue) {
+					if (foundMapping) {
+						const { system, code } = foundMapping;
+						const dataElement = await ctx.call("search.concept", {
+							system,
+							code,
+						});
 
-							let patient = {
-								identifier: [],
+						let patient = {
+							identifier: [],
+						};
+						if (reference) {
+							patient = {
+								...patient,
+								patientId: String(reference).replace("Patient/", ""),
 							};
-							if (reference) {
-								patient = {
-									...patient,
-									patientId: String(reference).replace("Patient/", ""),
-								};
-							}
-							if (identifier) {
-								patient = {
-									...patient,
-									identifiers: identifier.map((id) => id.value),
-								};
-							}
-							if (dataElement) {
-								const previousPatient = await ctx.call(
-									"search.previousPatient",
-									patient
+						}
+						if (identifier) {
+							patient = {
+								...patient,
+								identifiers: identifier.map((id) => id.value),
+							};
+						}
+						if (dataElement) {
+							const previousPatient = await ctx.call(
+								"search.previousPatient",
+								patient
+							);
+							if (previousPatient) {
+								const { trackedEntityInstance, orgUnit } = previousPatient;
+								const previousEncounter = await ctx.call(
+									"search.findEncounter",
+									{
+										id: String(encounter.reference).replace("Encounter/", ""),
+										trackedEntityInstance,
+										orgUnit,
+									}
 								);
-								if (previousPatient) {
-									const { trackedEntityInstance, orgUnit } = previousPatient;
-									const previousEncounter = await ctx.call(
-										"search.findEncounter",
-										{
-											id: String(encounter.reference).replace("Encounter/", ""),
-											trackedEntityInstance,
-											orgUnit,
-										}
-									);
-									if (previousEncounter) {
-										const {
-											event,
-											orgUnit,
-											program,
-											programStage,
-											trackedEntityInstance,
-										} = previousEncounter;
-										// return {
-										// 	event,
-										// 	orgUnit,
-										// 	program,
-										// 	programStage,
-										// 	trackedEntityInstance,
-										// 	status: "ACTIVE",
-										// 	dataValues: [{ dataElement, value: realValue }],
-										// };
+								if (previousEncounter) {
+									const {
+										event,
+										orgUnit,
+										program,
+										programStage,
+										trackedEntityInstance,
+									} = previousEncounter;
+									// return {
+									// 	event,
+									// 	orgUnit,
+									// 	program,
+									// 	programStage,
+									// 	trackedEntityInstance,
+									// 	status: "ACTIVE",
+									// 	dataValues: [{ dataElement, value: realValue }],
+									// };
+									try {
 										return await ctx.call("dhis2.put", {
 											url: `events/${event}/${dataElement}`,
 											event,
@@ -397,28 +396,31 @@ module.exports = {
 											status: "ACTIVE",
 											dataValues: [{ dataElement, value: realValue }],
 										});
-									} else {
-										return `Could not find encounter ${String(
-											encounter.reference
-										).replace("Encounter/", "")}`;
+									} catch (error) {
+										return error;
 									}
 								} else {
-									return `Could not find patient ${String(
-										subject.reference
-									).replace("Patient/", "")}`;
+									return `Could not find encounter ${String(
+										encounter.reference
+									).replace("Encounter/", "")}`;
 								}
 							} else {
-								// return `Could not find mapping for ${code}`;
+								return `Could not find patient ${String(
+									subject.reference
+								).replace("Patient/", "")}`;
 							}
 						} else {
-							return `Could not find mapping system and code`;
+							// return `Could not find mapping for ${code}`;
 						}
 					} else {
-						return "No value found for specified observation";
+						return `Could not find mapping system and code`;
 					}
-				} catch (error) {
-					return error;
+				} else {
+					return "No value found for specified observation";
 				}
+				// } catch (error) {
+				// 	return error;
+				// }
 			},
 		},
 	},

@@ -120,6 +120,19 @@ module.exports = {
 				if (hits.length > 0) {
 					return hits[0]._source;
 				}
+				const {
+					hits: { hits: hits1 },
+				} = await client.search({
+					index,
+					body: {
+						query: {
+							match: { "mappings.code": id },
+						},
+					},
+				});
+				if (hits1.length > 0) {
+					return hits1[0]._source;
+				}
 				return null;
 			},
 		},

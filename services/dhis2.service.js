@@ -1,9 +1,6 @@
 "use strict";
 
 const axios = require("axios");
-
-console.log(process.env);
-
 const instance = axios.create({
 	baseURL: process.env.DHIS2_URL,
 	auth: {
@@ -18,6 +15,7 @@ const instance = axios.create({
 module.exports = {
 	name: "dhis2",
 	/**
+	 *
 	 * Settings
 	 */
 	settings: {},
