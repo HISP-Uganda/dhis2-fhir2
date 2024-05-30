@@ -405,11 +405,11 @@ module.exports = {
 									}
 								} else {
 									return `Could not find patient ${String(
-										subject.reference
+										subject?.reference ?? ""
 									).replace("Patient/", "")}`;
 								}
 							} else {
-								// return `Could not find mapping for ${code}`;
+								return `Could not find mapping for ${code}`;
 							}
 						} else {
 							return `Could not find mapping system and code`;
